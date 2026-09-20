@@ -1,37 +1,15 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="fa">
+<html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>وکیل ویزا — Vakil Visa | مشاوره مهاجرت، ویزا و اقامت</title>
-<meta name="description" content="وکیل ویزا — مشاوره مهاجرت، ویزا، اقامت و راهنمای سفارت برای فرانسه، آلمان، روسیه، لهستان، هلند و بلژیک. Visa. Residence. A New Beginning.">
-<meta property="og:title" content="Vakil Visa — مشاوره مهاجرت، ویزا و اقامت">
-<meta property="og:description" content="راهنمای حرفه‌ای مهاجرت به فرانسه، آلمان، روسیه، لهستان، هلند و بلژیک.">
-<script type="importmap">
-{
-  "imports": {
-    "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.1.18/+esm"
-  }
-}
-</script>
+<title>وکیل ویزا | Vakil Visa — مشاوره مهاجرت، ویزا و اقامت</title>
+<meta name="description" content="وکیل ویزا — مشاوره مهاجرت، ویزا و اقامت برای فرانسه، آلمان، روسیه، لهستان، هلند و بلژیک. راهنمای شفاف برای مسیرهای پیچیده.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23171b2b'/%3E%3Cpath d='M8 9l5 14L18 9' stroke='%23c96b32' stroke-width='2.6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M17 9l4.5 12.6L26 9' stroke='%23e6a06d' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500&family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-/* ==================================================================
-   VAKIL VISA — base: tokens, reset, adaptive rem, header, loader,
-   fullscreen menu, contact modal, reveal primitives
-   ================================================================== */
-
-/* ---------- adaptive rem system (spec §7) ---------- */
-html { font-size: 16px; }
-@media (max-width:1920px){ html { font-size: 0.833333vw; } }
-@media (max-width:1440px){ html { font-size: 1.111111vw; } }
-@media (max-width:1024px){ html { font-size: 1.5625vw; } }
-@media (max-width:640px) { html { font-size: 4.444444vw; } }
-
-/* ---------- tokens (spec §3) ---------- */
+/* ================= tokens ================= */
 :root{
   --background:#ffffff;
   --foreground:#0a0a0a;
@@ -50,2206 +28,1718 @@ html { font-size: 16px; }
   --radius-card-lg:2rem;
   --radius-pill:62.5rem;
   --font-fa:"Vazirmatn","Onest",system-ui,sans-serif;
-  --font-lt:"Onest","Vazirmatn",system-ui,sans-serif;
+  --font-en:"Onest","Vazirmatn",system-ui,sans-serif;
   --ease-expo:cubic-bezier(0.16,1,0.3,1);
   --ease-quart:cubic-bezier(0.25,1,0.5,1);
   --ease-cubic:cubic-bezier(0.65,0,0.35,1);
-  --pad-x:4.5rem;
   --header-h:5.5rem;
 }
 
-/* ---------- reset ---------- */
+/* ================= adaptive rem ================= */
+html{ font-size:16px; }
+@media (max-width:1920px){ html{ font-size:0.833333vw; } }
+@media (max-width:1440px){ html{ font-size:1.111111vw; } }
+@media (max-width:1024px){ html{ font-size:1.5625vw; } }
+@media (max-width:640px){ html{ font-size:4.444444vw; } }
+
+/* ================= base ================= */
 *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
-html{ scroll-behavior:auto; overflow-x:clip; }
+html{ scroll-behavior:auto; }
+html.lenis, html.lenis body{ height:auto; }
+.lenis.lenis-smooth{ scroll-behavior:auto !important; }
+.lenis.lenis-stopped{ overflow:hidden; }
+html.is-locked, html.is-locked body{ overflow:hidden; }
 body{
+  font-family:var(--font-fa);
   background:var(--background);
   color:var(--ink);
-  font-family:var(--font-fa);
-  font-weight:400;
   line-height:1.7;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
   overflow-x:clip;
 }
-body.is-locked{ overflow:hidden; }
-img{ display:block; max-width:100%; height:auto; }
+img{ display:block; max-width:100%; }
 a{ color:inherit; text-decoration:none; }
 button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
 ul,ol{ list-style:none; }
 ::selection{ background:var(--brand); color:var(--on-brand); }
-:focus-visible{ outline:0.125rem solid var(--brand); outline-offset:0.1875rem; border-radius:0.25rem; }
+:focus-visible{ outline:2px solid var(--brand); outline-offset:3px; border-radius:.25rem; }
+.en{ font-family:var(--font-en); letter-spacing:.08em; text-transform:uppercase; }
+.wrap{ width:min(100% - 5rem, 168rem); margin-inline:auto; }
+@media (max-width:640px){ .wrap{ width:calc(100% - 3.5rem); } }
 
-.container{ width:min(100% - (var(--pad-x) * 2), 105rem); margin-inline:auto; }
-.latin{ font-family:var(--font-lt); }
-.vh{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+/* word split primitives */
+.w{ display:inline-block; overflow:hidden; vertical-align:bottom; padding-bottom:.08em; margin-bottom:-.08em; }
+.wi{ display:inline-block; transform:translateY(115%); opacity:0; will-change:transform; }
+.w-sep{ display:inline-block; }
 
-/* ---------- header ---------- */
-.site-header{
-  position:fixed; inset-inline:0; top:0; z-index:60;
-  height:var(--header-h);
-  display:flex; align-items:center;
-  color:#fff;
-  transition:background 0.45s var(--ease-cubic), color 0.45s var(--ease-cubic), box-shadow 0.45s var(--ease-cubic), height 0.45s var(--ease-cubic);
-}
-.site-header .container{
-  display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:2rem;
-}
-.site-header.is-solid{
-  background:rgba(23,27,43,0.86);
-  backdrop-filter:blur(0.75rem);
-  -webkit-backdrop-filter:blur(0.75rem);
-  box-shadow:0 0.0625rem 0 rgba(255,255,255,0.08);
-  height:4.5rem;
-}
-.header-nav{ display:flex; gap:2.25rem; }
-.header-link{
-  position:relative; font-size:0.95rem; font-weight:500; letter-spacing:0.01em;
-  opacity:0.92; transition:opacity 0.25s; padding:0.4rem 0;
-}
-.header-link::after{
-  content:""; position:absolute; inset-inline-start:0; bottom:0.15rem;
-  width:100%; height:0.09em; background:var(--brand-light);
-  transform:scaleX(0); transform-origin:right;
-  transition:transform 0.4s var(--ease-expo);
-}
-.header-link:hover{ opacity:1; }
-.header-link:hover::after{ transform:scaleX(1); }
-.brand{ display:flex; align-items:center; gap:0.75rem; justify-self:center; }
-.brand svg{ width:2.4rem; height:2.4rem; flex:none; }
-.brand-text{
-  font-family:var(--font-lt); font-weight:500; font-size:1.05rem;
-  letter-spacing:0.32em; text-transform:uppercase; line-height:1;
-  padding-top:0.15em;
-}
-.brand-text small{
-  display:block; font-size:0.52rem; letter-spacing:0.5em; opacity:0.62;
-  margin-top:0.4em; font-weight:400;
-}
-.header-side{ display:flex; align-items:center; gap:1.4rem; justify-self:end; }
-.header-phone{
-  font-family:var(--font-lt); font-size:0.92rem; font-weight:500; letter-spacing:0.04em;
-  display:inline-flex; align-items:center; gap:0.5rem; opacity:0.92;
-  transition:opacity .25s, color .25s;
-}
-.header-phone:hover{ opacity:1; color:var(--brand-light); }
-.header-phone svg{ width:1em; height:1em; }
-.btn-contact{
-  display:inline-flex; align-items:center; gap:0.6rem;
-  background:var(--brand); color:var(--on-brand);
-  border-radius:var(--radius-pill);
-  padding:0.72rem 1.5rem;
-  font-size:0.92rem; font-weight:500;
-  transition:background 0.3s, transform 0.3s var(--ease-quart);
-}
-.btn-contact:hover{ background:#b45d28; transform:translateY(-0.125rem); }
-/* burger */
-.burger{
-  position:relative; width:2.75rem; height:2.75rem; flex:none;
-  display:none; align-items:center; justify-content:center;
-  border-radius:50%;
-}
-.burger span{
-  position:absolute; left:50%; top:50%;
-  width:1.375rem; height:0.125rem; background:currentColor; border-radius:1rem;
-  transition:transform 0.45s var(--ease-expo), opacity 0.3s;
-}
-.burger span:nth-child(1){ transform:translate(-50%,-50%) translateY(-0.28rem); }
-.burger span:nth-child(2){ transform:translate(-50%,-50%) translateY(0.28rem); }
-body.menu-open .burger span:nth-child(1){ transform:translate(-50%,-50%) rotate(45deg); }
-body.menu-open .burger span:nth-child(2){ transform:translate(-50%,-50%) rotate(-45deg); }
+/* inview reveal primitive */
+[data-rise]{ opacity:0; transform:translateY(1.75rem); transition:opacity .9s var(--ease-quart), transform .9s var(--ease-quart); transition-delay:var(--rise-delay,0ms); }
+[data-rise].is-in{ opacity:1; transform:none; }
 
-/* ---------- fullscreen menu (spec §27) ---------- */
-.menu{
-  position:fixed; inset:0; z-index:55;
-  background:var(--brand-deep); color:#fff;
-  opacity:0; visibility:hidden; pointer-events:none;
-  display:flex; flex-direction:column;
-  padding:calc(var(--header-h) + 2rem) 0 3rem;
-}
-.menu.is-open{ visibility:visible; pointer-events:auto; }
-.menu-inner{ flex:1; display:flex; flex-direction:column; justify-content:center; }
-.menu-list{ display:flex; flex-direction:column; gap:0.4rem; }
-.menu-link{
-  display:inline-flex; align-items:baseline; gap:1.2rem;
-  font-size:clamp(2.4rem, 5.2vw, 4.6rem); font-weight:500; line-height:1.25;
-  opacity:0; transform:translateY(2.2rem);
-  transition:color 0.3s;
-}
-.menu-link:hover{ color:var(--brand-light); }
-.menu-link i{
-  font-style:normal; font-family:var(--font-lt); font-size:0.85rem;
-  letter-spacing:0.18em; color:var(--brand); opacity:0.85;
-}
-.menu-foot{
-  display:flex; flex-wrap:wrap; gap:1.5rem 3rem; align-items:center; justify-content:space-between;
-  border-top:0.0625rem solid rgba(255,255,255,0.14); padding-top:1.8rem;
-}
-.menu-foot .menu-cta{
-  display:inline-flex; align-items:center; gap:0.7rem;
-  font-size:1.05rem; font-weight:500; color:var(--brand-light);
-}
-.menu-foot .menu-phone{ font-family:var(--font-lt); font-size:1.15rem; letter-spacing:0.06em; opacity:0.9; }
-.menu-foot .menu-phone:hover{ color:var(--brand-light); }
-
-/* ---------- loader (spec §30) ---------- */
-.loader{
-  position:fixed; inset:0; z-index:100;
-  background:var(--brand-deep); color:#fff;
-  display:flex; align-items:center; justify-content:center;
-}
-.loader-inner{ display:flex; flex-direction:column; align-items:center; gap:1.6rem; width:min(24rem, 68vw); }
-.loader-brand{ display:flex; flex-direction:column; align-items:center; gap:1rem; opacity:0; transform:translateY(1rem); }
-.loader-brand svg{ width:3.6rem; height:3.6rem; }
-.loader-brand b{ font-family:var(--font-lt); font-weight:500; font-size:1.2rem; letter-spacing:0.42em; text-transform:uppercase; padding-inline-start:0.42em; }
-.loader-brand small{ font-size:0.85rem; letter-spacing:0.14em; opacity:0.55; }
-.loader-track{ width:100%; height:0.0938rem; background:rgba(255,255,255,0.16); border-radius:1rem; overflow:hidden; }
-.loader-fill{ width:100%; height:100%; background:#fff; transform:scaleX(0); transform-origin:right; }
-.loader.is-exit{ transition:transform 850ms var(--ease-cubic); transform:translateY(-105%); }
-.loader.is-done{ display:none; }
-
-/* ---------- reveal primitives (spec §10) ---------- */
-.mask{ display:inline-block; overflow:hidden; vertical-align:bottom; padding-block:0.08em; margin-block:-0.08em; }
-.mask > .mask-in{
-  display:inline-block;
-  transform:translateY(115%); opacity:0;
-}
-.revealed .mask > .mask-in{ transform:translateY(0); opacity:1; }
-.mask > .mask-in{ transition:transform 1100ms var(--ease-expo), opacity 700ms var(--ease-expo); transition-delay:var(--d, 0ms); }
-/* inview fade-rise (spring drives inline style; CSS is the fallback) */
-.iv{ opacity:0; transform:translateY(1.75rem); }
-.reduced .iv, .iv.is-in{ opacity:1; transform:none; transition:opacity 0.9s var(--ease-expo), transform 0.9s var(--ease-expo); transition-delay:var(--d, 0ms); }
-
-/* ---------- buttons ---------- */
-.btn{
-  display:inline-flex; align-items:center; gap:0.8rem;
-  border-radius:var(--radius-pill);
-  padding:1rem 2.1rem;
-  font-size:1rem; font-weight:500;
-  transition:transform 0.35s var(--ease-quart), background 0.3s, color 0.3s, border-color 0.3s;
-}
-.btn .arr{ width:1.1rem; height:1.1rem; flex:none; transition:transform 0.35s var(--ease-expo); }
-.btn:hover .arr{ transform:translateX(-0.375rem); }
-.btn-brand{ background:var(--brand); color:var(--on-brand); }
-.btn-brand:hover{ background:#b45d28; transform:translateY(-0.1875rem); }
-.btn-ghost-light{ border:0.0625rem solid rgba(255,255,255,0.4); color:#fff; }
-.btn-ghost-light:hover{ border-color:#fff; background:rgba(255,255,255,0.08); transform:translateY(-0.1875rem); }
-.btn-ghost-dark{ border:0.0625rem solid var(--hairline); color:var(--ink); background:var(--surface-card); }
-.btn-ghost-dark:hover{ border-color:var(--ink); transform:translateY(-0.1875rem); }
-
-/* ---------- contact modal (spec §25) ---------- */
-.modal{
-  position:fixed; inset:0; z-index:70;
-  display:flex; align-items:center; justify-content:center;
-  padding:1.5rem;
-  visibility:hidden; pointer-events:none;
-}
-.modal.is-open{ visibility:visible; pointer-events:auto; }
-.modal-backdrop{
-  position:absolute; inset:0;
-  background:rgba(10,10,14,0.62);
-  backdrop-filter:blur(0.4rem);
-  -webkit-backdrop-filter:blur(0.4rem);
-  opacity:0;
-}
-.modal.is-open .modal-backdrop{ opacity:1; transition:opacity 0.45s var(--ease-cubic); }
-.modal-panel{
-  position:relative;
-  width:min(34rem, 100%);
-  max-height:min(52rem, 100dvh - 3rem);
-  overflow:auto;
-  background:var(--surface-card);
-  border-radius:var(--radius-card-lg);
-  padding:2.6rem 2.4rem 2.4rem;
-  opacity:0; transform:translateY(1.75rem) scale(0.96);
-  box-shadow:0 2.5rem 5rem rgba(10,10,20,0.35);
-}
-.modal.is-open .modal-panel{ opacity:1; transform:none; transition:opacity 0.5s var(--ease-expo), transform 0.5s var(--ease-expo); }
-.modal-close{
-  position:absolute; top:1.2rem; inset-inline-end:1.2rem;
-  width:2.6rem; height:2.6rem; border-radius:50%;
-  background:var(--surface); display:flex; align-items:center; justify-content:center;
-  transition:background .25s, transform .45s var(--ease-expo);
-}
-.modal-close:hover{ background:var(--ghost); transform:rotate(90deg); }
-.modal-close svg{ width:0.9rem; height:0.9rem; }
-.modal-head h3{ font-size:1.7rem; font-weight:700; line-height:1.3; }
-.modal-head p{ color:var(--ink-soft); font-size:0.95rem; margin-top:0.5rem; }
-.modal-form{ display:grid; gap:1.1rem; margin-top:1.8rem; }
-.field{ display:grid; gap:0.45rem; }
-.field label{ font-size:0.85rem; font-weight:500; }
-.field input,.field select,.field textarea{
-  font:inherit; font-size:0.95rem; color:var(--ink);
-  background:var(--surface);
-  border:0.0625rem solid transparent; border-radius:0.9rem;
-  padding:0.85rem 1.05rem;
-  transition:border-color 0.25s, background 0.25s;
-  width:100%;
-}
-.field textarea{ min-height:6.2rem; resize:vertical; }
-.field input:focus,.field select:focus,.field textarea:focus{
-  outline:none; border-color:var(--brand); background:#fff;
-}
-.field-row{ display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; }
-.modal-submit{ justify-content:center; width:100%; margin-top:0.4rem; }
-.modal-note{ font-size:0.75rem; color:var(--ink-soft); text-align:center; line-height:1.8; }
-.modal-success{ display:none; text-align:center; padding:2.2rem 0.5rem 1.4rem; }
-.modal-success.show{ display:block; }
-.modal-success .tick{
-  width:4.2rem; height:4.2rem; margin:0 auto 1.3rem; border-radius:50%;
-  background:rgba(201,107,50,0.12); color:var(--brand);
-  display:flex; align-items:center; justify-content:center;
-}
-.modal-success .tick svg{ width:1.7rem; height:1.7rem; }
-.modal-success h4{ font-size:1.45rem; font-weight:700; }
-.modal-success p{ color:var(--ink-soft); font-size:0.95rem; margin-top:0.7rem; line-height:2; }
-.modal-success .success-phone{
-  display:inline-flex; margin-top:1.4rem;
-  font-family:var(--font-lt); font-weight:500; font-size:1.25rem; letter-spacing:0.05em;
-  color:var(--brand);
-  direction:ltr;
-}
-.modal-form.is-hidden{ display:none; }
-
-
-/* ==================================================================
-   VAKIL VISA — sections: hero, destinations, services, process,
-   spotlight, why, information, timelines, faq, contact, footer
-   ================================================================== */
-
-/* ---------- shared section head ---------- */
-.section{ padding-block:clamp(4.5rem, 8vw, 9rem); position:relative; }
-.sec-head{ display:grid; gap:1.1rem; max-width:46rem; margin-bottom:clamp(2.6rem, 4.5vw, 4.5rem); }
+/* ================= eyebrow + headings ================= */
 .eyebrow{
-  display:inline-flex; align-items:center; gap:0.7rem;
-  font-size:0.85rem; font-weight:500; letter-spacing:0.22em;
+  display:flex; align-items:center; gap:.9rem;
+  font-size:1.05rem; font-weight:500; letter-spacing:.02em;
   color:var(--brand);
 }
-.eyebrow::before{ content:""; width:1.8rem; height:0.0938rem; background:var(--brand); border-radius:1rem; }
+.eyebrow::before{ content:""; width:2.6rem; height:1px; background:var(--brand); flex:none; }
+.eyebrow .en{ font-size:.95rem; color:var(--ink-soft); letter-spacing:.3em; }
+.on-dark .eyebrow .en{ color:rgba(255,255,255,.55); }
+.sec-head{ position:relative; margin-bottom:4.5rem; }
 .sec-title{
-  font-size:clamp(2.2rem, 4.6vw, 4.3rem);
-  font-weight:700; line-height:1.22;
+  font-size:clamp(3rem, 5.2vw, 6.2rem);
+  font-weight:500; line-height:1.12; letter-spacing:0;
+  margin-top:1.4rem; max-width:22ch;
 }
-.sec-desc{ color:var(--ink-soft); font-size:1.05rem; max-width:36rem; }
-.ghost-word{
-  position:absolute; inset-inline-end:-1rem; top:1.5rem;
-  font-family:var(--font-lt); font-weight:500; font-size:clamp(6rem, 17vw, 15rem);
-  line-height:1; color:transparent;
-  -webkit-text-stroke:0.0625rem var(--ghost);
-  pointer-events:none; user-select:none; white-space:nowrap;
-  opacity:0; transform:translateY(6%);
-  transition:opacity 1.3s var(--ease-expo), transform 1.3s var(--ease-expo);
+.sec-title .en-line{ display:block; font-family:var(--font-en); font-size:.36em; letter-spacing:.32em; color:var(--ink-soft); margin-top:1.1rem; text-transform:uppercase; }
+.on-dark .sec-title .en-line{ color:rgba(255,255,255,.45); }
+.sec-desc{ margin-top:1.6rem; color:var(--ink-soft); font-size:1.2rem; max-width:52ch; }
+.on-dark .sec-desc{ color:rgba(255,255,255,.65); }
+.ghost{
+  direction:ltr;
+  position:absolute; inset-inline-start:-.05em; top:-.62em;
+  font-family:var(--font-en); font-weight:500; text-transform:uppercase;
+  font-size:clamp(4.5rem, 10vw, 12rem); line-height:1; white-space:nowrap;
+  color:transparent; -webkit-text-stroke:1px var(--ghost);
+  pointer-events:none; user-select:none; z-index:0;
 }
-.ghost-word.revealed{ opacity:0.85; transform:none; }
+.on-dark .ghost{ -webkit-text-stroke:1px rgba(255,255,255,.14); }
+.ghost .wi{ transform:translateY(115%); }
+section{ position:relative; }
+.sec-pad{ padding-block:clamp(6rem, 9vw, 10.5rem); overflow:clip; }
 
-/* ---------- hero (spec §13-15) ---------- */
-.hero{
-  position:relative; min-height:100svh;
-  display:flex; align-items:flex-end;
-  color:#fff;
-  overflow:hidden;
+/* ================= loader ================= */
+.veil{
+  position:fixed; inset:0; z-index:100;
   background:var(--brand-deep);
-  padding-bottom:clamp(2.5rem, 5vh, 4.5rem);
-}
-.hero-plate{
-  position:absolute; inset:-14% 0;
+  display:flex; align-items:center; justify-content:center;
   will-change:transform;
 }
+.veil-inner{ display:flex; flex-direction:column; align-items:center; gap:2.2rem; width:min(78vw, 34rem); }
+.veil .logo-mark{ width:5.2rem; height:5.2rem; color:#fff; }
+.veil-name{ color:#fff; font-family:var(--font-en); direction:ltr; font-size:1.5rem; letter-spacing:.42em; text-indent:.42em; font-weight:500; opacity:0; transform:translateY(1rem); }
+.veil-meter{ width:100%; height:1px; background:rgba(255,255,255,.18); position:relative; overflow:hidden; }
+.veil-fill{ position:absolute; inset:0; background:#fff; transform:scaleX(0); transform-origin:right; }
+.veil-pct{ color:rgba(255,255,255,.55); font-family:var(--font-en); font-size:.95rem; letter-spacing:.25em; direction:ltr; }
+
+/* ================= logo ================= */
+.logo{ display:inline-flex; align-items:center; gap:.9rem; color:inherit; }
+.logo-mark{ width:2.6rem; height:2.6rem; color:currentColor; flex:none; }
+.logo-mark .vv{ stroke:var(--brand); }
+.logo-word{ font-family:var(--font-en); font-weight:500; letter-spacing:.3em; font-size:1.02rem; text-transform:uppercase; white-space:nowrap; }
+
+/* ================= header ================= */
+.site-header{
+  position:fixed; inset-inline:0; top:0; z-index:60;
+  transition:background .5s var(--ease-quart), box-shadow .5s var(--ease-quart), backdrop-filter .5s;
+}
+.site-header.is-solid{
+  background:rgba(23,27,43,.9);
+  -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
+  box-shadow:0 1px 0 rgba(255,255,255,.08);
+}
+.header-bar{
+  height:var(--header-h);
+  display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
+  color:#fff;
+}
+.header-nav{ display:flex; gap:2.6rem; }
+.header-nav a{ font-size:1.02rem; opacity:.85; transition:opacity .3s, color .3s; position:relative; }
+.header-nav a::after{ content:""; position:absolute; inset-inline-start:0; bottom:-.45rem; width:100%; height:1px; background:var(--brand-light); transform:scaleX(0); transform-origin:right; transition:transform .45s var(--ease-quart); }
+.header-nav a:hover{ opacity:1; }
+.header-nav a:hover::after{ transform:scaleX(1); }
+.site-header .logo{ justify-self:center; }
+.header-side{ display:flex; align-items:center; gap:1.4rem; justify-self:start; }
+.header-cta{
+  font-size:1rem; padding:.68rem 1.7rem; border:1px solid rgba(255,255,255,.35);
+  border-radius:var(--radius-pill); transition:background .35s, border-color .35s, color .35s;
+}
+.header-cta:hover{ background:var(--brand); border-color:var(--brand); color:#fff; }
+.burger{ display:none; width:2.8rem; height:2.8rem; position:relative; }
+.burger span{ position:absolute; left:50%; width:1.5rem; height:1.5px; background:#fff; transform:translateX(-50%); transition:transform .45s var(--ease-quart), top .45s var(--ease-quart); }
+.burger span:nth-child(1){ top:calc(50% - 4px); }
+.burger span:nth-child(2){ top:calc(50% + 4px); }
+.burger.is-open span:nth-child(1){ top:50%; transform:translateX(-50%) rotate(45deg); }
+.burger.is-open span:nth-child(2){ top:50%; transform:translateX(-50%) rotate(-45deg); }
+@media (max-width:1024px){
+  .header-nav{ display:none; }
+  .burger{ display:block; }
+  .header-cta{ display:none; }
+}
+
+/* ================= fullscreen menu ================= */
+.menu{
+  position:fixed; inset:0; z-index:55; background:var(--brand-deep);
+  opacity:0; visibility:hidden; display:flex; flex-direction:column;
+  padding:calc(var(--header-h) + 2rem) 0 3rem;
+}
+.menu.is-open{ visibility:visible; }
+.menu-links{ flex:1; display:flex; flex-direction:column; justify-content:center; gap:.4rem; }
+.menu-link{
+  display:flex; align-items:baseline; gap:1.4rem; width:fit-content;
+  color:#fff; font-size:clamp(2.4rem, 5vw, 4.4rem); font-weight:500; line-height:1.35;
+  opacity:0; transform:translateY(1.6rem);
+  transition:color .35s;
+}
+.menu-link small{ font-family:var(--font-en); font-size:.95rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.4); }
+.menu-link:hover{ color:var(--brand-light); }
+.menu-foot{ display:flex; flex-wrap:wrap; gap:1.2rem 3rem; align-items:center; color:rgba(255,255,255,.65); border-top:1px solid rgba(255,255,255,.12); padding-top:2rem; }
+.menu-foot a{ color:#fff; font-family:var(--font-en); direction:ltr; unicode-bidi:embed; letter-spacing:.12em; font-size:1.15rem; transition:color .3s; }
+.menu-foot a:hover{ color:var(--brand-light); }
+.menu-foot .btn-mini{ margin-inline-start:auto; font-family:var(--font-fa); letter-spacing:0; text-transform:none; }
+
+/* ================= buttons ================= */
+.btn{
+  display:inline-flex; align-items:center; gap:.9rem;
+  background:var(--brand); color:var(--on-brand);
+  border-radius:var(--radius-pill); padding:1.05rem 2.3rem;
+  font-size:1.08rem; font-weight:500; line-height:1;
+  transition:background .35s, transform .35s var(--ease-quart);
+}
+.btn .arrow{ width:1.15rem; height:1.15rem; flex:none; }
+.btn:hover{ background:#b25a26; }
+.btn-ghost{ background:transparent; border:1px solid rgba(255,255,255,.4); }
+.btn-ghost:hover{ background:rgba(255,255,255,.1); border-color:#fff; }
+.on-light .btn-ghost{ border-color:var(--hairline); color:var(--ink); }
+.on-light .btn-ghost:hover{ background:var(--surface); border-color:var(--ghost); }
+.arrow{ display:inline-block; }
+[dir="rtl"] .flip{ transform:scaleX(-1); }
+</style>
+<style>
+/* ================= hero ================= */
+.hero{
+  position:relative; min-height:100svh; color:#fff;
+  background:var(--brand-deep);
+  display:flex; align-items:flex-end;
+  padding:calc(var(--header-h) + 2rem) 0 clamp(2.5rem, 4vw, 4rem);
+  overflow:clip;
+}
+.hero-plate{ position:absolute; inset:0; overflow:hidden; z-index:0; }
 .hero-plate img{
-  width:100%; height:100%; object-fit:cover; object-position:center 38%;
+  position:absolute; inset-inline:0; top:-12%; width:100%; height:124%;
+  object-fit:cover; object-position:center 35%;
+  will-change:transform;
 }
 .hero-plate::after{
   content:""; position:absolute; inset:0;
-  background:linear-gradient(to bottom, rgba(23,27,43,0.65), rgba(23,27,43,0.30), rgba(23,27,43,0.82));
+  background:linear-gradient(to bottom, rgba(23,27,43,.65), rgba(23,27,43,.30), rgba(23,27,43,.82));
 }
-.hero-inner{
+.hero-grid{
   position:relative; z-index:2;
-  width:min(100% - (var(--pad-x) * 2), 105rem); margin-inline:auto;
-  display:grid; grid-template-columns:1.35fr 0.85fr; gap:clamp(2rem, 4vw, 4.5rem);
-  align-items:end;
-  padding-top:calc(var(--header-h) + 3rem);
+  display:flex; flex-direction:column; gap:clamp(2rem, 3.2vw, 3.6rem);
+  align-self:stretch;
 }
+.hero-top{ max-width:100%; }
+.hero-bottom{
+  display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);
+  gap:clamp(2.5rem, 4vw, 5rem); align-items:end;
+}
+.hero-eyebrow{
+  display:inline-flex; align-items:center; gap:.9rem;
+  color:rgba(255,255,255,.85); font-size:1.08rem; font-weight:500;
+  margin-bottom:2.2rem; opacity:0;
+}
+.hero-eyebrow::before{ content:""; width:2.6rem; height:1px; background:var(--brand-light); }
 .hero-title{
-  font-size:clamp(3rem, 9.6vw, 9.4rem);
-  font-weight:700; line-height:1.08;
+  font-family:var(--font-en);
+  direction:ltr; text-align:right;
+  font-size:min(11vw, 13.4rem); font-weight:500; line-height:.92; letter-spacing:-.02em;
+  text-transform:uppercase; text-wrap:balance;
 }
-.hero-title .latin-line{ display:block; font-family:var(--font-lt); font-weight:500; font-size:0.32em; letter-spacing:0.34em; text-transform:uppercase; color:var(--brand-light); margin-bottom:1.2em; }
-.hero-tagline{ margin-top:2.2rem; display:grid; gap:0.15em; font-size:clamp(1.25rem, 1.9vw, 1.8rem); font-weight:500; line-height:1.5; }
-.hero-tagline .mask > .mask-in{ transition-duration:900ms; }
-.hero-tagline small{ display:block; font-size:0.62em; font-weight:400; opacity:0.78; margin-top:0.8em; }
-.hero-cta{ margin-top:2.4rem; display:flex; flex-wrap:wrap; gap:1rem; }
-.hero-chips{
-  margin-top:2.6rem; display:flex; flex-wrap:wrap; gap:0.5rem;
-}
-.hero-chips li{
-  font-size:0.8rem; padding:0.42rem 0.95rem;
-  border:0.0625rem solid rgba(255,255,255,0.28); border-radius:var(--radius-pill);
-  backdrop-filter:blur(0.3rem); background:rgba(255,255,255,0.06);
-}
-/* destinations slider */
-.hero-aside{ display:grid; gap:1.4rem; }
-.dest-slider{
-  position:relative; border-radius:var(--radius-card-lg); overflow:hidden;
-  aspect-ratio:4/4.6; max-height:30rem; width:100%;
-  background:rgba(255,255,255,0.06);
-  border:0.0625rem solid rgba(255,255,255,0.16);
-  backdrop-filter:blur(0.4rem);
-}
-.dest-slide{
-  position:absolute; inset:0; opacity:0;
-  display:flex; flex-direction:column; justify-content:flex-end;
-  padding:1.6rem;
-}
-.dest-slide.is-active{ opacity:1; }
-.dest-slide img{
-  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-  transform:scale(1.06);
-}
-.dest-slide.is-active img{ transform:scale(1); transition:transform 5.5s var(--ease-cubic); }
-.dest-slide::after{
-  content:""; position:absolute; inset:0;
-  background:linear-gradient(to top, rgba(10,10,16,0.78) 18%, rgba(10,10,16,0.08) 55%);
-}
-.dest-meta{ position:relative; z-index:2; display:grid; gap:0.3rem; }
-.dest-meta .country{
-  font-family:var(--font-lt); font-size:0.78rem; font-weight:500; letter-spacing:0.3em;
-  text-transform:uppercase; color:var(--brand-light);
-  direction:ltr; text-align:right; unicode-bidi:isolate;
-}
-.dest-meta h3{ font-size:1.5rem; font-weight:700; }
-.dest-meta p{ font-size:0.88rem; opacity:0.85; }
-.dest-cta{
-  position:relative; z-index:2; margin-top:0.9rem;
-  display:inline-flex; align-items:center; gap:0.55rem;
-  font-size:0.88rem; font-weight:500; color:#fff;
-}
-.dest-cta svg{ width:0.95rem; height:0.95rem; transition:transform 0.35s var(--ease-expo); }
-.dest-cta:hover svg{ transform:translateX(-0.3rem); }
-.slider-ui{
+.hero-tagline{ margin-top:2.4rem; font-size:clamp(1.5rem, 2.1vw, 2.3rem); font-weight:500; line-height:1.45; color:#fff; }
+.hero-sub{ margin-top:1.4rem; max-width:46ch; color:rgba(255,255,255,.72); font-size:1.15rem; }
+.hero-ctas{ display:flex; flex-wrap:wrap; gap:1.2rem; margin-top:2.8rem; opacity:0; transform:translateY(1.2rem); }
+.hero-scroll{ margin-top:3.2rem; display:inline-flex; align-items:center; gap:.8rem; color:rgba(255,255,255,.5); font-size:.98rem; opacity:0; }
+.hero-scroll .wheel{ width:1.05rem; height:1.7rem; border:1px solid rgba(255,255,255,.5); border-radius:.6rem; position:relative; }
+.hero-scroll .wheel::after{ content:""; position:absolute; left:50%; top:.28rem; width:2px; height:.4rem; margin-left:-1px; border-radius:2px; background:var(--brand-light); animation:wheel 1.8s var(--ease-cubic) infinite; }
+@keyframes wheel{ 0%{ transform:translateY(0); opacity:1 } 70%{ transform:translateY(.55rem); opacity:0 } 100%{ opacity:0 } }
+
+/* hero slider */
+.hero-side{ display:flex; flex-direction:column; gap:1.6rem; }
+.dest-slider{ position:relative; height:clamp(24rem, 30vw, 32rem); border-radius:var(--radius-card-lg); overflow:hidden; opacity:0; }
+.slide{ position:absolute; inset:0; opacity:0; }
+.slide img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform:scale(1.06); will-change:transform,opacity; }
+.slide::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(23,27,43,.72) 8%, rgba(23,27,43,.05) 55%); }
+.slide-caption{
+  position:absolute; inset-inline:1.1rem; bottom:1.1rem; z-index:2;
+  padding:1.3rem 1.5rem; border-radius:1.25rem;
+  background:rgba(23,27,43,.42); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.14); color:#fff;
   display:flex; align-items:center; justify-content:space-between; gap:1rem;
 }
-.dots{ display:flex; gap:0.45rem; align-items:center; }
-.dot{
-  width:0.375rem; height:0.375rem; border-radius:var(--radius-pill);
-  background:rgba(255,255,255,0.4);
-  transition:width 0.5s var(--ease-expo), background 0.3s;
-}
-.dot.is-active{ width:1.25rem; background:#fff; }
-.slider-arrows{ display:flex; gap:0.6rem; }
-.arrow-btn{
-  width:2.7rem; height:2.7rem; border-radius:50%;
-  border:0.0625rem solid rgba(255,255,255,0.35);
-  display:flex; align-items:center; justify-content:center;
-  transition:background 0.3s, border-color 0.3s, transform 0.3s var(--ease-quart);
-}
-.arrow-btn:hover{ background:#fff; border-color:#fff; color:var(--brand-deep); transform:translateY(-0.125rem); }
-.arrow-btn svg{ width:0.95rem; height:0.95rem; }
+.slide-caption .c-en{ font-family:var(--font-en); font-size:.82rem; letter-spacing:.3em; color:var(--brand-light); text-transform:uppercase; }
+.slide-caption h3{ font-size:1.5rem; font-weight:500; line-height:1.3; margin-top:.2rem; }
+.slide-caption .c-link{ display:inline-flex; align-items:center; gap:.5rem; font-size:.98rem; color:#fff; opacity:.85; white-space:nowrap; transition:opacity .3s, gap .3s; }
+.slide-caption .c-link:hover{ opacity:1; gap:.8rem; }
+.slide-caption .c-link .arrow{ width:1rem; height:1rem; }
+.slider-dots{ position:absolute; inset-inline-start:1.4rem; top:1.4rem; z-index:3; display:flex; gap:.45rem; }
+.slider-dots button{ width:.375rem; height:.375rem; border-radius:var(--radius-pill); background:rgba(255,255,255,.55); transition:width .45s var(--ease-quart), background .3s; }
+.slider-dots button.is-active{ width:1.25rem; background:#fff; }
+
 /* hero info card */
 .info-card{
-  border-radius:var(--radius-card);
-  background:rgba(255,255,255,0.1);
-  border:0.0625rem solid rgba(255,255,255,0.18);
-  backdrop-filter:blur(0.6rem);
-  padding:1.3rem;
-  display:grid; gap:0.9rem;
+  display:flex; align-items:center; gap:1.5rem;
+  background:rgba(255,255,255,.1); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.16); border-radius:var(--radius-card-lg);
+  padding:1.3rem 1.6rem; opacity:0; transform:translateY(1.6rem);
 }
-.info-card img{
-  border-radius:calc(var(--radius-card) - 0.5rem);
-  aspect-ratio:16/8.2; object-fit:cover; width:100%;
+.info-circles{ display:flex; flex:none; }
+.info-circles span{
+  width:3rem; height:3rem; border-radius:50%; border:2px solid rgba(23,27,43,.9);
+  overflow:hidden; flex:none;
 }
-.info-row{ display:flex; align-items:center; justify-content:space-between; gap:1rem; }
-.info-num{ font-family:var(--font-lt); font-weight:500; font-size:2rem; line-height:1; }
-.info-num small{ font-size:0.55em; color:var(--brand-light); }
-.info-cap{ font-size:0.85rem; opacity:0.82; max-width:12rem; }
-.avatar-stack{ display:flex; }
-.avatar-stack i{
-  width:2.1rem; height:2.1rem; border-radius:50%;
-  border:0.14rem solid rgba(255,255,255,0.75);
-  margin-inline-start:-0.6rem;
-}
-.avatar-stack i:first-child{ margin-inline-start:0; }
-.avatar-stack i:nth-child(1){ background:var(--brand); }
-.avatar-stack i:nth-child(2){ background:var(--accent-teal); }
-.avatar-stack i:nth-child(3){ background:var(--brand-light); }
-.avatar-stack i:nth-child(4){ background:#8d94ad; }
-.scroll-hint{
-  position:absolute; z-index:2; bottom:1.6rem; inset-inline-start:50%;
-  transform:translateX(50%);
-  display:flex; flex-direction:column; align-items:center; gap:0.5rem;
-  font-size:0.72rem; letter-spacing:0.24em; opacity:0.72;
-}
-.scroll-hint::after{
-  content:""; width:0.0938rem; height:2.6rem;
-  background:linear-gradient(to bottom, rgba(255,255,255,0.9), transparent);
-  animation:hintDrop 2.2s var(--ease-cubic) infinite;
-}
-@keyframes hintDrop{
-  0%{ transform:scaleY(0); transform-origin:top; }
-  45%{ transform:scaleY(1); transform-origin:top; }
-  55%{ transform:scaleY(1); transform-origin:bottom; }
-  100%{ transform:scaleY(0); transform-origin:bottom; }
-}
+.info-circles span + span{ margin-inline-start:-0.9rem; }
+.info-circles img{ width:100%; height:100%; object-fit:cover; }
+.info-card h4{ font-family:var(--font-en); font-size:1.7rem; font-weight:500; letter-spacing:.06em; direction:ltr; text-align:end; }
+.info-card p{ color:rgba(255,255,255,.72); font-size:1.02rem; margin-top:.15rem; }
 
-/* ---------- destinations section (spec §16) ---------- */
-.section-dest{ background:var(--surface); overflow:hidden; }
-.dest-track-wrap{ position:relative; }
-.dest-viewport{ overflow:hidden; margin-inline:calc(var(--pad-x) * -0.5); padding-inline:var(--pad-x); }
-.dest-track{
-  display:flex; gap:1.4rem;
-  will-change:transform;
-}
+/* ================= destinations carousel ================= */
+.dest-viewport{ overflow:hidden; margin-inline:calc(-1 * clamp(1rem, 2.5vw, 3rem)); padding-inline:clamp(1rem, 2.5vw, 3rem); cursor:grab; }
+.dest-viewport.is-drag{ cursor:grabbing; }
+.dest-track{ display:flex; gap:2rem; will-change:transform; touch-action:pan-y; }
 .dest-card{
-  flex:0 0 clamp(17rem, 26vw, 24rem);
-  background:var(--surface-card);
-  border-radius:var(--radius-card);
-  overflow:hidden;
-  box-shadow:0 0.8rem 2.2rem rgba(23,27,43,0.07);
+  flex:0 0 calc((100% - 4rem) / 3);
+  background:var(--surface-card); border:1px solid var(--hairline);
+  border-radius:var(--radius-card-lg); overflow:hidden;
+  display:flex; flex-direction:column;
 }
-.dest-card .ph{ position:relative; overflow:hidden; aspect-ratio:4/3.1; }
-.dest-card .ph img{ width:100%; height:100%; object-fit:cover; transition:transform 0.7s var(--ease-cubic); }
-.dest-card:hover .ph img{ transform:scale(1.05); }
-.dest-card .badge{
-  position:absolute; top:1rem; inset-inline-start:1rem;
-  font-family:var(--font-lt); font-size:0.68rem; font-weight:500; letter-spacing:0.2em;
-  background:rgba(23,27,43,0.55); color:#fff; backdrop-filter:blur(0.4rem);
-  padding:0.35rem 0.8rem; border-radius:var(--radius-pill);
-}
-.dest-card .body{ padding:1.35rem 1.4rem 1.5rem; display:grid; gap:0.55rem; }
-.dest-card h3{ font-size:1.3rem; font-weight:700; display:flex; align-items:baseline; gap:0.6rem; }
-.dest-card h3 span{ font-family:var(--font-lt); font-size:0.72rem; font-weight:500; letter-spacing:0.14em; color:var(--ink-soft); text-transform:uppercase; }
-.dest-card p{ color:var(--ink-soft); font-size:0.92rem; }
-.dest-card .more{
-  display:inline-flex; align-items:center; gap:0.5rem;
-  font-size:0.88rem; font-weight:500; color:var(--brand);
-  margin-top:0.3rem;
-}
-.dest-card .more svg{ width:0.9rem; height:0.9rem; transition:transform 0.35s var(--ease-expo); }
-.dest-card:hover .more svg{ transform:translateX(-0.3rem); }
-.dest-nav{
-  display:flex; align-items:center; justify-content:space-between;
-  margin-top:2.2rem; gap:1.5rem;
-}
-.dest-nav .dots .dot{ background:var(--ghost); }
-.dest-nav .dots .dot.is-active{ background:var(--brand); }
-.dest-nav .arrow-btn{ border-color:var(--hairline); color:var(--ink); background:#fff; }
-.dest-nav .arrow-btn:hover{ background:var(--brand-deep); border-color:var(--brand-deep); color:#fff; }
-
-/* ---------- services (spec §17) ---------- */
-.services-list{ border-top:0.0625rem solid var(--hairline); }
-.service-row{
-  display:grid; grid-template-columns:5.5rem 1fr auto; align-items:center; gap:2rem;
-  padding:1.7rem 0.5rem;
-  border-bottom:0.0625rem solid var(--hairline);
-  position:relative;
-  transition:background 0.35s;
-}
-.service-row:hover{ background:var(--surface); }
-.service-row .no{
-  font-family:var(--font-lt); font-size:1rem; font-weight:500; letter-spacing:0.1em;
-  color:var(--brand);
-}
-.service-row h3{ font-size:clamp(1.15rem, 1.9vw, 1.6rem); font-weight:700; }
-.service-row p{ color:var(--ink-soft); font-size:0.94rem; margin-top:0.35rem; max-width:40rem; }
-.service-arrow{
-  width:3.1rem; height:3.1rem; border-radius:50%;
-  border:0.0625rem solid var(--hairline);
-  display:flex; align-items:center; justify-content:center;
+.dest-figure{ position:relative; aspect-ratio:16/11; overflow:hidden; }
+.dest-figure img{ width:100%; height:100%; object-fit:cover; will-change:transform; }
+.dest-card-body{ padding:1.6rem 1.7rem 1.8rem; display:flex; flex-direction:column; gap:.45rem; flex:1; }
+.dest-card-body .d-en{ font-family:var(--font-en); font-size:.85rem; letter-spacing:.3em; color:var(--brand); text-transform:uppercase; }
+.dest-card-body h3{ font-size:1.55rem; font-weight:500; }
+.dest-card-body p{ color:var(--ink-soft); font-size:1.02rem; }
+.dest-card-body .d-more{ margin-top:auto; padding-top:1.1rem; display:inline-flex; align-items:center; gap:.6rem; color:var(--ink); font-size:1rem; font-weight:500; }
+.dest-card-body .d-more .arrow{ width:1.05rem; height:1.05rem; opacity:.55; }
+.dest-nav{ display:flex; align-items:center; gap:2rem; margin-top:3rem; }
+.dest-nav .dots{ display:flex; gap:.45rem; }
+.dest-nav .dots button{ width:.375rem; height:.375rem; border-radius:var(--radius-pill); background:var(--ghost); transition:width .45s var(--ease-quart), background .3s; }
+.dest-nav .dots button.is-active{ width:1.25rem; background:var(--brand); }
+.nav-btn{
+  width:3.4rem; height:3.4rem; border-radius:50%; border:1px solid var(--hairline);
+  display:inline-flex; align-items:center; justify-content:center;
+  transition:background .35s, border-color .35s, color .35s, opacity .3s;
   color:var(--ink);
-  will-change:transform;
 }
-.service-arrow svg{ width:1rem; height:1rem; }
-.services-note{
-  margin-top:1.6rem; color:var(--ink-soft); font-size:0.82rem;
-  display:flex; align-items:center; gap:0.6rem;
-}
-.services-note svg{ width:1rem; height:1rem; color:var(--brand); flex:none; }
+.nav-btn:hover{ background:var(--brand-deep); border-color:var(--brand-deep); color:#fff; }
+.nav-btn:disabled{ opacity:.3; pointer-events:none; }
+.nav-btn .arrow{ width:1.2rem; height:1.2rem; }
+.dest-nav .spacer{ flex:1; }
+.dest-count{ font-family:var(--font-en); color:var(--ink-soft); font-size:1rem; letter-spacing:.2em; direction:ltr; }
 
-/* ---------- process (spec §18) ---------- */
-.section-process{ background:var(--brand-deep); color:#fff; overflow:hidden; }
-.section-process .sec-desc{ color:rgba(255,255,255,0.66); }
-.section-process .ghost-word{ -webkit-text-stroke-color:rgba(255,255,255,0.14); }
-.process-grid{
-  display:grid; grid-template-columns:repeat(4, 1fr); gap:1.3rem;
+/* ================= services ================= */
+.services{ background:var(--background); }
+.svc-list{ border-top:1px solid var(--hairline); }
+.svc-row{
+  display:grid; grid-template-columns:auto 1fr auto; align-items:center;
+  gap:clamp(1.4rem, 3vw, 3.4rem);
+  padding:2.1rem 1rem; border-bottom:1px solid var(--hairline);
+  position:relative; transition:background .4s;
 }
-.process-step{
-  border:0.0625rem solid rgba(255,255,255,0.16);
-  border-radius:var(--radius-card);
-  padding:1.9rem 1.6rem;
-  background:rgba(255,255,255,0.04);
-  display:grid; gap:0.9rem; align-content:start;
-  position:relative; overflow:hidden;
-  transition:background 0.4s, border-color 0.4s;
-}
-.process-step:hover{ background:rgba(255,255,255,0.08); border-color:rgba(230,160,109,0.5); }
-.process-step .num{
-  font-family:var(--font-lt); font-size:2.6rem; font-weight:500; line-height:1;
-  color:transparent; -webkit-text-stroke:0.0625rem var(--brand-light);
-}
-.process-step h3{ font-size:1.2rem; font-weight:700; }
-.process-step p{ color:rgba(255,255,255,0.68); font-size:0.92rem; }
-.process-step::after{
-  content:""; position:absolute; top:0; inset-inline-start:0; width:100%; height:0.14rem;
-  background:linear-gradient(to left, var(--brand), transparent);
-  transform:scaleX(0); transform-origin:right;
-  transition:transform 0.7s var(--ease-expo);
-}
-.process-step:hover::after{ transform:scaleX(1); }
+.svc-row:hover{ background:var(--surface); }
+.svc-num{ font-family:var(--font-en); color:var(--brand); font-size:1.15rem; letter-spacing:.18em; direction:ltr; }
+.svc-title{ font-size:clamp(1.5rem, 2.4vw, 2.4rem); font-weight:500; line-height:1.35; }
+.svc-desc{ color:var(--ink-soft); font-size:1.05rem; margin-top:.35rem; max-width:64ch; }
+.svc-note{ color:var(--ink-soft); font-size:.95rem; margin-top:.4rem; }
+.svc-arrow{ width:2.6rem; height:2.6rem; border-radius:50%; border:1px solid var(--hairline); display:inline-flex; align-items:center; justify-content:center; }
+.svc-arrow .arrow{ width:1.1rem; height:1.1rem; opacity:.55; }
+@media (max-width:768px){ .svc-row{ grid-template-columns:auto 1fr; } .svc-arrow{ display:none; } }
 
-/* ---------- country spotlight (spec §19) ---------- */
-.section-spotlight{ overflow:hidden; }
-.spot-stage{
-  display:grid; grid-template-columns:1.05fr 0.95fr; gap:clamp(1.5rem, 3vw, 3rem);
-  align-items:start;
+/* ================= process ================= */
+.process{ background:var(--surface); }
+.steps{ display:grid; grid-template-columns:repeat(4, 1fr); gap:2rem; counter-reset:step; }
+.step{
+  background:var(--surface-card); border:1px solid var(--hairline);
+  border-radius:var(--radius-card-lg); padding:2.4rem 2rem;
+  display:flex; flex-direction:column; gap:1rem; position:relative; overflow:hidden;
 }
-.spot-card{
-  border-radius:var(--radius-card-lg);
-  overflow:hidden; position:relative;
-  background:var(--brand-deep);
-  will-change:transform;
+.step-num{
+  font-family:var(--font-en); font-size:clamp(3.4rem, 5vw, 5rem); font-weight:500; line-height:1;
+  color:transparent; -webkit-text-stroke:1.2px var(--brand);
+  direction:ltr; text-align:start;
 }
-.spot-card:first-child{ transform:rotate(2.2deg) translateY(2.6rem); }
-.spot-card:last-child{ transform:rotate(-2.4deg); }
-.spot-card .ph{ aspect-ratio:4/4.7; overflow:hidden; }
-.spot-card .ph img{ width:100%; height:100%; object-fit:cover; will-change:transform; }
-.spot-card .glass{
-  position:absolute; inset-inline:1.1rem; bottom:1.1rem;
-  display:flex; align-items:center; justify-content:space-between; gap:1rem;
-  padding:1rem 1.3rem;
-  border-radius:var(--radius-card);
-  background:rgba(23,27,43,0.5);
-  border:0.0625rem solid rgba(255,255,255,0.22);
-  backdrop-filter:blur(0.7rem); -webkit-backdrop-filter:blur(0.7rem);
-  color:#fff;
-}
-.spot-card .glass h3{ font-size:1.25rem; font-weight:700; }
-.spot-card .glass span{ display:block; font-family:var(--font-lt); font-size:0.72rem; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:var(--brand-light); margin-top:0.25rem; }
-.spot-card .glass .go{
-  width:2.6rem; height:2.6rem; flex:none; border-radius:50%;
-  background:var(--brand); color:#fff;
-  display:flex; align-items:center; justify-content:center;
-  transition:transform 0.4s var(--ease-expo);
-}
-.spot-card .glass .go svg{ width:0.95rem; height:0.95rem; }
-.spot-card .glass .go:hover{ transform:translateX(-0.25rem); }
-.spot-note{ margin-top:3.4rem; display:flex; justify-content:center; }
+.step h3{ font-size:1.45rem; font-weight:500; }
+.step p{ color:var(--ink-soft); font-size:1.02rem; }
 
-/* ---------- why (spec §22) ---------- */
-.section-why{ background:var(--surface); }
-.why-banner{
+/* ================= spotlight ================= */
+.spot-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem, 4vw, 4.5rem); align-items:start; }
+.spot-card{ position:relative; }
+.spot-card:nth-child(2){ margin-top:clamp(3rem, 7vw, 8rem); }
+.spot-figure{
   border-radius:var(--radius-card-lg); overflow:hidden; position:relative;
-  margin-bottom:clamp(2.4rem, 4vw, 4rem);
+  aspect-ratio:4/4.7; transform:rotate(var(--tilt,0deg));
+  box-shadow:0 2.2rem 4.5rem rgba(23,27,43,.16);
 }
-.why-banner img{ width:100%; aspect-ratio:16/6.4; object-fit:cover; }
-.why-banner::after{
-  content:""; position:absolute; inset:0;
-  background:linear-gradient(to top, rgba(23,27,43,0.55), transparent 55%);
+.spot-card:first-child .spot-figure{ --tilt:-2.2deg; }
+.spot-card:last-child .spot-figure{ --tilt:2deg; }
+.spot-figure img{ width:100%; height:100%; object-fit:cover; will-change:transform; }
+.spot-caption{
+  position:absolute; inset-inline:1.2rem; bottom:1.2rem;
+  background:rgba(23,27,43,.44); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.16); color:#fff;
+  border-radius:1.25rem; padding:1.2rem 1.5rem;
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
 }
-.why-banner figcaption{
-  position:absolute; inset-inline:2rem; bottom:1.6rem; z-index:2;
-  color:#fff; font-size:0.95rem; font-weight:500;
-}
-.why-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; }
-.why-card{
-  background:var(--surface-card);
-  border-radius:var(--radius-card);
-  padding:2.2rem 1.9rem;
-  box-shadow:0 0.8rem 2rem rgba(23,27,43,0.06);
-  display:grid; gap:1rem; align-content:start;
-  will-change:transform;
-}
-.why-card .icon{
-  width:3.2rem; height:3.2rem; border-radius:1rem;
-  background:rgba(201,107,50,0.12); color:var(--brand);
-  display:flex; align-items:center; justify-content:center;
-}
-.why-card .icon svg{ width:1.4rem; height:1.4rem; }
-.why-card h3{ font-size:1.2rem; font-weight:700; }
-.why-card p{ color:var(--ink-soft); font-size:0.94rem; }
+.spot-caption h3{ font-family:var(--font-en); font-size:1.7rem; letter-spacing:.14em; font-weight:500; text-transform:uppercase; }
+.spot-caption p{ color:rgba(255,255,255,.75); font-size:1rem; }
 
-/* ---------- information (spec §20) ---------- */
-.section-info{ background:var(--brand-deep); color:#fff; overflow:hidden; }
-.section-info .sec-desc{ color:rgba(255,255,255,0.66); }
-.info-grid{
-  display:grid; grid-template-columns:repeat(4,1fr);
-  border-block:0.0625rem solid rgba(255,255,255,0.16);
-}
-.info-cell{
-  padding:2.4rem 1.7rem;
-  border-inline-start:0.0625rem solid rgba(255,255,255,0.16);
-  display:grid; gap:0.8rem; align-content:start;
-}
-.info-cell:first-child{ border-inline-start:0; }
-.info-cell .k{
-  font-family:var(--font-lt); font-size:0.78rem; font-weight:500; letter-spacing:0.24em;
-  text-transform:uppercase; color:var(--brand-light);
-}
-.info-cell h3{ font-size:1.25rem; font-weight:700; }
-.info-cell p{ color:rgba(255,255,255,0.68); font-size:0.92rem; }
-.info-disclaimer{
-  margin-top:1.5rem; color:rgba(255,255,255,0.5); font-size:0.8rem;
-}
-
-/* ---------- timelines (spec §21) ---------- */
-.section-time .time-grid{
-  display:grid; grid-template-columns:repeat(4,1fr); gap:1.3rem;
-}
-.time-card{
-  border:0.0625rem solid var(--hairline);
-  border-radius:var(--radius-card);
-  padding:1.8rem 1.5rem;
-  background:var(--surface-card);
-  display:grid; gap:0.7rem; align-content:start;
-  transition:border-color 0.35s, transform 0.35s var(--ease-quart), box-shadow 0.35s;
-}
-.time-card:hover{ border-color:var(--brand-light); box-shadow:0 1rem 2.4rem rgba(23,27,43,0.08); }
-.time-card .k{ font-size:0.82rem; color:var(--ink-soft); }
-.time-card h3{ font-size:1.3rem; font-weight:700; color:var(--brand-deep); }
-.time-card p{ color:var(--ink-soft); font-size:0.9rem; }
-.time-links{
-  margin-top:2rem; display:flex; flex-wrap:wrap; gap:0.6rem;
-}
-.time-links a{
-  font-size:0.8rem; font-weight:500;
-  border:0.0625rem solid var(--hairline); border-radius:var(--radius-pill);
-  padding:0.45rem 1rem;
-  display:inline-flex; align-items:center; gap:0.4rem;
-  transition:border-color .3s, color .3s, background .3s;
-}
-.time-links a:hover{ border-color:var(--brand); color:var(--brand); }
-.time-links .official-note{ font-size:0.75rem; color:var(--ink-soft); align-self:center; }
-
-/* ---------- faq (spec §23) ---------- */
-.section-faq{ background:var(--surface); }
-.faq-list{ display:grid; gap:0.9rem; max-width:52rem; }
-.faq-item{
-  background:var(--surface-card);
-  border-radius:var(--radius-card);
-  border:0.0625rem solid var(--hairline);
-  overflow:hidden;
-  transition:border-color 0.3s;
-}
-.faq-item.is-open{ border-color:var(--brand-light); }
-.faq-q{
-  width:100%; display:flex; align-items:center; justify-content:space-between; gap:1.5rem;
-  padding:1.35rem 1.6rem;
-  text-align:start;
-  font-size:1.05rem; font-weight:500;
-}
-.faq-q .faq-icon{
-  width:2.2rem; height:2.2rem; flex:none; border-radius:50%;
-  background:var(--surface); color:var(--brand);
-  display:flex; align-items:center; justify-content:center;
-  transition:transform 0.5s var(--ease-expo), background 0.3s, color 0.3s;
-}
-.faq-q .faq-icon svg{ width:0.85rem; height:0.85rem; }
-.faq-item.is-open .faq-icon{ transform:rotate(135deg); background:var(--brand); color:#fff; }
-.faq-a{ height:0; overflow:hidden; }
-.faq-a-inner{
-  padding:0 1.6rem 1.5rem;
-  color:var(--ink-soft); font-size:0.95rem; line-height:2.1;
-}
-
-/* ---------- contact cta (spec §24) ---------- */
-.section-cta{
-  background:var(--brand-deep); color:#fff; overflow:hidden;
-  text-align:center;
-}
-.section-cta .eyebrow{ justify-content:center; }
-.section-cta .eyebrow::before{ display:none; }
-.cta-title{
-  font-size:clamp(2.6rem, 6.4vw, 6rem);
-  font-weight:700; line-height:1.15;
-  margin-block:1.2rem 2.6rem;
-}
-.cta-actions{ display:flex; flex-wrap:wrap; gap:1.1rem; justify-content:center; align-items:center; }
-.cta-phone{
-  display:inline-flex; align-items:center; gap:0.8rem;
-  font-family:var(--font-lt); font-size:clamp(1.3rem, 2.2vw, 1.9rem); font-weight:500; letter-spacing:0.05em;
-  direction:ltr;
-  opacity:0.95; transition:color .3s;
-}
-.cta-phone svg{ width:1.1em; height:1.1em; color:var(--brand-light); }
-.cta-phone:hover{ color:var(--brand-light); }
-.cta-fine{ margin-top:2.6rem; color:rgba(255,255,255,0.55); font-size:0.82rem; }
-
-/* ---------- footer (spec §28) ---------- */
-.site-footer{
-  background:#11141f; color:#fff;
-  padding-block:clamp(3.5rem, 6vw, 6rem) 2rem;
-}
-.footer-grid{
-  display:grid; grid-template-columns:1.4fr 1fr 1fr 0.8fr; gap:3rem;
-  padding-bottom:3rem;
-  border-bottom:0.0625rem solid rgba(255,255,255,0.12);
-}
-.footer-brand{ display:grid; gap:1.2rem; align-content:start; }
-.footer-brand .brand{ justify-self:start; }
-.footer-brand p{ color:rgba(255,255,255,0.62); font-size:0.94rem; max-width:22rem; }
-.footer-brand .f-phone{
-  display:inline-flex; align-items:center; gap:0.6rem;
-  font-family:var(--font-lt); font-size:1.3rem; font-weight:500; letter-spacing:0.05em;
-  color:var(--brand-light); direction:ltr; justify-self:start;
-}
-.footer-brand .f-phone svg{ width:1em; height:1em; }
-.footer-col h4{
-  font-size:0.85rem; font-weight:500; letter-spacing:0.18em; color:rgba(255,255,255,0.5);
-  margin-bottom:1.2rem; text-transform:uppercase;
-}
-.footer-col ul{ display:grid; gap:0.65rem; }
-.footer-col a{ color:rgba(255,255,255,0.78); font-size:0.94rem; transition:color .25s; }
-.footer-col a:hover{ color:var(--brand-light); }
-.footer-bottom{
-  padding-top:1.8rem;
-  display:flex; flex-wrap:wrap; gap:1rem 2.5rem; align-items:center; justify-content:space-between;
-  color:rgba(255,255,255,0.45); font-size:0.8rem;
-}
-.footer-bottom .disclaimer{ max-width:52rem; line-height:1.9; }
-
-/* ---------- responsive ---------- */
+/* ================= info (dark) ================= */
+.on-dark{ background:var(--brand-deep); color:#fff; }
+.info-grid{ display:grid; grid-template-columns:repeat(4, 1fr); }
+.info-cell{ padding:2.6rem 2.2rem; border-inline-start:1px solid rgba(255,255,255,.12); display:flex; flex-direction:column; gap:.9rem; }
+.info-cell:first-child{ border-inline-start:0; padding-inline-start:0; }
+.info-cell .ic-num{ font-family:var(--font-en); color:var(--brand-light); font-size:.95rem; letter-spacing:.3em; direction:ltr; text-align:end; }
+.info-cell h3{ font-size:1.45rem; font-weight:500; }
+.info-cell p{ color:rgba(255,255,255,.62); font-size:1.03rem; }
+.info-foot{ margin-top:3rem; color:rgba(255,255,255,.45); font-size:.98rem; display:flex; align-items:center; gap:.8rem; }
+.info-foot::before{ content:""; width:2.2rem; height:1px; background:rgba(255,255,255,.25); flex:none; }
 @media (max-width:1024px){
-  :root{ --pad-x:2.5rem; }
-  .header-nav{ display:none; }
-  .header-phone{ display:none; }
-  .hero-inner{ grid-template-columns:1fr; gap:2.5rem; align-items:start; }
-  .hero-aside{ max-width:34rem; }
-  .process-grid{ grid-template-columns:repeat(2,1fr); }
-  .spot-stage{ grid-template-columns:1fr; max-width:36rem; margin-inline:auto; }
-  .spot-card:first-child{ transform:rotate(1.6deg); }
-  .spot-card:last-child{ transform:rotate(-1.6deg) translateY(-1rem); }
-  .why-grid{ grid-template-columns:1fr; max-width:36rem; }
-  .info-grid{ grid-template-columns:repeat(2,1fr); }
-  .info-cell:nth-child(odd){ border-inline-start:0; }
-  .info-cell:nth-child(n+3){ border-top:0.0625rem solid rgba(255,255,255,0.16); }
-  .time-grid{ grid-template-columns:repeat(2,1fr); }
-  .footer-grid{ grid-template-columns:1fr 1fr; gap:2.4rem; }
-  .scroll-hint{ display:none; }
-}
-@media (max-width:768px){
-  .btn-contact{ display:none; }
-  .burger{ display:flex; }
+  .info-grid{ grid-template-columns:1fr 1fr; }
+  .info-cell{ padding:2rem 1.6rem; }
+  .info-cell:nth-child(odd){ border-inline-start:0; padding-inline-start:0; }
 }
 @media (max-width:640px){
-  :root{ --pad-x:1.4rem; --header-h:4.4rem; }
-  .site-header .container{ gap:1rem; }
-  .brand-text{ font-size:0.9rem; letter-spacing:0.24em; }
-  .hero{ min-height:100svh; }
-  .hero-title{ font-size:13.5vw; }
-  .hero-cta .btn{ padding:0.9rem 1.6rem; width:100%; justify-content:center; }
-  .dest-slider{ aspect-ratio:4/4.4; }
-  .service-row{ grid-template-columns:2.6rem 1fr; row-gap:0.9rem; padding-inline:0; }
-  .service-arrow{ display:none; }
-  .process-grid{ grid-template-columns:1fr; }
   .info-grid{ grid-template-columns:1fr; }
-  .info-cell{ border-inline-start:0; border-top:0.0625rem solid rgba(255,255,255,0.16); padding-inline:0; }
+  .info-cell{ border-inline-start:0; padding-inline:0; border-top:1px solid rgba(255,255,255,.12); }
   .info-cell:first-child{ border-top:0; }
-  .time-grid{ grid-template-columns:1fr; }
-  .field-row{ grid-template-columns:1fr; }
-  .footer-grid{ grid-template-columns:1fr; gap:2.2rem; }
-  .dest-viewport{ margin-inline:calc(var(--pad-x) * -1); padding-inline:var(--pad-x); }
-  .ghost-word{ display:none; }
 }
 
-/* ---------- reduced motion ---------- */
+/* ================= timelines ================= */
+.timelines{ background:var(--background); }
+.tl-grid{ display:grid; grid-template-columns:repeat(4, 1fr); gap:2rem; }
+.tl-card{
+  border:1px solid var(--hairline); border-radius:var(--radius-card-lg);
+  padding:2.2rem 2rem; background:var(--surface-card);
+  display:flex; flex-direction:column; gap:.7rem;
+}
+.tl-card h3{ font-size:1.3rem; font-weight:500; color:var(--ink-soft); }
+.tl-card strong{ font-size:1.5rem; font-weight:500; color:var(--brand-deep); line-height:1.5; }
+.tl-note{
+  margin-top:3rem; padding:1.6rem 2rem; border-radius:var(--radius-card);
+  background:var(--surface); color:var(--ink-soft); font-size:1rem; line-height:1.9;
+}
+.tl-note strong{ color:var(--ink); font-weight:500; }
+@media (max-width:1024px){ .tl-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:640px){ .tl-grid{ grid-template-columns:1fr; } }
+
+/* ================= why ================= */
+.why{ background:var(--surface); }
+.why-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:2rem; }
+.why-card{
+  background:var(--surface-card); border:1px solid var(--hairline);
+  border-radius:var(--radius-card-lg); overflow:hidden;
+  display:flex; flex-direction:column;
+}
+.why-figure{ aspect-ratio:16/9.5; overflow:hidden; }
+.why-figure img{ width:100%; height:100%; object-fit:cover; }
+.why-body{ padding:1.9rem 2rem 2.2rem; display:flex; flex-direction:column; gap:.6rem; }
+.why-body h3{ font-size:1.5rem; font-weight:500; }
+.why-body p{ color:var(--ink-soft); font-size:1.04rem; }
+@media (max-width:1024px){ .why-grid{ grid-template-columns:1fr; max-width:44rem; } }
+
+/* ================= faq ================= */
+.faq-list{ border-top:1px solid var(--hairline); max-width:60rem; }
+.faq-item{ border-bottom:1px solid var(--hairline); }
+.faq-q{
+  width:100%; display:flex; align-items:center; justify-content:space-between; gap:2rem;
+  padding:1.7rem .4rem; text-align:start;
+  font-size:1.28rem; font-weight:500; line-height:1.6;
+}
+.faq-q:hover{ color:var(--brand); }
+.faq-icon{ position:relative; width:1.15rem; height:1.15rem; flex:none; }
+.faq-icon::before,.faq-icon::after{ content:""; position:absolute; inset:0; margin:auto; background:var(--brand); transition:transform .45s var(--ease-quart); }
+.faq-icon::before{ width:100%; height:1.5px; }
+.faq-icon::after{ width:1.5px; height:100%; }
+.faq-item.is-open .faq-icon::after{ transform:rotate(90deg); }
+.faq-item.is-open .faq-icon::before{ transform:rotate(180deg); }
+.faq-a{ overflow:hidden; height:0; }
+.faq-a p{ padding:0 .4rem 1.8rem; color:var(--ink-soft); max-width:62ch; line-height:2; }
+
+/* ================= contact cta ================= */
+.cta-inner{ text-align:center; display:flex; flex-direction:column; align-items:center; gap:2rem; position:relative; z-index:1; }
+.cta-inner .eyebrow{ justify-content:center; }
+.cta-inner .eyebrow::after{ content:""; width:2.6rem; height:1px; background:var(--brand-light); }
+.cta-title{ font-size:clamp(3rem, 6.5vw, 7.6rem); font-weight:500; line-height:1.14; }
+.cta-phone{ font-family:var(--font-en); font-size:clamp(1.6rem, 2.6vw, 2.6rem); letter-spacing:.14em; color:#fff; direction:ltr; transition:color .3s; }
+.cta-phone:hover{ color:var(--brand-light); }
+.cta-small{ color:rgba(255,255,255,.55); font-size:1.02rem; }
+
+/* ================= footer ================= */
+.footer{ background:var(--brand-deep); color:#fff; padding-top:clamp(5rem, 7vw, 8rem); }
+.footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:3rem; padding-bottom:4.5rem; }
+.footer-brand p{ color:rgba(255,255,255,.6); margin-top:1.4rem; max-width:34ch; font-size:1.05rem; }
+.footer-phone{ display:inline-block; margin-top:1.6rem; font-family:var(--font-en); font-size:1.5rem; letter-spacing:.14em; direction:ltr; transition:color .3s; }
+.footer-phone:hover{ color:var(--brand-light); }
+.footer-col h4{ font-size:1.02rem; font-weight:500; color:rgba(255,255,255,.45); letter-spacing:.02em; margin-bottom:1.3rem; }
+.footer-col li{ margin-bottom:.75rem; }
+.footer-col a{ color:rgba(255,255,255,.78); font-size:1.02rem; transition:color .3s; }
+.footer-col a:hover{ color:var(--brand-light); }
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.12); padding:1.8rem 0 2.2rem;
+  display:flex; flex-wrap:wrap; gap:1rem 2.5rem; align-items:center; justify-content:space-between;
+  color:rgba(255,255,255,.42); font-size:.95rem;
+}
+.footer-legal{ width:100%; color:rgba(255,255,255,.32); font-size:.9rem; line-height:1.9; }
+@media (max-width:1024px){ .footer-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:640px){ .footer-grid{ grid-template-columns:1fr; gap:2.4rem; } }
+
+/* ================= contact modal ================= */
+.modal{
+  position:fixed; inset:0; z-index:80; display:flex; align-items:center; justify-content:center;
+  padding:1.5rem; visibility:hidden;
+}
+.modal.is-open{ visibility:visible; }
+.modal-backdrop{ position:absolute; inset:0; background:rgba(10,12,20,.6); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); opacity:0; }
+.modal-panel{
+  position:relative; width:min(46rem, 100%); max-height:min(92svh, 60rem); overflow:auto;
+  background:var(--surface-card); border-radius:var(--radius-card-lg);
+  padding:clamp(1.8rem, 3.5vw, 3.4rem);
+  opacity:0; transform:translateY(1.75rem) scale(.96);
+  scrollbar-width:thin;
+}
+.modal-close{
+  position:absolute; top:1.3rem; inset-inline-end:1.3rem;
+  width:2.8rem; height:2.8rem; border-radius:50%; border:1px solid var(--hairline);
+  display:inline-flex; align-items:center; justify-content:center;
+  transition:background .3s, transform .45s var(--ease-quart), color .3s;
+}
+.modal-close:hover{ background:var(--brand-deep); color:#fff; transform:rotate(90deg); }
+.modal-close .arrow{ width:1.05rem; height:1.05rem; transform:rotate(45deg); }
+.modal-head .en{ color:var(--brand); font-size:.9rem; letter-spacing:.3em; }
+.modal-head h3{ font-size:clamp(1.7rem, 2.6vw, 2.4rem); font-weight:500; margin-top:.6rem; }
+.modal-form{ margin-top:2.2rem; display:grid; grid-template-columns:1fr 1fr; gap:1.4rem 1.2rem; }
+.field{ display:flex; flex-direction:column; gap:.5rem; }
+.field.full{ grid-column:1 / -1; }
+.field label{ font-size:.98rem; font-weight:500; color:var(--ink-soft); }
+.field input,.field select,.field textarea{
+  font:inherit; color:var(--ink);
+  border:1px solid var(--hairline); border-radius:1rem;
+  padding:.95rem 1.2rem; background:var(--background);
+  transition:border-color .3s, box-shadow .3s;
+  width:100%;
+}
+.field textarea{ min-height:7rem; resize:vertical; }
+.field input:focus,.field select:focus,.field textarea:focus{ outline:none; border-color:var(--brand); box-shadow:0 0 0 3px rgba(201,107,50,.14); }
+.modal-form .btn{ grid-column:1 / -1; justify-content:center; padding-block:1.2rem; font-size:1.12rem; }
+.modal-note{ grid-column:1 / -1; color:var(--ink-soft); font-size:.9rem; text-align:center; }
+.modal-success{ display:none; text-align:center; padding:2.5rem 1rem 1rem; }
+.modal-success .ok{ width:4rem; height:4rem; margin:0 auto 1.6rem; border-radius:50%; background:rgba(201,107,50,.12); display:flex; align-items:center; justify-content:center; color:var(--brand); }
+.modal-success .ok svg{ width:1.7rem; height:1.7rem; }
+.modal-success h4{ font-size:1.7rem; font-weight:500; }
+.modal-success p{ color:var(--ink-soft); margin-top:.9rem; max-width:44ch; margin-inline:auto; }
+.modal-success .cta-phone{ color:var(--brand); font-size:1.5rem; display:inline-block; margin-top:1.4rem; }
+.modal.is-sent .modal-form,.modal.is-sent .modal-head{ display:none; }
+.modal.is-sent .modal-success{ display:block; }
+@media (max-width:640px){ .modal-form{ grid-template-columns:1fr; } }
+
+/* ================= responsive: hero + grids ================= */
+@media (max-width:1024px){
+  .hero-bottom{ grid-template-columns:1fr; align-items:start; gap:3rem; }
+  .hero{ align-items:flex-end; }
+  .dest-slider{ height:clamp(22rem, 52vw, 34rem); }
+  .steps{ grid-template-columns:1fr 1fr; }
+  .spot-grid{ grid-template-columns:1fr; max-width:44rem; }
+  .spot-card:nth-child(2){ margin-top:0; }
+  .info-card h4{ font-size:1.4rem; }
+}
+@media (max-width:640px){
+  .dest-card{ flex:0 0 86%; }
+  .steps{ grid-template-columns:1fr; }
+  .hero-ctas .btn{ flex:1; justify-content:center; }
+  .info-card{ flex-direction:column; align-items:flex-start; gap:1rem; }
+  .info-card h4{ text-align:start; }
+  .slide-caption{ flex-direction:column; align-items:flex-start; gap:.4rem; }
+}
+@media (min-width:641px) and (max-width:1024px){
+  .dest-card{ flex:0 0 calc((100% - 2rem) / 2); }
+}
+
+/* hover gating */
+@media (hover:none), (max-width:768px){
+  .svc-row:hover{ background:transparent; }
+  .btn:hover{ transform:none; }
+}
+
+/* reduced motion */
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
-  .mask > .mask-in{ transform:none; opacity:1; }
-  .iv{ opacity:1; transform:none; }
-  .scroll-hint{ display:none; }
+  *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  .wi{ transform:none; opacity:1; }
+  [data-rise]{ opacity:1; transform:none; }
+  .hero-eyebrow,.hero-ctas,.hero-scroll,.dest-slider,.info-card{ opacity:1; transform:none; }
 }
-
 </style>
 </head>
-<body class="is-loading">
-<!-- ================= LOADER ================= -->
-<div class="loader" id="loader" aria-hidden="true">
-  <div class="loader-inner">
-    <div class="loader-brand" id="loaderBrand">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="rgba(255,255,255,0.06)"/><path d="M8 9l5 14L18 9" stroke="#c96b32" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 9l4.5 12.6L26 9" stroke="#e6a06d" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <b>Vakil Visa</b>
-      <small>Immigration · Visa · Residence</small>
-    </div>
-    <div class="loader-track"><div class="loader-fill" id="loaderFill"></div></div>
+<body>
+
+<a class="skip-link" href="#home" style="position:absolute;inset-inline-start:-9999px">پرش به محتوا</a>
+
+<!-- ================= loader ================= -->
+<div class="veil" id="veil" aria-hidden="true">
+  <div class="veil-inner">
+    <svg class="logo-mark" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+      <rect x="5" y="3" width="34" height="38" rx="7" stroke="currentColor" stroke-width="2.4"/>
+      <circle cx="22" cy="18.5" r="8.5" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M13.5 18.5h17M22 10c3.2 2.6 3.2 14.4 0 17M22 10c-3.2 2.6-3.2 14.4 0 17" stroke="currentColor" stroke-width="1.3" opacity=".75"/>
+      <path class="vv" d="M13.5 28.5 17.2 36l3.7-7.5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="vv" d="M22.9 28.5 26.6 36l3.7-7.5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <p class="veil-name">VAKIL VISA</p>
+    <div class="veil-meter"><span class="veil-fill" id="veilFill"></span></div>
+    <p class="veil-pct" id="veilPct">0%</p>
   </div>
 </div>
 
-<!-- ================= HEADER ================= -->
+<!-- ================= header ================= -->
 <header class="site-header" id="siteHeader">
-  <div class="container">
+  <div class="wrap header-bar">
     <nav class="header-nav" aria-label="ناوبری اصلی">
-      <a class="header-link" href="#destinations">مقصدها</a>
-      <a class="header-link" href="#services">خدمات</a>
-      <a class="header-link" href="#spotlight">اقامت</a>
+      <a href="#destinations">مقصدها</a>
+      <a href="#services">خدمات</a>
+      <a href="#residence">اقامت</a>
+      <a href="#faq">سؤالات</a>
     </nav>
-    <a class="brand" href="#home" aria-label="Vakil Visa — خانه">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="rgba(255,255,255,0.08)"/><path d="M8 9l5 14L18 9" stroke="#c96b32" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 9l4.5 12.6L26 9" stroke="#e6a06d" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="brand-text">Vakil Visa<small>Immigration Consultancy</small></span>
+    <a class="logo" href="#home" aria-label="Vakil Visa — صفحه اصلی">
+      <svg class="logo-mark" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+        <rect x="5" y="3" width="34" height="38" rx="7" stroke="currentColor" stroke-width="2.4"/>
+        <circle cx="22" cy="18.5" r="8.5" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M13.5 18.5h17M22 10c3.2 2.6 3.2 14.4 0 17M22 10c-3.2 2.6-3.2 14.4 0 17" stroke="currentColor" stroke-width="1.3" opacity=".75"/>
+        <path class="vv" d="M13.5 28.5 17.2 36l3.7-7.5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="vv" d="M22.9 28.5 26.6 36l3.7-7.5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-word">Vakil Visa</span>
     </a>
     <div class="header-side">
-      <a class="header-phone" href="tel:+989122903240">
-        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.6 1.8h2.2l1.1 2.8-1.4 1a9.6 9.6 0 0 0 4.9 4.9l1-1.4 2.8 1.1v2.2c0 .7-.6 1.3-1.3 1.2A12.7 12.7 0 0 1 2.4 3.1c-.1-.7.5-1.3 1.2-1.3Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
-        <span class="latin">0912 290 3240</span>
-      </a>
-      <button class="btn-contact" type="button" data-open-modal>تماس با ما</button>
-      <button class="burger" type="button" data-open-menu aria-label="باز کردن منو" aria-expanded="false">
+      <button class="header-cta" data-open-modal>تماس با ما</button>
+      <button class="burger" id="burger" aria-label="باز کردن منو" aria-expanded="false" aria-controls="menu">
         <span></span><span></span>
       </button>
     </div>
   </div>
 </header>
 
-<!-- ================= FULLSCREEN MENU ================= -->
+<!-- ================= fullscreen menu ================= -->
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="منوی تمام‌صفحه">
-  <div class="container menu-inner">
-    <ul class="menu-list">
-      <li><a class="menu-link" href="#home"><i>01</i>خانه</a></li>
-      <li><a class="menu-link" href="#destinations"><i>02</i>مقصدها</a></li>
-      <li><a class="menu-link" href="#services"><i>03</i>خدمات</a></li>
-      <li><a class="menu-link" href="#spotlight"><i>04</i>اقامت</a></li>
-      <li><a class="menu-link" href="#faq"><i>05</i>سوالات متداول</a></li>
-      <li><a class="menu-link" href="#contact"><i>06</i>تماس</a></li>
-    </ul>
+  <div class="wrap menu-links" id="menuLinks">
+    <a class="menu-link" href="#home">خانه<small>Home</small></a>
+    <a class="menu-link" href="#destinations">مقصدها<small>Destinations</small></a>
+    <a class="menu-link" href="#services">خدمات<small>Services</small></a>
+    <a class="menu-link" href="#residence">اقامت<small>Residence</small></a>
+    <a class="menu-link" href="#faq">سؤالات متداول<small>FAQ</small></a>
+    <a class="menu-link" href="#contact">تماس<small>Contact</small></a>
   </div>
-  <div class="container menu-foot">
-    <a class="menu-cta" href="#contact" data-open-modal>
-      تماس با وکیل ویزا
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </a>
-    <a class="menu-phone latin" href="tel:+989122903240">0912 290 3240</a>
+  <div class="wrap menu-foot">
+    <span>تماس با وکیل ویزا</span>
+    <a href="tel:+989122903240">0912 290 3240</a>
+    <button class="header-cta btn-mini" data-open-modal>تماس با وکیل ویزا</button>
   </div>
 </div>
 
-<main>
-  <!-- ================= HERO ================= -->
-  <section class="hero" id="home" data-hero>
-    <div class="hero-plate" id="heroPlate">
-      <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6ea29a8581e0.jpg" alt="نمای شبانه برج ایفل و شهر پاریس" fetchpriority="high" decoding="async">
+<main id="main">
+
+<!-- ================= hero ================= -->
+<section class="hero" id="home" data-hero>
+  <div class="hero-plate" aria-hidden="true">
+    <img id="heroPlate" src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/2133a7cb8edf.jpg" alt="" fetchpriority="high" decoding="async">
+  </div>
+  <div class="wrap hero-grid">
+    <div class="hero-top">
+      <p class="hero-eyebrow" id="heroEyebrow">مشاوره مهاجرت · ویزا · اقامت</p>
+      <h1 class="hero-title" id="heroTitle">YOUR JOURNEY STARTS HERE</h1>
     </div>
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <h1 class="hero-title" id="heroTitle">
-          <span class="latin-line">Vakil Visa — Immigration &amp; Embassy Services</span>
-          <span data-hero-line>سفر تو از اینجا آغاز می‌شود</span>
-        </h1>
-        <p class="hero-tagline" id="heroTagline">
-          <span data-tag-line>ویزا. اقامت. یک آغاز تازه.</span>
-          <small>مشاوره مهاجرت برای شش مقصد اروپایی — شفاف، واقع‌بینانه و همراه شما در هر مرحله.</small>
-        </p>
-        <div class="hero-cta">
-          <a class="btn btn-brand" href="#destinations">
-            کاوش مقصدها
-            <svg class="arr" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="hero-bottom">
+      <div class="hero-content">
+        <p class="hero-tagline" id="heroTagline"><span data-line>ویزا. اقامت.</span><br><span data-line>آغاز یک مسیر تازه.</span></p>
+        <p class="hero-sub" id="heroSub">راهنمای عمومی مهاجرت به فرانسه، آلمان، روسیه، لهستان، هلند و بلژیک — از ارزیابی اولیه تا آماده‌سازی درخواست.</p>
+        <div class="hero-ctas" id="heroCtas">
+          <a class="btn" href="#destinations" data-scroll>مشاهده مقصدها
+            <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <button class="btn btn-ghost-light" type="button" data-open-modal>
-            مشاوره اولیه
-            <svg class="arr" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
+          <button class="btn btn-ghost" data-open-modal>تماس با وکیل ویزا</button>
         </div>
-        <ul class="hero-chips" aria-label="مقصدهای اصلی">
-          <li>فرانسه</li><li>آلمان</li><li>روسیه</li><li>لهستان</li><li>هلند</li><li>بلژیک</li>
-        </ul>
+        <p class="hero-scroll" id="heroScroll"><span class="wheel" aria-hidden="true"></span>اسکرول کنید</p>
       </div>
-      <aside class="hero-aside">
-        <div class="dest-slider" id="heroSlider" aria-roledescription="carousel" aria-label="اسلایدر مقصدهای مهاجرتی">
-          <article class="dest-slide is-active" role="group" aria-label="فرانسه — تحصیل و اقامت">
-            <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d177411a4a48.jpg" alt="برج ایفل روشن در شب، پاریس" loading="eager" decoding="async">
-            <div class="dest-meta">
-              <span class="country">France — فرانسه</span>
-              <h3>تحصیل و اقامت</h3>
-              <p>مسیرهای عمومی تحصیل، اقامت و ویزای فرانسه.</p>
-              <a class="dest-cta" href="#destinations">کاوش فرانسه
-                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="hero-side">
+        <div class="dest-slider" id="heroSlider" role="region" aria-label="اسلایدر مقصدهای مهاجرتی" tabindex="0">
+          <div class="slider-dots" id="sliderDots" role="tablist" aria-label="انتخاب اسلاید"></div>
+          <article class="slide" data-slide>
+            <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3a93744907a8.jpg" alt="برج ایفل، پاریس" decoding="async">
+            <div class="slide-caption">
+              <div><p class="c-en">France</p><h3>تحصیل و اقامت</h3></div>
+              <a class="c-link" href="#destinations" data-scroll>کاوش در فرانسه
+                <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
             </div>
           </article>
-          <article class="dest-slide" role="group" aria-label="آلمان — کار و اقامت">
-            <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/2acea0579cda.jpg" alt="دروازه براندنبورگ در برلین" loading="lazy" decoding="async">
-            <div class="dest-meta">
-              <span class="country">Germany — آلمان</span>
-              <h3>کار و اقامت</h3>
-              <p>اطلاعات عمومی مسیرهای اشتغال و اقامت آلمان.</p>
-              <a class="dest-cta" href="#destinations">کاوش آلمان
-                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <article class="slide" data-slide>
+            <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7dc10e143717.jpeg" alt="برج تلویزیون برلین در غروب" loading="lazy" decoding="async">
+            <div class="slide-caption">
+              <div><p class="c-en">Germany</p><h3>کار و اقامت</h3></div>
+              <a class="c-link" href="#destinations" data-scroll>کاوش در آلمان
+                <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
             </div>
           </article>
-          <article class="dest-slide" role="group" aria-label="هلند — تحصیل و مهاجرت">
-            <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7b5aa367cf68.jpg" alt="کانال‌های آمستردام" loading="lazy" decoding="async">
-            <div class="dest-meta">
-              <span class="country">Netherlands — هلند</span>
-              <h3>تحصیل و مهاجرت</h3>
-              <p>راهنمای عمومی تحصیل و مهاجرت به هلند.</p>
-              <a class="dest-cta" href="#destinations">کاوش هلند
-                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <article class="slide" data-slide>
+            <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/be05297d8ef4.jpg" alt="کانال‌های آمستردام" loading="lazy" decoding="async">
+            <div class="slide-caption">
+              <div><p class="c-en">Netherlands</p><h3>تحصیل و مهاجرت</h3></div>
+              <a class="c-link" href="#destinations" data-scroll>کاوش در هلند
+                <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
             </div>
           </article>
         </div>
-        <div class="slider-ui">
-          <div class="dots" id="heroDots" role="tablist" aria-label="انتخاب اسلاید"></div>
-          <div class="slider-arrows">
-            <button class="arrow-btn" type="button" data-slider-prev aria-label="اسلاید قبلی">
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            <button class="arrow-btn" type="button" data-slider-next aria-label="اسلاید بعدی">
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
+        <aside class="info-card" id="infoCard">
+          <div class="info-circles" aria-hidden="true">
+            <span><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3a93744907a8.jpg" alt="" loading="lazy" decoding="async"></span>
+            <span><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6124a31024f9.jpg" alt="" loading="lazy" decoding="async"></span>
+            <span><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/be05297d8ef4.jpg" alt="" loading="lazy" decoding="async"></span>
+            <span><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/58b1d7254e6e.jpg" alt="" loading="lazy" decoding="async"></span>
           </div>
+          <div>
+            <h4>6+ DESTINATIONS</h4>
+            <p>راهنمای بین‌المللی مهاجرت</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= destinations ================= -->
+<section class="sec-pad destinations" id="destinations">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="ghost" data-ghost>DESTINATIONS</p>
+      <p class="eyebrow" data-rise>مقصدها <span class="en">Destinations</span></p>
+      <h2 class="sec-title" data-words>با اطمینان حرکت کن<span class="en-line">MOVE WITH CONFIDENCE</span></h2>
+      <p class="sec-desc" data-rise>کشورهایی که وکیل ویزا در آن‌ها راهنمای عمومی مهاجرت، ویزا و اقامت ارائه می‌دهد.</p>
+    </header>
+    <div class="dest-viewport" id="destViewport" role="region" aria-label="کاروسل مقصدها" tabindex="0">
+      <div class="dest-track" id="destTrack">
+        <article class="dest-card">
+          <figure class="dest-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/cbc5f0abf541.jpg" alt="برج ایفل و رسن سن، پاریس" loading="lazy" decoding="async" width="1440" height="900"></figure>
+          <div class="dest-card-body">
+            <p class="d-en">France</p><h3>فرانسه</h3>
+            <p>ویزا، تحصیل، کار و مسیرهای اقامت.</p>
+            <a class="d-more" href="#contact" data-open-modal-link>شروع پرونده شما
+              <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </article>
+        <article class="dest-card">
+          <figure class="dest-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6124a31024f9.jpg" alt="دروازه براندنبورگ، برلین" loading="lazy" decoding="async" width="1100" height="1100"></figure>
+          <div class="dest-card-body">
+            <p class="d-en">Germany</p><h3>آلمان</h3>
+            <p>مسیرهای تحصیل، اشتغال و اقامت.</p>
+            <a class="d-more" href="#contact" data-open-modal-link>شروع پرونده شما
+              <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </article>
+        <article class="dest-card">
+          <figure class="dest-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/bc20d8cca2ef.jpg" alt="کلیسای سنت باسیل، مسکو" loading="lazy" decoding="async" width="3000" height="1987"></figure>
+          <div class="dest-card-body">
+            <p class="d-en">Russia</p><h3>روسیه</h3>
+            <p>اطلاعات ویزا و اقامت برای متقاضیان واجد شرایط.</p>
+            <a class="d-more" href="#contact" data-open-modal-link>شروع پرونده شما
+              <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </article>
+        <article class="dest-card">
+          <figure class="dest-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/4adea2606c7b.jpg" alt="بازار قدیمی ورشو" loading="lazy" decoding="async" width="1440" height="823"></figure>
+          <div class="dest-card-body">
+            <p class="d-en">Poland</p><h3>لهستان</h3>
+            <p>اطلاعات تحصیل، کار و اقامت.</p>
+            <a class="d-more" href="#contact" data-open-modal-link>شروع پرونده شما
+              <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </article>
+        <article class="dest-card">
+          <figure class="dest-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/608b47f0c08f.jpg" alt="کانال و دوچرخه‌ها، آمستردام" loading="lazy" decoding="async" width="1920" height="1440"></figure>
+          <div class="dest-card-body">
+            <p class="d-en">Netherlands</p><h3>هلند</h3>
+            <p>مسیرهای تحصیل، کار و اقامت.</p>
+            <a class="d-more" href="#contact" data-open-modal-link>شروع پرونده شما
+              <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </article>
+        <article class="dest-card">
+          <figure class="dest-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/58b1d7254e6e.jpg" alt="گراند پلاس، بروکسل" loading="lazy" decoding="async" width="1200" height="801"></figure>
+          <div class="dest-card-body">
+            <p class="d-en">Belgium</p><h3>بلژیک</h3>
+            <p>اطلاعات ویزا و اقامت برای متقاضیان واجد شرایط.</p>
+            <a class="d-more" href="#contact" data-open-modal-link>شروع پرونده شما
+              <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="dest-nav">
+      <button class="nav-btn" id="destPrev" aria-label="قبلی">
+        <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="nav-btn" id="destNext" aria-label="بعدی">
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="dots" id="destDots" role="tablist" aria-label="صفحه‌های کاروسل"></div>
+      <span class="spacer"></span>
+      <span class="dest-count" id="destCount">01 / 06</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= services ================= -->
+<section class="sec-pad services" id="services">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="ghost" data-ghost>SERVICES</p>
+      <p class="eyebrow" data-rise>خدمات ما <span class="en">Our Services</span></p>
+      <h2 class="sec-title" data-words>راهنمای هر گام<span class="en-line">GUIDANCE FOR EVERY STEP</span></h2>
+    </header>
+    <div class="svc-list" id="svcList">
+      <div class="svc-row" data-rise>
+        <span class="svc-num">01</span>
+        <div><h3 class="svc-title">مشاوره ویزا</h3><p class="svc-desc">راهنمای عمومی درباره دسته‌های ویزا، مدارک و آماده‌سازی درخواست.</p></div>
+        <span class="svc-arrow" aria-hidden="true"><svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="svc-row" data-rise>
+        <span class="svc-num">02</span>
+        <div><h3 class="svc-title">راهنمای سفارت</h3><p class="svc-desc">راهنمای عمومی رویه‌های سفارت و کنسولگری، نوبت‌دهی و مدارک.</p></div>
+        <span class="svc-arrow" aria-hidden="true"><svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="svc-row" data-rise>
+        <span class="svc-num">03</span>
+        <div><h3 class="svc-title">مشاوره اقامت</h3><p class="svc-desc">اطلاعاتی درباره مسیرهای ممکن اقامت و مدارک موردنیاز آن‌ها.</p></div>
+        <span class="svc-arrow" aria-hidden="true"><svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="svc-row" data-rise>
+        <span class="svc-num">04</span>
+        <div><h3 class="svc-title">مهاجرت تحصیلی</h3><p class="svc-desc">راهنمای عمومی برای دانشجویانی که تحصیل در خارج و مسیرهای مرتبط را بررسی می‌کنند.</p></div>
+        <span class="svc-arrow" aria-hidden="true"><svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="svc-row" data-rise>
+        <span class="svc-num">05</span>
+        <div><h3 class="svc-title">مهاجرت کاری</h3><p class="svc-desc">اطلاعات عمومی درباره مسیرهای مهاجرت مرتبط با اشتغال.</p></div>
+        <span class="svc-arrow" aria-hidden="true"><svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="svc-row" data-rise>
+        <span class="svc-num">06</span>
+        <div><h3 class="svc-title">اقامت خانوادگی</h3><p class="svc-desc">اطلاعات عمومی درباره مسیرهای اقامت مرتبط با خانواده.</p></div>
+        <span class="svc-arrow" aria-hidden="true"><svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="svc-row" data-rise>
+        <span class="svc-num">07</span>
+        <div>
+          <h3 class="svc-title">اطلاعات پناهندگی و حمایت بین‌المللی</h3>
+          <p class="svc-desc">مشاوره اطلاعاتی عمومی درباره رویه‌های پناهندگی و حمایت بین‌المللی و ملاحظات واجد شرایط بودن.</p>
+          <p class="svc-note">واجد شرایط بودن به پرونده فردی و قوانین فعلی بستگی دارد؛ هیچ تضمینی وجود ندارد.</p>
         </div>
-        <div class="info-card" id="infoCard">
-          <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/399d668dcbda.jpg" alt="نمای هوایی شهر قدیمی ورشو" loading="lazy" decoding="async">
-          <div class="info-row">
-            <p class="info-num">6<small>+</small></p>
-            <p class="info-cap">مقصد بین‌المللی برای راهنمای مهاجرت</p>
-            <div class="avatar-stack" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-          </div>
+        <span class="svc-arrow" aria-hidden="true"><svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= process ================= -->
+<section class="sec-pad process" id="process">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="ghost" data-ghost>PROCESS</p>
+      <p class="eyebrow" data-rise>مسیر فرآیند <span class="en">The Process</span></p>
+      <h2 class="sec-title" data-words>از اولین مشاوره تا گام بعدی شما<span class="en-line">FROM FIRST CONSULTATION TO YOUR NEXT STEP</span></h2>
+    </header>
+    <div class="steps">
+      <article class="step" data-rise style="--rise-delay:0ms">
+        <p class="step-num">01</p>
+        <h3>ارزیابی اولیه</h3>
+        <p>بررسی کلی وضعیت متقاضی، مقصد و هدف موردنظر.</p>
+      </article>
+      <article class="step" data-rise style="--rise-delay:90ms">
+        <p class="step-num">02</p>
+        <h3>بررسی مسیرها</h3>
+        <p>بررسی مسیرهای ویزا، اقامت یا مهاجرتِ احتمالاً مرتبط.</p>
+      </article>
+      <article class="step" data-rise style="--rise-delay:180ms">
+        <p class="step-num">03</p>
+        <h3>آماده‌سازی مدارک</h3>
+        <p>بررسی مدارکی که معمولاً برای مسیر انتخابی لازم است.</p>
+      </article>
+      <article class="step" data-rise style="--rise-delay:270ms">
+        <p class="step-num">04</p>
+        <h3>راهنمای درخواست</h3>
+        <p>ارائه راهنمای عمومی در فرآیند درخواست و نوبت‌دهی.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= spotlight ================= -->
+<section class="sec-pad spotlight" id="spotlight">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="ghost" data-ghost>EUROPE</p>
+      <p class="eyebrow" data-rise>کشور منتخب <span class="en">Country Spotlight</span></p>
+      <h2 class="sec-title" data-words>مقصد بعدی خود را انتخاب کنید<span class="en-line">CHOOSE YOUR NEXT DESTINATION</span></h2>
+    </header>
+    <div class="spot-grid">
+      <figure class="spot-card" data-spot data-rise>
+        <div class="spot-figure">
+          <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3a93744907a8.jpg" alt="پل بیرهاکیم و برج ایفل، پاریس" loading="lazy" decoding="async" width="2666" height="1500">
+          <figcaption class="spot-caption"><h3>Paris</h3><p>فرانسه</p></figcaption>
         </div>
-      </aside>
-    </div>
-    <div class="scroll-hint" aria-hidden="true">اسکرول</div>
-  </section>
-
-  <!-- ================= DESTINATIONS ================= -->
-  <section class="section section-dest" id="destinations">
-    <span class="ghost-word latin" data-ghost>Destinations</span>
-    <div class="container">
-      <header class="sec-head">
-        <p class="eyebrow iv">مقصدها — Destinations</p>
-        <h2 class="sec-title" data-clip>با اطمینان جابه‌جا شوید</h2>
-        <p class="sec-desc iv" style="--d:150ms">کشورهایی را کاوش کنید که وکیل ویزا در آن‌ها راهنمای عمومی مهاجرت، ویزا و اقامت ارائه می‌کند.</p>
-      </header>
-      <div class="dest-track-wrap">
-        <div class="dest-viewport" id="destViewport">
-          <div class="dest-track" id="destTrack">
-            <article class="dest-card">
-              <div class="ph"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d177411a4a48.jpg" alt="برج ایفل، پاریس" loading="lazy" decoding="async"><span class="badge latin">FRANCE</span></div>
-              <div class="body"><h3>فرانسه <span>France</span></h3><p>ویزا، تحصیل، کار و مسیرهای اقامت.</p><a class="more" href="#spotlight">اطلاعات بیشتر<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-            </article>
-            <article class="dest-card">
-              <div class="ph"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/2acea0579cda.jpg" alt="دروازه براندنبورگ، برلین" loading="lazy" decoding="async"><span class="badge latin">GERMANY</span></div>
-              <div class="body"><h3>آلمان <span>Germany</span></h3><p>مسیرهای تحصیل، اشتغال و اقامت.</p><a class="more" href="#spotlight">اطلاعات بیشتر<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-            </article>
-            <article class="dest-card">
-              <div class="ph"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/466539b2605f.jpeg" alt="کلیسای سنت باسل در مسکو" loading="lazy" decoding="async"><span class="badge latin">RUSSIA</span></div>
-              <div class="body"><h3>روسیه <span>Russia</span></h3><p>اطلاعات ویزا و اقامت برای متقاضیان واجد شرایط.</p><a class="more" href="#spotlight">اطلاعات بیشتر<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-            </article>
-            <article class="dest-card">
-              <div class="ph"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/399d668dcbda.jpg" alt="شهر قدیمی ورشو" loading="lazy" decoding="async"><span class="badge latin">POLAND</span></div>
-              <div class="body"><h3>لهستان <span>Poland</span></h3><p>اطلاعات تحصیل، کار و اقامت.</p><a class="more" href="#spotlight">اطلاعات بیشتر<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-            </article>
-            <article class="dest-card">
-              <div class="ph"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7b5aa367cf68.jpg" alt="کانال‌های آمستردام" loading="lazy" decoding="async"><span class="badge latin">NETHERLANDS</span></div>
-              <div class="body"><h3>هلند <span>Netherlands</span></h3><p>مسیرهای تحصیل، کار و اقامت.</p><a class="more" href="#spotlight">اطلاعات بیشتر<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-            </article>
-            <article class="dest-card">
-              <div class="ph"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/0aa4b7270746.jpg" alt="خیابان قدیمی بروکسل" loading="lazy" decoding="async"><span class="badge latin">BELGIUM</span></div>
-              <div class="body"><h3>بلژیک <span>Belgium</span></h3><p>اطلاعات ویزا و اقامت برای متقاضیان واجد شرایط.</p><a class="more" href="#spotlight">اطلاعات بیشتر<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-            </article>
-          </div>
-        </div>
-        <div class="dest-nav">
-          <div class="dots" id="destDots" role="tablist" aria-label="انتخاب کارت مقصد"></div>
-          <div class="slider-arrows">
-            <button class="arrow-btn" type="button" data-dest-prev aria-label="کارت قبلی">
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            <button class="arrow-btn" type="button" data-dest-next aria-label="کارت بعدی">
-              <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= SERVICES ================= -->
-  <section class="section" id="services">
-    <span class="ghost-word latin" data-ghost>Services</span>
-    <div class="container">
-      <header class="sec-head">
-        <p class="eyebrow iv">خدمات ما — Our Services</p>
-        <h2 class="sec-title" data-clip>راهنما برای هر گام</h2>
-      </header>
-      <div class="services-list">
-        <article class="service-row" data-service>
-          <span class="no latin">01</span>
-          <div><h3>مشاوره ویزا</h3><p>راهنمای عمومی درباره دسته‌های ویزا، مدارک و آماده‌سازی درخواست.</p></div>
-          <span class="service-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </article>
-        <article class="service-row" data-service>
-          <span class="no latin">02</span>
-          <div><h3>راهنمای سفارت</h3><p>راهنمای عمومی رویه‌های سفارت/کنسولی، وقت‌های مصاحبه و مدارک.</p></div>
-          <span class="service-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </article>
-        <article class="service-row" data-service>
-          <span class="no latin">03</span>
-          <div><h3>مشاوره اقامت</h3><p>اطلاعات درباره مسیرهای احتمالی اقامت و مدارک عمومی مورد نیاز.</p></div>
-          <span class="service-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </article>
-        <article class="service-row" data-service>
-          <span class="no latin">04</span>
-          <div><h3>مهاجرت تحصیلی</h3><p>راهنمای عمومی برای دانشجویانی که تحصیل در خارج و مسیرهای مرتبط را می‌سنجند.</p></div>
-          <span class="service-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </article>
-        <article class="service-row" data-service>
-          <span class="no latin">05</span>
-          <div><h3>مهاجرت کاری</h3><p>اطلاعات عمومی درباره مسیرهای مهاجرت مرتبط با اشتغال.</p></div>
-          <span class="service-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </article>
-        <article class="service-row" data-service>
-          <span class="no latin">06</span>
-          <div><h3>اقامت خانوادگی</h3><p>اطلاعات عمومی درباره مسیرهای اقامت خانوادگی.</p></div>
-          <span class="service-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </article>
-        <article class="service-row" data-service>
-          <span class="no latin">07</span>
-          <div><h3>پناهندگی و حمایت بین‌المللی</h3><p>مشاوره اطلاعاتی عمومی درباره رویه‌های حمایت بین‌المللی و ملاحظات صلاحیت — بدون هیچ تضمینی و با تأکید بر اینکه نتیجه به پرونده فردی و قانون جاری بستگی دارد.</p></div>
-          <span class="service-arrow" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </article>
-      </div>
-      <p class="services-note">
-        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.4" stroke="currentColor" stroke-width="1.2"/><path d="M8 7.4v3.4M8 5.2v.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-        صلاحیت هر پرونده به شرایط فردی، کشور مقصد و قوانین جاری بستگی دارد؛ اطلاعات این سایت جنبه راهنمای عمومی دارد.
-      </p>
-    </div>
-  </section>
-
-  <!-- ================= PROCESS ================= -->
-  <section class="section section-process" id="process">
-    <span class="ghost-word latin" data-ghost>Process</span>
-    <div class="container">
-      <header class="sec-head">
-        <p class="eyebrow iv">مراحل — The Process</p>
-        <h2 class="sec-title" data-clip>از اولین مشاوره تا گام بعدی شما</h2>
-        <p class="sec-desc iv" style="--d:150ms">یک مسیر روشن و مرحله‌به‌مرحله برای سنجش وضعیت شما و انتخاب مسیر مناسب.</p>
-      </header>
-      <div class="process-grid">
-        <article class="process-step" data-step>
-          <span class="num latin">01</span>
-          <h3>ارزیابی اولیه</h3>
-          <p>بررسی کلی وضعیت متقاضی، مقصد و هدف سفر یا اقامت.</p>
-        </article>
-        <article class="process-step" data-step>
-          <span class="num latin">02</span>
-          <h3>بررسی مسیرها</h3>
-          <p>گفت‌وگو درباره مسیرهای ویزا، اقامت یا مهاجرت که احتمالاً مرتبط‌اند.</p>
-        </article>
-        <article class="process-step" data-step>
-          <span class="num latin">03</span>
-          <h3>آماده‌سازی مدارک</h3>
-          <p>مرور مدارکی که معمولاً برای مسیر انتخابی لازم است.</p>
-        </article>
-        <article class="process-step" data-step>
-          <span class="num latin">04</span>
-          <h3>راهنمای درخواست</h3>
-          <p>همراهی اطلاعاتی در فرایند درخواست و وقت سفارت.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= SPOTLIGHT ================= -->
-  <section class="section section-spotlight" id="spotlight">
-    <span class="ghost-word latin" data-ghost>Spotlight</span>
-    <div class="container">
-      <header class="sec-head">
-        <p class="eyebrow iv">مقصد ویژه — Country Spotlight</p>
-        <h2 class="sec-title" data-clip>مقصد بعدی خود را انتخاب کنید</h2>
-      </header>
-      <div class="spot-stage">
-        <article class="spot-card" data-spot>
-          <div class="ph"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d177411a4a48.jpg" alt="برج ایفل در شب، پاریس" loading="lazy" decoding="async"></div>
-          <div class="glass">
-            <div><h3>پاریس</h3><span>France — فرانسه</span></div>
-            <a class="go" href="#destinations" aria-label="اطلاعات فرانسه"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </article>
-        <article class="spot-card" data-spot>
-          <div class="ph"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7b5aa367cf68.jpg" alt="کانال‌های آمستردام" loading="lazy" decoding="async"></div>
-          <div class="glass">
-            <div><h3>آمستردام</h3><span>Netherlands — هلند</span></div>
-            <a class="go" href="#destinations" aria-label="اطلاعات هلند"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          </div>
-        </article>
-      </div>
-      <div class="spot-note">
-        <a class="btn btn-ghost-dark" href="#timelines">
-          ویزا چقدر زمان می‌برد؟
-          <svg class="arr" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= WHY ================= -->
-  <section class="section section-why" id="why">
-    <div class="container">
-      <header class="sec-head">
-        <p class="eyebrow iv">چرا وکیل ویزا — Why Vakil Visa</p>
-        <h2 class="sec-title" data-clip>راهنمای شفاف برای مسیرهای پیچیده</h2>
-      </header>
-      <figure class="why-banner" data-banner>
-        <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/30e313d28d1d.png" alt="جلسه مشاوره حرفه‌ای در محیطی مدرن" loading="lazy" decoding="async">
-        <figcaption>مشاوره‌ای که با شرایط شما شروع می‌شود — نه با وعده‌ها.</figcaption>
       </figure>
-      <div class="why-grid">
-        <article class="why-card" data-why>
-          <span class="icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M10 3.2 16.8 6 10 8.8 3.2 6 10 3.2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M5.4 7.6v4.2c0 1.2 2.06 2.4 4.6 2.4s4.6-1.2 4.6-2.4V7.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
-          <h3>اطلاعات شفاف</h3>
-          <p>پیش از شروع، تصویر روشنی از مسیر عمومی و پیش‌نیازهای احتمالی آن داشته باشید.</p>
-        </article>
-        <article class="why-card" data-why>
-          <span class="icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M10 17s5.6-3.1 5.6-7.6a5.6 5.6 0 1 0-11.2 0C4.4 13.9 10 17 10 17Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="10" cy="9.2" r="2" stroke="currentColor" stroke-width="1.3"/></svg></span>
-          <h3>تمرکز بر کشور</h3>
-          <p>اطلاعات بر اساس مقصد و هدف مهاجرتی سازمان‌دهی شده است — نه پاسخ‌های کلی.</p>
-        </article>
-        <article class="why-card" data-why>
-          <span class="icon" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M3.4 10.2a6.6 6.6 0 1 1 3.2 5.6l-3 .8.8-3a6.55 6.55 0 0 1-1-3.4Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M7.4 9.3h5.2M7.4 11.7h3.4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
-          <h3>مشاوره شخصی</h3>
-          <p>شرایط خود را مطرح کنید و روشن شوید کدام سوال‌ها نیاز به بررسی حرفه‌ای/قانونی دارد.</p>
-        </article>
-      </div>
+      <figure class="spot-card" data-spot data-rise style="--rise-delay:140ms">
+        <div class="spot-figure">
+          <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/608b47f0c08f.jpg" alt="دوچرخه‌ها روی پل کانال، آمستردام" loading="lazy" decoding="async" width="1920" height="1440">
+          <figcaption class="spot-caption"><h3>Amsterdam</h3><p>هلند</p></figcaption>
+        </div>
+      </figure>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ================= INFORMATION ================= -->
-  <section class="section section-info" id="info">
-    <span class="ghost-word latin" data-ghost>Info</span>
-    <div class="container">
-      <header class="sec-head">
-        <p class="eyebrow iv">نکات مهم — Important Information</p>
-        <h2 class="sec-title" data-clip>هر پرونده، متفاوت است</h2>
-        <p class="sec-desc iv" style="--d:150ms">چهار نکته اطلاعاتی که پیش از هر تصمیمی باید در نظر بگیرید.</p>
-      </header>
-      <div class="info-grid">
-        <article class="info-cell" data-cell>
-          <span class="k">Visa Requirements</span>
-          <h3>الزامات ویزا</h3>
-          <p>الزامات به تابعیت، مقصد، نوع ویزا و هدف سفر بستگی دارد.</p>
-        </article>
-        <article class="info-cell" data-cell>
-          <span class="k">Processing Time</span>
-          <h3>زمان بررسی</h3>
-          <p>زمان بررسی به نوع ویزا، سفارت/کنسول، شرایط متقاضی و کاری جاری متغیر است.</p>
-        </article>
-        <article class="info-cell" data-cell>
-          <span class="k">Residence</span>
-          <h3>اقامت</h3>
-          <p>مسیرهای اقامت به مبنای قانونی آن — تحصیل، اشتغال، خانواده یا دیگر جهات واجد شرایط — وابسته است.</p>
-        </article>
-        <article class="info-cell" data-cell>
-          <span class="k">Documents</span>
-          <h3>مدارک</h3>
-          <p>مدارک لازم بر اساس مسیر و کشور متفاوت است و همیشه باید با الزامات رسمی جاری مطابقت داده شود.</p>
-        </article>
-      </div>
-      <p class="info-disclaimer">این موارد بیانیه‌های اطلاعاتی هستند و هیچ‌گونه تضمین یا تعهدی درباره نتیجه ایجاد نمی‌کنند.</p>
+<!-- ================= important information (dark) ================= -->
+<section class="sec-pad on-dark" id="residence">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="ghost" data-ghost>NOTES</p>
+      <p class="eyebrow" data-rise>اطلاعات مهم <span class="en">Important Information</span></p>
+      <h2 class="sec-title" data-words>هر پرونده، متفاوت است<span class="en-line">EVERY CASE IS DIFFERENT</span></h2>
+    </header>
+    <div class="info-grid">
+      <article class="info-cell" data-rise style="--rise-delay:0ms">
+        <p class="ic-num">01</p>
+        <h3>الزامات ویزا</h3>
+        <p>الزامات به تابعیت، مقصد، نوع ویزا و هدف سفر بستگی دارد.</p>
+      </article>
+      <article class="info-cell" data-rise style="--rise-delay:110ms">
+        <p class="ic-num">02</p>
+        <h3>زمان پردازش</h3>
+        <p>زمان پردازش بر اساس نوع ویزا، سفارت یا کنسولگری، شرایط متقاضی و کاری فعلی متفاوت است.</p>
+      </article>
+      <article class="info-cell" data-rise style="--rise-delay:220ms">
+        <p class="ic-num">03</p>
+        <h3>اقامت</h3>
+        <p>مسیرهای اقامت به مبنای قانونی اقامت بستگی دارند؛ مانند تحصیل، اشتغال، خانواده یا سایر دلایل احرازشده.</p>
+      </article>
+      <article class="info-cell" data-rise style="--rise-delay:330ms">
+        <p class="ic-num">04</p>
+        <h3>مدارک</h3>
+        <p>مدارک موردنیاز بر اساس مسیر و کشور متفاوت است و باید همیشه با الزامات رسمی روز تطبیق داده شود.</p>
+      </article>
     </div>
-  </section>
+    <p class="info-foot" data-rise>این موارد بیانیه‌های اطلاعاتی هستند و نه تضمین؛ واجد شرایط بودن به پرونده فردی و قوانین فعلی بستگی دارد.</p>
+  </div>
+</section>
 
-  <!-- ================= TIMELINES ================= -->
-  <section class="section section-time" id="timelines">
-    <span class="ghost-word latin" data-ghost>Timing</span>
-    <div class="container">
-      <header class="sec-head">
-        <p class="eyebrow iv">زمان‌بندی — Timelines</p>
-        <h2 class="sec-title" data-clip>چقدر زمان می‌برد؟</h2>
-      </header>
-      <div class="time-grid">
-        <article class="time-card" data-time>
-          <p class="k">گام نخست</p>
-          <h3>مشاوره اولیه</h3>
-          <p>بسته به پرونده</p>
-        </article>
-        <article class="time-card" data-time>
-          <p class="k">پیش از درخواست</p>
-          <h3>آماده‌سازی مدارک</h3>
-          <p>بسته به مسیر</p>
-        </article>
-        <article class="time-card" data-time>
-          <p class="k">پس از ثبت</p>
-          <h3>بررسی سفارت</h3>
-          <p>متغیر بر اساس کشور و نوع ویزا</p>
-        </article>
-        <article class="time-card" data-time>
-          <p class="k">بلندمدت</p>
-          <h3>روند اقامت</h3>
-          <p>متغیر بر اساس مسیر قانونی</p>
-        </article>
-      </div>
-      <p class="services-note" style="margin-top:1.8rem">
-        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.4" stroke="currentColor" stroke-width="1.2"/><path d="M8 7.4v3.4M8 5.2v.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-        زمان‌های نمایش‌داده‌شده صرفاً راهنمای عمومی‌اند. زمان‌های رسمی می‌توانند تغییر کنند؛ اطلاعات جاری را از سفارت، کنسولگری یا مرجع مهاجرتی مربوطه بررسی کنید.
-      </p>
-      <div class="time-links">
-        <span class="official-note">اطلاعات رسمی:</span>
-        <a class="latin" href="https://france-visas.gouv.fr" target="_blank" rel="noopener noreferrer">France-Visas ↗</a>
-        <a class="latin" href="https://www.auswaertiges-amt.de" target="_blank" rel="noopener noreferrer">Germany — AA ↗</a>
-        <a class="latin" href="https://mid.ru" target="_blank" rel="noopener noreferrer">Russia — MID ↗</a>
-        <a class="latin" href="https://www.gov.pl" target="_blank" rel="noopener noreferrer">Poland — gov.pl ↗</a>
-        <a class="latin" href="https://ind.nl" target="_blank" rel="noopener noreferrer">Netherlands — IND ↗</a>
-        <a class="latin" href="https://immigration.belgium.be" target="_blank" rel="noopener noreferrer">Belgium — Immigration ↗</a>
-      </div>
+<!-- ================= timelines ================= -->
+<section class="sec-pad timelines" id="timelines">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="ghost" data-ghost>TIMELINES</p>
+      <p class="eyebrow" data-rise>زمان‌بندی <span class="en">Timelines</span></p>
+      <h2 class="sec-title" data-words>چقدر طول می‌کشد؟<span class="en-line">HOW LONG DOES IT TAKE?</span></h2>
+    </header>
+    <div class="tl-grid">
+      <article class="tl-card" data-rise style="--rise-delay:0ms">
+        <h3>مشاوره اولیه</h3>
+        <strong>بستگی به پرونده دارد</strong>
+      </article>
+      <article class="tl-card" data-rise style="--rise-delay:110ms">
+        <h3>آماده‌سازی مدارک</h3>
+        <strong>بستگی به مسیر دارد</strong>
+      </article>
+      <article class="tl-card" data-rise style="--rise-delay:220ms">
+        <h3>پردازش سفارت</h3>
+        <strong>متغیر بر اساس کشور و نوع ویزا</strong>
+      </article>
+      <article class="tl-card" data-rise style="--rise-delay:330ms">
+        <h3>فرآیند اقامت</h3>
+        <strong>متغیر بر اساس مسیر قانونی</strong>
+      </article>
     </div>
-  </section>
+    <div class="tl-note" data-rise>
+      <strong>زمان‌های نمایش‌داده‌شده صرفاً راهنمای عمومی هستند.</strong>
+      زمان‌های رسمی می‌توانند تغییر کنند. متقاضیان باید اطلاعات روز را از سفارت، کنسولگری یا مرجع مهاجرتی مربوطه بررسی کنند.
+      برای اطلاعات رسمی و به‌روز، همیشه مراجع رسمی کشور مقصد را در نظر بگیرید.
+    </div>
+  </div>
+</section>
 
-  <!-- ================= FAQ ================= -->
-  <section class="section section-faq" id="faq">
-    <span class="ghost-word latin" data-ghost>FAQ</span>
-    <div class="container">
-      <header class="sec-head">
-        <p class="eyebrow iv">سوالات متداول — FAQ</p>
-        <h2 class="sec-title" data-clip>سوال‌هایی که پرسیده می‌شود</h2>
-      </header>
-      <div class="faq-list" id="faqList">
-        <div class="faq-item">
-          <button class="faq-q" type="button" aria-expanded="false">
-            وکیل ویزا کدام کشورها را پوشش می‌دهد؟
-            <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1.5v11M1.5 7h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
-          </button>
-          <div class="faq-a"><div class="faq-a-inner">تمرکز اصلی ما روی شش مقصد است: فرانسه، آلمان، روسیه، لهستان، هلند و بلژیک. برای سایر کشورها نیز می‌توانید مشاوره عمومی درخواست کنید تا مسیرهای احتمالی و نکات کلی بررسی شود.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" type="button" aria-expanded="false">
-            آیا کمک می‌کنید درخواست ویزا بدهم؟
-            <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1.5v11M1.5 7h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
-          </button>
-          <div class="faq-a"><div class="faq-a-inner">راهنمای عمومی درباره دسته‌های ویزا، مدارک معمول و آماده‌سازی درخواست ارائه می‌دهیم. تصمیم نهایی درباره هر درخواست همیشه با سفارت، کنسولگری یا مرجع مهاجرتی مربوطه است.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" type="button" aria-expanded="false">
-            درخواست ویزا چقدر طول می‌کشد؟
-            <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1.5v11M1.5 7h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
-          </button>
-          <div class="faq-a"><div class="faq-a-inner">زمان بررسی به نوع ویزا، کشور مقصد، سفارت یا کنسولگری مربوطه و شرایط فردی متقاضی بستگی دارد و می‌تواند تغییر کند. به همین دلیل عدد قطعی ارائه نمی‌دهیم و بررسی اطلاعات جاری در منابع رسمی را توصیه می‌کنیم.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" type="button" aria-expanded="false">
-            معمولاً چه مدارکی لازم است؟
-            <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1.5v11M1.5 7h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
-          </button>
-          <div class="faq-a"><div class="faq-a-inner">بسته به مسیر و کشور متفاوت است؛ با این حال معمولاً پاسپورت معتبر، مدارک هویتی، اثبات تمکن مالی، برنامه سفر یا پذیرش، و بیمه درخواست می‌شود. فهرست دقیق را همیشه با الزامات رسمی جاری مسیر انتخابی مطابقت دهید.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" type="button" aria-expanded="false">
-            آیا برای درخواست اقامت هم کمک می‌کنید؟
-            <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1.5v11M1.5 7h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
-          </button>
-          <div class="faq-a"><div class="faq-a-inner">اطلاعاتی درباره مسیرهای عمومی اقامت — تحصیلی، کاری، خانوادگی یا دیگر جهات واجد شرایط — و مدارک عمومی آن‌ها ارائه می‌دهیم. این اطلاعات جنبه راهنمایی دارد؛ واجد شرایط بودن به قوانین کشور مقصد و شرایط فردی شما بستگی دارد.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" type="button" aria-expanded="false">
-            آیا مشاوره پناهندگی ارائه می‌دهید؟
-            <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1.5v11M1.5 7h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
-          </button>
-          <div class="faq-a"><div class="faq-a-inner">مشاوره اطلاعاتی عمومی درباره رویه‌های حمایت بین‌المللی و ملاحظات صلاحیت ارائه می‌شود. هیچ تضمینی برای نتیجه وجود ندارد، هر پرونده جداگانه و بر اساس قانون جاری بررسی می‌شود و ما هرگز درخواست‌های غیرواقعی را تشویق نمی‌کنیم.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" type="button" aria-expanded="false">
-            آیا تأیید ویزا تضمین می‌شود؟
-            <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1.5v11M1.5 7h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
-          </button>
-          <div class="faq-a"><div class="faq-a-inner">خیر. تصمیم درباره ویزا و اقامت توسط مراجع رسمی گرفته می‌شود و هیچ مؤسسه خصوصی نمی‌تواند صادقانه تضمین تأیید بدهد. کار ما ارائه راهنمای شفاف و واقع‌بینانه است، نه وعده نتیجه.</div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" type="button" aria-expanded="false">
-            چطور می‌توانم با وکیل ویزا تماس بگیرم؟
-            <span class="faq-icon" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M7 1.5v11M1.5 7h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
-          </button>
-          <div class="faq-a"><div class="faq-a-inner">می‌توانید از دکمه «تماس با ما» و فرم همین سایت استفاده کنید یا مستقیم با شماره <a class="latin" href="tel:+989122903240" style="color:var(--brand)">0912 290 3240</a> تماس بگیرید. درخواست شما بررسی و از طریق اطلاعات تماسی که ثبت می‌کنید پاسخ داده می‌شود.</div></div>
-        </div>
-      </div>
+<!-- ================= why ================= -->
+<section class="sec-pad why" id="why">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="ghost" data-ghost>WHY US</p>
+      <p class="eyebrow" data-rise>چرا وکیل ویزا <span class="en">Why Vakil Visa</span></p>
+      <h2 class="sec-title" data-words>راهنمایی شفاف برای مسیرهای پیچیده<span class="en-line">CLEAR GUIDANCE FOR COMPLEX JOURNEYS</span></h2>
+    </header>
+    <div class="why-grid">
+      <article class="why-card" data-why data-rise>
+        <figure class="why-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/e86357b798ff.jpg" alt="مسافر در ترمینال فرودگاه" loading="lazy" decoding="async" width="1467" height="825"></figure>
+        <div class="why-body"><h3>اطلاعات شفاف</h3><p>پیش از شروع، مسیر کلی را بفهمید.</p></div>
+      </article>
+      <article class="why-card" data-why data-rise style="--rise-delay:120ms">
+        <figure class="why-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b68eebac2b25.jpg" alt="کلیسای سنت باسیل، مسکو" loading="lazy" decoding="async" width="1440" height="1080"></figure>
+        <div class="why-body"><h3>تمرکز بر کشور</h3><p>اطلاعات بر اساس مقصد و هدف مهاجرتی سازمان‌دهی شده است.</p></div>
+      </article>
+      <article class="why-card" data-why data-rise style="--rise-delay:240ms">
+        <figure class="why-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b41fc4037feb.jpg" alt="جلسه مشاوره در دفتر" loading="lazy" decoding="async" width="1254" height="836"></figure>
+        <div class="why-body"><h3>مشاوره شخصی</h3><p>وضعیت خود را مطرح کنید و مشخص کنید کدام سؤال‌ها نیاز به بررسی تخصصی یا حقوقی دارند.</p></div>
+      </article>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ================= CONTACT CTA ================= -->
-  <section class="section section-cta" id="contact">
-    <span class="ghost-word latin" data-ghost>Contact</span>
-    <div class="container">
-      <p class="eyebrow iv">بیایید صحبت کنیم — Let's Talk</p>
-      <h2 class="cta-title" data-clip>آماده‌اید گام بعدی را بردارید؟</h2>
-      <div class="cta-actions">
-        <button class="btn btn-brand" type="button" data-open-modal>
-          تماس با وکیل ویزا
-          <svg class="arr" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <a class="cta-phone" href="tel:+989122903240">
-          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.6 1.8h2.2l1.1 2.8-1.4 1a9.6 9.6 0 0 0 4.9 4.9l1-1.4 2.8 1.1v2.2c0 .7-.6 1.3-1.3 1.2A12.7 12.7 0 0 1 2.4 3.1c-.1-.7.5-1.3 1.2-1.3Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
-          <span class="latin">0912 290 3240</span>
-        </a>
+<!-- ================= faq ================= -->
+<section class="sec-pad faq" id="faq">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="ghost" data-ghost>FAQ</p>
+      <p class="eyebrow" data-rise>سؤالات متداول <span class="en">FAQ</span></p>
+      <h2 class="sec-title" data-words>سؤال‌هایی که مردم می‌پرسند<span class="en-line">QUESTIONS PEOPLE ASK</span></h2>
+    </header>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">وکیل ویزا کدام کشورها را پوشش می‌دهد؟<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>در حال حاضر راهنمایی برای فرانسه، آلمان، روسیه، لهستان، هلند و بلژیک ارائه می‌شود. برای سایر کشورها می‌توانید در تماس، سؤال خود را مطرح کنید.</p></div>
       </div>
-      <p class="cta-fine">مشاوره اولیه — بدون هیچ تضمینی درباره نتیجه؛ تصمیم‌ها همیشه با مراجع رسمی است.</p>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">آیا کمک به درخواست ویزا می‌کنید؟<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>راهنمای عمومی درباره دسته‌های ویزا، مدارک و آماده‌سازی درخواست ارائه می‌شود؛ تصمیم نهایی همیشه با مرجع رسمی است.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">درخواست ویزا چقدر طول می‌کشد؟<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>زمان پردازش به نوع ویزا، سفارت یا کنسولگری و شرایط هر متقاضی بستگی دارد و می‌تواند تغییر کند.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">معمولاً چه مدارکی لازم است؟<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>مدارک بر اساس مسیر و کشور متفاوت است؛ در جلسه مشاوره، فهرست عمومی مدارکِ مسیر موردنظر بررسی می‌شود و باید با الزامات رسمی روز تطبیق داده شود.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">آیا برای درخواست اقامت کمک می‌کنید؟<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>اطلاعاتی درباره مسیرهای ممکن اقامت و مدارک آن‌ها ارائه می‌شود. واجد شرایط بودن به پرونده فردی و قوانین فعلی بستگی دارد.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">آیا مشاوره پناهندگی ارائه می‌کنید؟<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>مشاوره اطلاعاتی عمومی درباره رویه‌های پناهندگی و حمایت بین‌المللی ارائه می‌شود؛ هیچ تضمینی وجود ندارد و هر پرونده به‌صورت فردی و بر اساس قانون بررسی می‌شود.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">آیا تأیید ویزا تضمین شده است؟<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>نه. تصمیم ویزا و اقامت توسط مراجع رسمی گرفته می‌شود. هیچ مشاور خصوصی نمی‌تواند به‌طور صادقانه تأیید را تضمین کند.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">چطور می‌توانم با وکیل ویزا تماس بگیرم؟<span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p>از طریق شماره <a href="tel:+989122903240" style="font-family:var(--font-en);direction:ltr;unicode-bidi:embed">0912 290 3240</a> یا فرم تماس همین سایت؛ در سریع‌ترین زمان پاسخ می‌دهیم.</p></div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- ================= contact cta ================= -->
+<section class="sec-pad on-dark" id="contact">
+  <div class="wrap cta-inner">
+    <p class="ghost" data-ghost style="inset-inline-start:50%;transform:translateX(50%);top:-.5em" dir="ltr">NEXT STEP</p>
+    <p class="eyebrow" data-rise>گفت‌وگو را شروع کنید <span class="en">Let's Talk</span></p>
+    <h2 class="cta-title" data-words>آماده‌اید گام بعدی را بردارید؟</h2>
+    <div data-rise>
+      <button class="btn" data-open-modal>تماس با وکیل ویزا
+        <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <a class="cta-phone" data-rise href="tel:+989122903240">0912 290 3240</a>
+    <p class="cta-small" data-rise>مشاوره اولیه برای بررسی کلی وضعیت شما — بدون هیچ تضمینی، فقط اطلاعات شفاف.</p>
+  </div>
+</section>
+
 </main>
 
-<!-- ================= FOOTER ================= -->
-<footer class="site-footer">
-  <div class="container">
+<!-- ================= footer ================= -->
+<footer class="footer">
+  <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a class="brand" href="#home" aria-label="Vakil Visa — خانه">
-          <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="rgba(255,255,255,0.08)"/><path d="M8 9l5 14L18 9" stroke="#c96b32" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 9l4.5 12.6L26 9" stroke="#e6a06d" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="brand-text">Vakil Visa<small>Immigration Consultancy</small></span>
+        <a class="logo" href="#home" data-scroll aria-label="Vakil Visa">
+          <svg class="logo-mark" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+            <rect x="5" y="3" width="34" height="38" rx="7" stroke="currentColor" stroke-width="2.4"/>
+            <circle cx="22" cy="18.5" r="8.5" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M13.5 18.5h17M22 10c3.2 2.6 3.2 14.4 0 17M22 10c-3.2 2.6-3.2 14.4 0 17" stroke="currentColor" stroke-width="1.3" opacity=".75"/>
+            <path class="vv" d="M13.5 28.5 17.2 36l3.7-7.5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="vv" d="M22.9 28.5 26.6 36l3.7-7.5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="logo-word">Vakil Visa</span>
         </a>
-        <p>راهنمای مهاجرت، ویزا و اقامت برای مقصدهای بین‌المللی.</p>
-        <a class="f-phone" href="tel:+989122903240">
-          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.6 1.8h2.2l1.1 2.8-1.4 1a9.6 9.6 0 0 0 4.9 4.9l1-1.4 2.8 1.1v2.2c0 .7-.6 1.3-1.3 1.2A12.7 12.7 0 0 1 2.4 3.1c-.1-.7.5-1.3 1.2-1.3Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
-          0912 290 3240
-        </a>
+        <p>راهنمای مهاجرت، ویزا و اقامت برای مقاصد بین‌المللی.</p>
+        <a class="footer-phone" href="tel:+989122903240">0912 290 3240</a>
       </div>
       <nav class="footer-col" aria-label="مقصدها">
         <h4>مقصدها</h4>
         <ul>
-          <li><a href="#destinations">فرانسه</a></li>
-          <li><a href="#destinations">آلمان</a></li>
-          <li><a href="#destinations">روسیه</a></li>
-          <li><a href="#destinations">لهستان</a></li>
-          <li><a href="#destinations">هلند</a></li>
-          <li><a href="#destinations">بلژیک</a></li>
+          <li><a href="#destinations" data-scroll>فرانسه</a></li>
+          <li><a href="#destinations" data-scroll>آلمان</a></li>
+          <li><a href="#destinations" data-scroll>روسیه</a></li>
+          <li><a href="#destinations" data-scroll>لهستان</a></li>
+          <li><a href="#destinations" data-scroll>هلند</a></li>
+          <li><a href="#destinations" data-scroll>بلژیک</a></li>
         </ul>
       </nav>
       <nav class="footer-col" aria-label="خدمات">
         <h4>خدمات</h4>
         <ul>
-          <li><a href="#services">مشاوره ویزا</a></li>
-          <li><a href="#services">اقامت</a></li>
-          <li><a href="#services">راهنمای سفارت</a></li>
-          <li><a href="#services">مهاجرت تحصیلی</a></li>
-          <li><a href="#services">مهاجرت کاری</a></li>
-          <li><a href="#services">اقامت خانوادگی</a></li>
-          <li><a href="#services">اطلاعات پناهندگی</a></li>
+          <li><a href="#services" data-scroll>مشاوره ویزا</a></li>
+          <li><a href="#residence" data-scroll>اقامت</a></li>
+          <li><a href="#services" data-scroll>راهنمای سفارت</a></li>
+          <li><a href="#services" data-scroll>مهاجرت تحصیلی</a></li>
+          <li><a href="#services" data-scroll>مهاجرت کاری</a></li>
+          <li><a href="#services" data-scroll>اقامت خانوادگی</a></li>
+          <li><a href="#services" data-scroll>اطلاعات پناهندگی</a></li>
         </ul>
       </nav>
       <nav class="footer-col" aria-label="شرکت">
         <h4>شرکت</h4>
         <ul>
-          <li><a href="#why">چرا وکیل ویزا</a></li>
-          <li><a href="#info">نکات مهم</a></li>
-          <li><a href="#faq">سوالات متداول</a></li>
-          <li><a href="#contact">تماس</a></li>
+          <li><a href="#home" data-scroll>درباره ما</a></li>
+          <li><a href="#why" data-scroll>چرا وکیل ویزا</a></li>
+          <li><a href="#faq" data-scroll>سؤالات متداول</a></li>
+          <li><a href="#contact" data-scroll>تماس</a></li>
         </ul>
       </nav>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 Vakil Visa — تمام حقوق محفوظ است.</p>
-      <p class="disclaimer">وکیل ویزا یک مؤسسه خصوصی مشاوره و اطلاع‌رسانی است و نه نماینده رسمی هیچ دولت، سفارت یا کنسولگری. تصمیم‌های ویزا و اقامت منحصراً توسط مراجع رسمی گرفته می‌شود و هیچ تضمینی برای نتیجه وجود ندارد.</p>
+      <span>© ۲۰۲۶ وکیل ویزا. تمامی حقوق محفوظ است.</span>
+      <p class="footer-legal">وکیل ویزا یک مؤسسه خصوصی مشاوره و اطلاع‌رسانی است و نماینده رسمی هیچ دولت، سفارت، کنسولگری یا مرجع مهاجرتی نیست. تصمیم‌های ویزا و اقامت منحصراً توسط مراجع رسمی گرفته می‌شود.</p>
     </div>
   </div>
 </footer>
 
-<!-- ================= CONTACT MODAL ================= -->
+<!-- ================= contact modal ================= -->
 <div class="modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
   <div class="modal-backdrop" data-close-modal></div>
-  <div class="modal-panel">
-    <button class="modal-close" type="button" data-close-modal aria-label="بستن فرم تماس">
-      <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 2l10 10M12 2 2 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+  <div class="modal-panel" role="document">
+    <button class="modal-close" data-close-modal aria-label="بستن">
+      <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
     <div class="modal-head">
-      <h3 id="modalTitle">گفت‌وگو را شروع کنید</h3>
-      <p>درخواست خود را ثبت کنید؛ وکیل ویزا بررسی می‌کند و از طریق اطلاعات تماس شما پاسخ می‌دهد.</p>
+      <p class="en">Start a Conversation</p>
+      <h3 id="modalTitle">گفت‌وگو را آغاز کنید</h3>
     </div>
     <form class="modal-form" id="contactForm" novalidate>
       <div class="field">
-        <label for="cfName">نام و نام خانوادگی</label>
-        <input id="cfName" name="name" type="text" placeholder="نام شما" required>
+        <label for="fName">نام و نام خانوادگی</label>
+        <input id="fName" name="name" type="text" placeholder="نام شما" required autocomplete="name">
       </div>
       <div class="field">
-        <label for="cfPhone">شماره تماس</label>
-        <input id="cfPhone" name="phone" type="tel" inputmode="tel" placeholder="شماره تماس شما" required>
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="cfDest">مقصد</label>
-          <select id="cfDest" name="destination">
-            <option>فرانسه</option>
-            <option>آلمان</option>
-            <option>روسیه</option>
-            <option>لهستان</option>
-            <option>هلند</option>
-            <option>بلژیک</option>
-            <option>سایر</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="cfService">خدمت</label>
-          <select id="cfService" name="service">
-            <option>مشاوره ویزا</option>
-            <option>مشاوره اقامت</option>
-            <option>راهنمای سفارت</option>
-            <option>مهاجرت تحصیلی</option>
-            <option>مهاجرت کاری</option>
-            <option>اقامت خانوادگی</option>
-            <option>اطلاعات پناهندگی / حمایت بین‌المللی</option>
-            <option>مشاوره عمومی</option>
-          </select>
-        </div>
+        <label for="fPhone">شماره تماس</label>
+        <input id="fPhone" name="phone" type="tel" placeholder="شماره تماس شما" required autocomplete="tel" dir="ltr" style="text-align:end">
       </div>
       <div class="field">
-        <label for="cfMsg">پیام</label>
-        <textarea id="cfMsg" name="message" placeholder="کوتاه بنویسید برای چه کاری کمک لازم دارید..."></textarea>
+        <label for="fDest">مقصد</label>
+        <select id="fDest" name="destination" required>
+          <option value="" selected disabled>انتخاب کنید</option>
+          <option>فرانسه</option><option>آلمان</option><option>روسیه</option>
+          <option>لهستان</option><option>هلند</option><option>بلژیک</option><option>سایر</option>
+        </select>
       </div>
-      <button class="btn btn-brand modal-submit" type="submit" id="cfSubmit">
-        ارسال درخواست
-        <svg class="arr" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M13 8H3m4-4L3 8l4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="field">
+        <label for="fService">خدمت</label>
+        <select id="fService" name="service" required>
+          <option value="" selected disabled>انتخاب کنید</option>
+          <option>مشاوره ویزا</option><option>مشاوره اقامت</option><option>راهنمای سفارت</option>
+          <option>مهاجرت تحصیلی</option><option>مهاجرت کاری</option><option>اقامت خانوادگی</option>
+          <option>اطلاعات پناهندگی و حمایت بین‌المللی</option><option>مشاوره عمومی</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label for="fMsg">پیام</label>
+        <textarea id="fMsg" name="message" placeholder="کوتاه بگویید چه کمکی نیاز دارید..."></textarea>
+      </div>
+      <button class="btn" type="submit" id="submitBtn">ارسال درخواست
+        <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <p class="modal-note">این فرم یک نمایش دمو است و داده‌ای به سرور ارسال نمی‌شود. پاسخ‌دهی رسمی پس از تماس تلفنی انجام می‌شود.</p>
+      <p class="modal-note">نمایشی — اطلاعات به سروری ارسال نمی‌شود.</p>
     </form>
-    <div class="modal-success" id="modalSuccess">
-      <span class="tick" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5 8.2 14.7 16 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      <h4>درخواست شما ثبت شد</h4>
-      <p>سپاسگزاریم. وکیل ویزا درخواست شما را بررسی می‌کند و از طریق اطلاعات تماسی که ثبت کرده‌اید با شما در ارتباط خواهد بود.</p>
-      <a class="success-phone" href="tel:+989122903240">0912 290 3240</a>
+    <div class="modal-success">
+      <span class="ok" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <h4>درخواست شما دریافت شد</h4>
+      <p>سپاسگزاریم. وکیل ویزا درخواست شما را بررسی می‌کند و از طریق اطلاعاتی که ارائه داده‌اید با شما تماس می‌گیرد.</p>
+      <a class="cta-phone" href="tel:+989122903240">0912 290 3240</a>
     </div>
   </div>
 </div>
 
+<noscript><style>
+  .wi,[data-rise]{opacity:1 !important;transform:none !important}
+  .veil{display:none}
+  .hero-eyebrow,.hero-ctas,.hero-scroll,.dest-slider,.info-card,.menu-link{opacity:1 !important;transform:none !important}
+  .faq-a{height:auto !important}
+</style></noscript>
+
+<script type="importmap">
+{
+  "imports": {
+    "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.1.18/+esm"
+  }
+}
+</script>
 <script type="module">
-/* ==================================================================
- * VAKIL VISA — core: spring engine, adaptive rem, Lenis, loader,
- * clip reveals, in-view springs, hero parallax, header state
- * ================================================================== */
-
-import Lenis from "lenis";
-
-const REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const HOVER_OK = window.matchMedia("(hover: hover) and (pointer: fine)").matches
-  && window.innerWidth > 768;
-if (REDUCED) document.documentElement.classList.add("reduced");
-
+/* ================= env ================= */
+const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const FINE_HOVER = matchMedia("(hover: hover) and (pointer: fine)").matches;
+const RTL = document.documentElement.dir === "rtl";
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const clamp01 = (v) => Math.min(1, Math.max(0, v));
-const $ = (sel, root = document) => root.querySelector(sel);
-const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
-const lerp = (a, b, t) => a + (b - a) * t;
 
-/* ---------- adaptive rem scale-up (spec §7) ---------- */
-const FONT_BASE = 16;
-const BASE_W = 1920;
-const COEF = 0.6666;
-const updateRootFont = () => {
+/* ================= adaptive rem (spec) ================= */
+const FONT_BASE = 16, BASE_W = 1920, COEF = 0.6666;
+function updateRootFont(){
   const reduction = ((BASE_W - innerWidth) / BASE_W) * 100 * COEF;
   const size = FONT_BASE - (FONT_BASE * reduction) / 100;
   if (size > FONT_BASE) document.documentElement.style.fontSize = size + "px";
   else document.documentElement.style.removeProperty("font-size");
-};
+}
 updateRootFont();
-window.addEventListener("resize", updateRootFont, { passive: true });
+addEventListener("resize", updateRootFont);
 
-/* ---------- the shared ticker ---------- */
-const subscribers = new Set();
-let rafId = 0;
-const tick = (time) => {
-  rafId = 0;
-  for (const sub of Array.from(subscribers)) {
-    try { sub(time); } catch (err) { console.error(err); }
+/* ================= lenis ================= */
+let lenis = null;
+try {
+  const { default: Lenis } = await import("lenis");
+  if (!REDUCED) {
+    lenis = new Lenis({ smoothWheel: true });
+    const raf = (t) => { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+    lenis.stop(); /* locked until the loader lifts */
   }
-  if (subscribers.size) rafId = requestAnimationFrame(tick);
-};
-const subscribe = (callback) => {
-  subscribers.add(callback);
-  if (!rafId) rafId = requestAnimationFrame(tick);
-  return () => {
-    subscribers.delete(callback);
-    if (!subscribers.size && rafId) { cancelAnimationFrame(rafId); rafId = 0; }
-  };
+} catch (err) { console.warn("lenis unavailable", err); }
+const lockScroll = (on) => {
+  document.documentElement.classList.toggle("is-locked", on);
+  if (lenis) on ? lenis.stop() : lenis.start();
 };
 
-/* ---------- spring engine (spec §8) ---------- */
-class SpringValue {
+/* ================= springs ================= */
+const liveSprings = new Set();
+let springRaf = 0, lastTick = 0;
+function springLoop(t){
+  springRaf = 0;
+  const dt = lastTick ? Math.min(0.05, (t - lastTick) / 1000) : 0.016;
+  lastTick = t;
+  for (const s of Array.from(liveSprings)) s.step(dt);
+  if (liveSprings.size) springRaf = requestAnimationFrame(springLoop);
+  else lastTick = 0;
+}
+const wakeSprings = () => { if (!springRaf) springRaf = requestAnimationFrame(springLoop); };
+class Spring {
   constructor({ from = 0, to = 0, tension = 200, friction = 26, precision = 0.001, onUpdate, onComplete } = {}) {
-    this.value = from;
-    this.velocity = 0;
-    this.target = to;
-    this.tension = tension;
-    this.friction = friction;
-    this.precision = precision;
-    this.onUpdate = onUpdate;
-    this.onComplete = onComplete;
-    this.last = null;
-    this.resting = true;
+    this.value = from; this.to = to; this.v = 0;
+    this.tension = tension; this.friction = friction; this.precision = precision;
+    this.onUpdate = onUpdate; this.onComplete = onComplete;
+    this.resting = Math.abs(from - to) < precision;
   }
   set(to) {
-    /* a spring built with from≠to starts resting on an inconsistent state —
-       re-arm it whenever the value has not reached the target yet */
-    if (this.target === to && this.resting && this.value === to) return;
-    this.target = to;
-    this.resting = false;
-    this.last = null;
-    liveSprings.add(this);
+    this.to = to;
+    if (REDUCED) { this.value = to; this.v = 0; this.resting = true; this.emit(); this.done(); return; }
+    this.resting = false; liveSprings.add(this); wakeSprings();
   }
-  jump(v) {
-    this.value = v; this.velocity = 0; this.target = v;
-    this.resting = true; this.emit();
-  }
+  jump(v) { this.value = v; this.to = v; this.v = 0; this.resting = true; this.emit(); }
   emit() { if (this.onUpdate) this.onUpdate(this.value); }
-  step(now) {
+  done() { liveSprings.delete(this); if (this.onComplete) this.onComplete(); }
+  step(dt) {
     if (this.resting) return;
-    if (this.last === null) this.last = now;
-    let elapsed = Math.min(64, now - this.last) / 1000; /* seconds */
-    this.last = now;
-    const dt = 1 / 60;
-    while (elapsed > 0) {
-      const step = Math.min(dt, elapsed);
-      const force = -this.tension * (this.value - this.target);
-      const damping = -this.friction * this.velocity;
-      this.velocity += (force + damping) * step;
-      this.value += this.velocity * step;
-      elapsed -= step;
+    const n = Math.max(1, Math.ceil(dt / 0.008)), h = dt / n;
+    for (let i = 0; i < n; i++) {
+      const F = -this.tension * (this.value - this.to) - this.friction * this.v;
+      this.v += F * h; this.value += this.v * h;
     }
-    if (Math.abs(this.velocity) < this.precision && Math.abs(this.target - this.value) < this.precision) {
-      this.value = this.target;
-      this.velocity = 0;
-      this.resting = true;
-      this.emit();
-      if (this.onComplete) this.onComplete();
-      return;
+    if (Math.abs(this.v) < this.precision && Math.abs(this.to - this.value) < this.precision) {
+      this.value = this.to; this.v = 0; this.resting = true; this.emit(); this.done(); return;
     }
     this.emit();
   }
 }
-/* one stepping loop for every live spring */
-const liveSprings = new Set();
-subscribe((time) => {
-  for (const s of Array.from(liveSprings)) {
-    s.step(time);
-    if (s.resting) liveSprings.delete(s);
-  }
-});
-const activate = (spring) => { liveSprings.add(spring); return spring; };
+const spring = (opts) => new Spring(opts);
 
-/* eased value (time-based, for the loader) */
-const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
-const animateDuration = (ms, onUpdate, onComplete) => {
-  const start = performance.now();
-  const step = (now) => {
-    const p = clamp01((now - start) / ms);
-    onUpdate(p);
-    if (p < 1) requestAnimationFrame(step);
-    else if (onComplete) onComplete();
+/* ================= tweens + easings ================= */
+const EASE = {
+  outExpo: (t) => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+  outQuart: (t) => 1 - Math.pow(1 - t, 4),
+  inOutCubic: (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2),
+};
+function tween({ delay = 0, duration = 900, ease = "outExpo", update, complete } = {}) {
+  if (REDUCED) { update(1); if (complete) complete(); return { cancel() {} }; }
+  let start = null, raf = 0, cancelled = false;
+  const run = (now) => {
+    if (cancelled) return;
+    if (start === null) start = now;
+    const t = Math.min(1, (now - start) / duration);
+    update(EASE[ease](t));
+    if (t < 1) raf = requestAnimationFrame(run);
+    else if (complete) complete();
   };
-  requestAnimationFrame(step);
-};
-
-/* ---------- Lenis (spec §5) ---------- */
-let lenis = null;
-if (!REDUCED) {
-  lenis = new Lenis({ smoothWheel: true });
-  lenis.stop(); /* the loader holds the page */
-  subscribe((time) => lenis.raf(time));
+  const kick = () => { raf = requestAnimationFrame(run); };
+  const tid = delay > 0 ? setTimeout(kick, delay) : (kick(), 0);
+  return { cancel() { cancelled = true; clearTimeout(tid); cancelAnimationFrame(raf); } };
 }
-const lockScroll = () => {
-  document.body.classList.add("is-locked");
-  if (lenis) lenis.stop();
-};
-const unlockScroll = () => {
-  document.body.classList.remove("is-locked");
-  if (lenis && !document.body.classList.contains("menu-open")) lenis.start();
-};
 
-/* ---------- anchor navigation through Lenis ---------- */
-$$('a[href^="#"]').forEach((a) => {
-  a.addEventListener("click", (e) => {
-    const id = a.getAttribute("href");
-    if (id.length < 2) return;
-    const target = document.querySelector(id);
-    if (!target) return;
-    e.preventDefault();
-    closeMenu();
-    if (lenis) lenis.scrollTo(target, { offset: -70, duration: 1.4 });
-    else target.scrollIntoView({ behavior: REDUCED ? "auto" : "smooth" });
-  });
-});
+/* ================= word splitting ================= */
+function splitIntoUnits(el, targets) {
+  /* targets: array of text nodes / elements to wrap in clip+inner pairs */
+  const units = [];
+  for (const node of targets) {
+    const isText = node.nodeType === 3;
+    const text = (isText ? node.nodeValue : node.textContent).replace(/\s+/g, " ").trim();
+    if (!text) continue;
+    const frag = document.createDocumentFragment();
+    const words = text.split(" ");
+    words.forEach((word, i) => {
+      const w = document.createElement("span"); w.className = "w"; w.setAttribute("aria-hidden", "true");
+      const wi = document.createElement("span"); wi.className = "wi"; wi.textContent = word;
+      w.appendChild(wi); frag.appendChild(w); units.push(wi);
+      if (i < words.length - 1) frag.appendChild(document.createTextNode(" "));
+    });
+    if (isText) node.replaceWith(frag);
+    else { node.textContent = ""; node.appendChild(frag); node.setAttribute("aria-label", text); }
+  }
+  /* visible label for screen readers */
+  const vh = document.createElement("span");
+  vh.style.cssText = "position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)";
+  vh.textContent = el.getAttribute("aria-label") || el.textContent;
+  if (!el.getAttribute("aria-label")) el.setAttribute("aria-label", vh.textContent);
+  return units;
+}
+function ownTextTargets(el) {
+  return Array.from(el.childNodes).filter((n) => n.nodeType === 3 && n.nodeValue.trim());
+}
 
-/* ---------- clip-mask reveals (spec §10) ---------- */
-const buildClip = (el) => {
-  const text = el.textContent;
-  el.setAttribute("aria-label", text);
-  el.textContent = "";
-  const words = text.split(/\s+/).filter(Boolean);
-  words.forEach((word, i) => {
-    const mask = document.createElement("span");
-    mask.className = "mask";
-    mask.setAttribute("aria-hidden", "true");
-    const inner = document.createElement("span");
-    inner.className = "mask-in";
-    inner.textContent = word;
-    inner.style.setProperty("--d", `${i * 140}ms`);
-    mask.appendChild(inner);
-    el.appendChild(mask);
-    if (i < words.length - 1) el.appendChild(document.createTextNode(" "));
-  });
-};
-$$("[data-clip]").forEach((el) => {
-  buildClip(el);
-  const io = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) {
-        io.disconnect();
-        el.classList.add("revealed");
-      }
-    }
-  }, { rootMargin: "0% 0% -8% 0%" });
-  io.observe(el);
+/* hero title + tagline prepared up front */
+const heroTitle = $("#heroTitle");
+const titleUnits = splitIntoUnits(heroTitle, ownTextTargets(heroTitle));
+const taglineLines = $$("#heroTagline [data-line]");
+const lineUnits = taglineLines.map((line) => {
+  const text = line.textContent;
+  line.setAttribute("aria-label", text);
+  const w = document.createElement("span"); w.className = "w"; w.setAttribute("aria-hidden", "true");
+  const wi = document.createElement("span"); wi.className = "wi"; wi.textContent = text;
+  w.appendChild(wi); line.textContent = ""; line.appendChild(w);
+  return wi;
 });
-/* ghost words */
+/* section headings + ghosts split now, revealed on IO */
+$$("[data-words]").forEach((el) => {
+  const units = splitIntoUnits(el, ownTextTargets(el));
+  el._units = units;
+});
 $$("[data-ghost]").forEach((el) => {
-  const io = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) { io.disconnect(); el.classList.add("revealed"); }
+  el._units = splitIntoUnits(el, [el.firstChild]);
+});
+
+/* ================= in-view reveals ================= */
+const io = new IntersectionObserver((entries) => {
+  for (const e of entries) {
+    if (!e.isIntersecting) continue;
+    io.unobserve(e.target);
+    const el = e.target;
+    if (el.hasAttribute("data-words")) {
+      el._units.forEach((wi, i) => {
+        wi.parentElement.classList.add("on");
+        tween({ delay: i * 55, duration: 950, ease: "outExpo", update: (v) => {
+          wi.style.transform = `translateY(${(1 - v) * 115}%)`; wi.style.opacity = v;
+        }});
+      });
+    } else if (el.hasAttribute("data-ghost")) {
+      el._units.forEach((wi, i) => {
+        tween({ delay: i * 70, duration: 1100, ease: "outExpo", update: (v) => {
+          wi.style.transform = `translateY(${(1 - v) * 115}%)`; wi.style.opacity = v;
+        }});
+      });
+    } else {
+      el.classList.add("is-in");
     }
-  }, { rootMargin: "0% 0% -4% 0%" });
-  io.observe(el);
-});
+  }
+}, { rootMargin: "0% 0% -8% 0%" });
+$$("[data-rise], [data-words], [data-ghost]").forEach((el) => io.observe(el));
 
-/* ---------- in-view spring reveals (spec §10) ---------- */
-const inviewSpring = (el, { delay = 0, tension = 200, friction = 26 } = {}) => {
-  const spring = activate(new SpringValue({
-    from: 0, to: 1, tension, friction, precision: 0.002,
-    onUpdate: (v) => {
-      el.style.opacity = `${v}`;
-      el.style.transform = `translateY(${(1 - v) * 1.75}rem)`;
-    },
-  }));
-  const io = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) {
-        io.disconnect();
-        setTimeout(() => spring.set(1), delay);
-      }
-    }
-  }, { rootMargin: "0% 0% -8% 0%" });
-  io.observe(el);
-  return spring;
-};
-$$(".iv").forEach((el) => {
-  if (REDUCED) { el.classList.add("is-in"); return; }
-  const delay = parseFloat(el.style.getPropertyValue("--d")) || 0;
-  el.style.removeProperty("--d");
-  inviewSpring(el, { delay });
-});
-
-/* generic data-* in-view springs used by the sections */
-$$("[data-step]").forEach((el, i) => {
-  if (REDUCED) { el.classList.add("is-in"); return; }
-  el.classList.add("iv");
-  el.style.opacity = "0";
-  inviewSpring(el, { delay: i * 90, tension: 200, friction: 26 });
-});
-$$("[data-cell]").forEach((el, i) => {
-  if (REDUCED) { el.classList.add("is-in"); return; }
-  el.classList.add("iv");
-  el.style.opacity = "0";
-  inviewSpring(el, { delay: i * 110, tension: 180, friction: 24 });
-});
-$$("[data-time], [data-why], [data-spot], [data-banner]").forEach((el, i) => {
-  if (REDUCED) { el.classList.add("is-in"); return; }
-  el.classList.add("iv");
-  el.style.opacity = "0";
-  inviewSpring(el, { delay: (i % 4) * 110, tension: 200, friction: 26 });
-});
-
-/* ---------- hero parallax (spec §31) ---------- */
-const heroEl = $("[data-hero]");
-const heroPlate = $("#heroPlate");
-if (heroEl && heroPlate && !REDUCED) {
-  let heroActive = true;
-  new IntersectionObserver((es) => { heroActive = es[0].isIntersecting; }).observe(heroEl);
-  subscribe(() => {
-    if (!heroActive) return;
-    const rect = heroEl.getBoundingClientRect();
-    const vh = window.innerHeight || 1;
-    const progress = clamp01(-rect.top / vh); /* 0 → 1 across the hero */
-    heroPlate.style.transform = `translateY(${progress * 12}%)`;
-  });
-}
-
-/* ---------- header state ---------- */
+/* ================= header state + hero parallax ================= */
 const header = $("#siteHeader");
-let headerQueued = false;
-const headerApply = () => {
-  headerQueued = false;
-  header.classList.toggle("is-solid", window.scrollY > 40);
-};
-window.addEventListener("scroll", () => {
-  if (headerQueued) return;
-  headerQueued = true;
-  requestAnimationFrame(headerApply);
+const hero = $("[data-hero]");
+const plate = $("#heroPlate");
+let heroH = hero.offsetHeight;
+let scrollQueued = false;
+function onScroll(){
+  scrollQueued = false;
+  const y = window.scrollY;
+  header.classList.toggle("is-solid", y > 40);
+  if (y <= heroH * 1.25) {
+    const p = clamp01(y / Math.max(1, heroH));
+    plate.style.transform = `translate3d(0, ${p * 12}%, 0)`;
+  }
+}
+addEventListener("scroll", () => {
+  if (!scrollQueued) { scrollQueued = true; requestAnimationFrame(onScroll); }
 }, { passive: true });
-headerApply();
+addEventListener("resize", () => { heroH = hero.offsetHeight; });
+onScroll();
 
-/* ---------- loader (spec §30) ---------- */
-const MIN_VISIBLE_MS = 1400;
-const MAX_VISIBLE_MS = 2600;
-const EXIT_MS = 850;
-const loader = $("#loader");
-const loaderFill = $("#loaderFill");
-const loaderBrand = $("#loaderBrand");
+/* ================= hero slider ================= */
+const slider = $("#heroSlider");
+const slides = $$("[data-slide]", slider);
+const dotsWrap = $("#sliderDots");
+slides.forEach((_, i) => {
+  const b = document.createElement("button");
+  b.setAttribute("aria-label", `اسلاید ${i + 1}`);
+  b.addEventListener("click", () => { showSlide(i); scheduleAuto(); });
+  dotsWrap.appendChild(b);
+});
+const dotEls = Array.from(dotsWrap.children);
+let activeSlide = -1;
+const slideSprings = slides.map(() => ({ op: null, scale: null }));
+function showSlide(i, instant = false){
+  const next = (i + slides.length) % slides.length;
+  if (next === activeSlide) return;
+  slides.forEach((sl, k) => {
+    const s = slideSprings[k];
+    const target = k === next ? 1 : 0;
+    if (!s.op) s.op = spring({ tension: 210, friction: 24, precision: 0.002,
+      onUpdate: (v) => { sl.style.opacity = v; sl.style.visibility = v < 0.01 ? "hidden" : "visible"; } });
+    const img = $("img", sl);
+    if (!s.scale) s.scale = spring({ tension: 210, friction: 24, precision: 0.002,
+      onUpdate: (v) => { img.style.transform = `scale(${1.06 - 0.06 * v})`; } });
+    if (instant && target === 1) { s.op.jump(1); s.scale.jump(1); }
+    else { s.op.set(target); s.scale.set(target); }
+  });
+  activeSlide = next;
+  dotEls.forEach((d, k) => { d.classList.toggle("is-active", k === activeSlide); d.setAttribute("aria-current", k === activeSlide ? "true" : "false"); });
+}
+let autoTimer = 0, sliderOnScreen = false;
+function scheduleAuto(){
+  clearTimeout(autoTimer);
+  if (REDUCED) return;
+  autoTimer = setTimeout(() => {
+    if (sliderOnScreen && !document.hidden) showSlide(activeSlide + 1);
+    scheduleAuto();
+  }, 3800);
+}
+new IntersectionObserver((es) => { sliderOnScreen = es[0].isIntersecting; }).observe(slider);
+slider.addEventListener("pointerenter", () => clearTimeout(autoTimer), { passive: true });
+slider.addEventListener("pointerleave", scheduleAuto, { passive: true });
+slider.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") { showSlide(activeSlide + 1); scheduleAuto(); }
+  if (e.key === "ArrowRight") { showSlide(activeSlide - 1); scheduleAuto(); }
+});
+document.addEventListener("visibilitychange", scheduleAuto);
 
-const heroReveal = () => {
-  /* hero title word-by-word (140ms stagger, 1100ms, easeOutExpo) */
-  const titleLine = $("[data-hero-line]");
-  if (titleLine) buildClip(titleLine);
-  const tagLine = $("[data-tag-line]");
-  if (tagLine) {
-    /* two stacked lines: main + small, 350ms base, 110ms stagger */
-    const masks = [];
-    const text = tagLine.textContent;
-    tagLine.setAttribute("aria-label", text);
-    tagLine.textContent = "";
-    const wrap = document.createElement("span");
-    wrap.className = "mask";
-    const inner = document.createElement("span");
-    inner.className = "mask-in";
-    inner.textContent = text;
-    inner.style.setProperty("--d", "350ms");
-    wrap.appendChild(inner);
-    tagLine.prepend(wrap);
-    masks.push(wrap);
-    const small = $(".hero-tagline small");
-    if (small) {
-      small.style.opacity = "0";
-      small.style.transform = "translateY(0.6rem)";
-      setTimeout(() => {
-        small.style.transition = "opacity 900ms var(--ease-expo), transform 900ms var(--ease-expo)";
-        small.style.opacity = "";
-        small.style.transform = "";
-      }, 350 + 110);
+/* ================= destinations carousel ================= */
+const destViewport = $("#destViewport");
+const destTrack = $("#destTrack");
+const destCards = Array.from(destTrack.children);
+const destDotsWrap = $("#destDots");
+const destCount = $("#destCount");
+const DIR = RTL ? 1 : -1;
+let destIndex = 0, destStep = 0, destPages = 1, destVisible = 3;
+const posSpring = spring({ tension: 210, friction: 24, precision: 0.5,
+  onUpdate: (v) => { destTrack.style.transform = `translate3d(${DIR * v}px,0,0)`; } });
+function measureDest(){
+  const w = destCards[0].getBoundingClientRect().width;
+  const gap = parseFloat(getComputedStyle(destTrack).columnGap) || 0;
+  destStep = w + gap;
+  destVisible = Math.max(1, Math.round(destViewport.clientWidth / destStep));
+  destPages = Math.max(1, destCards.length - destVisible + 1);
+  if (destDotsWrap.children.length !== destPages) {
+    destDotsWrap.innerHTML = "";
+    for (let i = 0; i < destPages; i++) {
+      const b = document.createElement("button");
+      b.setAttribute("aria-label", `صفحه ${i + 1}`);
+      b.addEventListener("click", () => gotoDest(i));
+      destDotsWrap.appendChild(b);
     }
   }
-  const infoCard = $("#infoCard");
-  requestAnimationFrame(() => {
-    titleLine && titleLine.classList.add("revealed");
-    tagLine && tagLine.classList.add("revealed");
+  destIndex = Math.min(destIndex, destPages - 1);
+  posSpring.jump(destIndex * destStep);
+  paintDest();
+}
+function paintDest(){
+  Array.from(destDotsWrap.children).forEach((d, k) => {
+    d.classList.toggle("is-active", k === destIndex);
+    d.setAttribute("aria-current", k === destIndex ? "true" : "false");
   });
-  if (infoCard && !REDUCED) {
-    infoCard.style.opacity = "0";
-    infoCard.style.transform = "translateY(1.75rem)";
-    const cardSpring = activate(new SpringValue({
-      from: 0, to: 1, tension: 200, friction: 26, precision: 0.002,
-      onUpdate: (v) => {
-        infoCard.style.opacity = `${v}`;
-        infoCard.style.transform = `translateY(${(1 - v) * 1.75}rem)`;
-      },
-    }));
-    setTimeout(() => cardSpring.set(1), 780);
-  }
+  destCount.textContent = `${String(destIndex + 1).padStart(2, "0")} / ${String(destPages).padStart(2, "0")}`;
+}
+function gotoDest(i){
+  destIndex = (i + destPages) % destPages;
+  posSpring.set(destIndex * destStep);
+  paintDest();
+}
+$("#destNext").addEventListener("click", () => gotoDest(destIndex + 1));
+$("#destPrev").addEventListener("click", () => gotoDest(destIndex - 1));
+destViewport.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowLeft") gotoDest(destIndex + 1);
+  if (e.key === "ArrowRight") gotoDest(destIndex - 1);
+});
+/* drag */
+let dragStart = null, dragBase = 0, dragged = false;
+destViewport.addEventListener("pointerdown", (e) => {
+  dragStart = e.clientX; dragBase = destIndex * destStep; dragged = false;
+  destViewport.classList.add("is-drag");
+  destViewport.setPointerCapture(e.pointerId);
+});
+destViewport.addEventListener("pointermove", (e) => {
+  if (dragStart === null) return;
+  const dx = e.clientX - dragStart;
+  if (Math.abs(dx) > 6) dragged = true;
+  const raw = clamp01((dragBase - dx * (RTL ? -1 : 1)) / ((destPages - 1) * destStep || 1));
+  posSpring.jump(raw * (destPages - 1) * destStep);
+});
+const endDrag = (e) => {
+  if (dragStart === null) return;
+  const dx = e.clientX - dragStart;
+  dragStart = null;
+  destViewport.classList.remove("is-drag");
+  const moved = Math.round(-dx * (RTL ? -1 : 1) / destStep);
+  gotoDest(destIndex + moved);
 };
+destViewport.addEventListener("pointerup", endDrag);
+destViewport.addEventListener("pointercancel", endDrag);
+destViewport.addEventListener("click", (e) => { if (dragged) { e.preventDefault(); dragged = false; } }, true);
+addEventListener("resize", measureDest);
+measureDest();
 
-const runLoader = () => {
-  if (REDUCED) {
-    loader.classList.add("is-done");
-    document.body.classList.remove("is-loading");
-    document.body.classList.remove("is-locked");
-    if (lenis) lenis.start();
-    heroReveal();
-    return;
-  }
-  lockScroll();
-  /* brand rise */
-  setTimeout(() => {
-    loaderBrand.style.transition = "opacity 700ms var(--ease-expo), transform 700ms var(--ease-expo)";
-    loaderBrand.style.opacity = "1";
-    loaderBrand.style.transform = "none";
-  }, 90);
-  /* progress: 120ms delay, 1280ms, easeInOutCubic */
-  setTimeout(() => {
-    animateDuration(1280, (p) => {
-      loaderFill.style.transform = `scaleX(${easeInOutCubic(p)})`;
-    });
-  }, 120);
-  const started = performance.now();
-  let handed = false;
-  let maxTimer = 0;
-  const handover = () => {
-    if (handed) return;
-    handed = true;
-    clearTimeout(maxTimer);
-    loader.classList.add("is-exit");
-    setTimeout(() => {
-      document.body.classList.remove("is-loading");
-      unlockScroll();
-      heroReveal();
-    }, 250);
-    setTimeout(() => loader.classList.add("is-done"), EXIT_MS + 60);
+/* ================= hover micro-springs ================= */
+if (FINE_HOVER && !REDUCED && innerWidth > 768) {
+  $$(".svc-row").forEach((row) => {
+    const arrow = $(".svc-arrow .arrow", row);
+    if (!arrow) return;
+    const sx = spring({ tension: 300, friction: 20, precision: 0.01, onUpdate: (v) => { arrow.style.transform = `${RTL ? "" : "scaleX(-1) "}translateX(${(RTL ? -8 : 8) * v}px)`; } });
+    const so = spring({ tension: 300, friction: 20, precision: 0.01, onUpdate: (v) => { arrow.style.opacity = 0.55 + 0.45 * v; } });
+    row.addEventListener("pointerenter", () => { sx.set(1); so.set(1); });
+    row.addEventListener("pointerleave", () => { sx.set(0); so.set(0); });
+  });
+  $$("[data-why]").forEach((card) => {
+    const sy = spring({ tension: 300, friction: 22, precision: 0.01, onUpdate: (v) => { card.style.transform = `translateY(${-8 * v}px)`; } });
+    card.addEventListener("pointerenter", () => sy.set(1));
+    card.addEventListener("pointerleave", () => sy.set(0));
+  });
+  const bindScale = (img) => {
+    if (!img || img._scaleBound) return;
+    img._scaleBound = true;
+    const ss = spring({ tension: 300, friction: 22, precision: 0.001, onUpdate: (v) => { img.style.transform = `scale(${1 + 0.03 * v})`; } });
+    img.closest("figure,article").addEventListener("pointerenter", () => ss.set(1));
+    img.closest("figure,article").addEventListener("pointerleave", () => ss.set(0));
   };
-  /* the curtain lifts as soon as both (progress done, min time) are true,
-     and never later than MAX_VISIBLE_MS */
-  setTimeout(() => {
-    const elapsed = performance.now() - started;
-    setTimeout(handover, Math.max(0, MIN_VISIBLE_MS - elapsed));
-  }, 120 + 1280);
-  maxTimer = setTimeout(handover, MAX_VISIBLE_MS);
+  $$(".dest-figure img").forEach(bindScale);
+  $$(".spot-figure img").forEach(bindScale);
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", runLoader, { once: true });
-} else {
-  runLoader();
-}
-
-/* ---------- history / scroll restoration ---------- */
-history.scrollRestoration = "manual";
-window.scrollTo(0, 0);
-
-
-/* ==================================================================
- * VAKIL VISA — ui: hero slider, destinations carousel, hover springs,
- * FAQ accordion, fullscreen menu, contact modal
- * ================================================================== */
-
-/* ---------- hero destinations slider (spec §14, §32) ----------
-   spring crossfade t:210 f:24 · autoplay 3800ms · dots · wrap · keys */
-const heroSlider = $("#heroSlider");
-if (heroSlider) {
-  const slides = $$(".dest-slide", heroSlider);
-  const dotsRoot = $("#heroDots");
-  let index = 0;
-  let timer = 0;
-  /* one opacity spring per slide — the spring crossfade */
-  const fades = slides.map((slide, i) => {
-    const sp = activate(new SpringValue({
-      from: i === 0 ? 1 : 0, to: i === 0 ? 1 : 0, tension: 210, friction: 24, precision: 0.002,
-      onUpdate: (v) => { slide.style.opacity = `${v}`; },
-    }));
-    return sp;
-  });
-  slides.forEach((slide, i) => { slide.style.opacity = i === 0 ? "1" : "0"; });
-  slides[0].classList.add("is-active");
-
-  const dots = slides.map((_, i) => {
-    const d = document.createElement("button");
-    d.className = `dot${i === 0 ? " is-active" : ""}`;
-    d.type = "button";
-    d.setAttribute("role", "tab");
-    d.setAttribute("aria-label", `اسلاید ${i + 1}`);
-    d.setAttribute("aria-current", i === 0 ? "true" : "false");
-    d.addEventListener("click", () => go(i, true));
-    dotsRoot.appendChild(d);
-    return d;
-  });
-
-  const go = (next, user) => {
-    const wrapped = (next + slides.length) % slides.length;
-    if (wrapped === index) return;
-    slides[index].classList.remove("is-active");
-    dots[index].classList.remove("is-active");
-    dots[index].setAttribute("aria-current", "false");
-    fades[index].set(0);
-    index = wrapped;
-    slides[index].classList.add("is-active");
-    dots[index].classList.add("is-active");
-    dots[index].setAttribute("aria-current", "true");
-    fades[index].set(1);
-    if (user) restart();
-  };
-  const nextSlide = () => go(index + 1);
-  const prevSlide = () => go(index - 1);
-  const restart = () => {
-    clearTimeout(timer);
-    if (!REDUCED) timer = setTimeout(nextSlide, 3800);
-  };
-  $("[data-slider-next]").addEventListener("click", nextSlide);
-  $("[data-slider-prev]").addEventListener("click", prevSlide);
-  heroSlider.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight") prevSlide(); /* RTL: right = previous */
-    if (e.key === "ArrowLeft") nextSlide();
-  });
-  /* touch swipe */
-  let touchX = null;
-  heroSlider.addEventListener("pointerdown", (e) => { touchX = e.clientX; }, { passive: true });
-  heroSlider.addEventListener("pointerup", (e) => {
-    if (touchX === null) return;
-    const dx = e.clientX - touchX;
-    if (Math.abs(dx) > 40) { dx < 0 ? prevSlide() : nextSlide(); }
-    touchX = null;
-  }, { passive: true });
-  /* pause on hover + when the tab is hidden */
-  heroSlider.addEventListener("pointerenter", () => clearTimeout(timer));
-  heroSlider.addEventListener("pointerleave", restart);
-  document.addEventListener("visibilitychange", () => {
-    document.hidden ? clearTimeout(timer) : restart();
-  });
-  restart();
-}
-
-/* ---------- destinations carousel (spec §16, §32) ----------
-   spring translate · autoplay · dots · wrap · keys · touch · RTL math */
-const destViewport = $("#destViewport");
-if (destViewport) {
-  const track = $("#destTrack");
-  const cards = $$(".dest-card", track);
-  const dotsRoot = $("#destDots");
-  let index = 0;
-  let timer = 0;
-
-  const step = () => {
-    if (cards.length < 2) return 0;
-    /* RTL flex lays cards right→left, so offsetLeft decreases — take the
-       absolute pitch and shift the track RIGHT (+x) for later cards */
-    return Math.abs(cards[1].offsetLeft - cards[0].offsetLeft);
-  };
-  const maxIndex = () => Math.max(0, cards.length - visibleCount());
-  const visibleCount = () => {
-    const w = destViewport.clientWidth;
-    const s = step() || 1;
-    return Math.max(1, Math.round(w / s));
-  };
-  const spring = activate(new SpringValue({
-    from: 0, to: 0, tension: 210, friction: 24, precision: 0.05,
-    onUpdate: (v) => { track.style.transform = `translateX(${v}px)`; },
-  }));
-  const apply = () => {
-    /* RTL: later cards sit further left → shift the track right (+x) */
-    spring.set(index * step());
-  };
-  const dots = cards.map((_, i) => {
-    const d = document.createElement("button");
-    d.className = `dot${i === 0 ? " is-active" : ""}`;
-    d.type = "button";
-    d.setAttribute("role", "tab");
-    d.setAttribute("aria-label", `کارت ${i + 1}`);
-    d.setAttribute("aria-current", i === 0 ? "true" : "false");
-    d.addEventListener("click", () => go(i, true));
-    dotsRoot.appendChild(d);
-    return d;
-  });
-  const go = (next, user) => {
-    const max = maxIndex();
-    const wrapped = next > max ? 0 : next < 0 ? max : next;
-    index = wrapped;
-    apply();
-    dots.forEach((d, i) => {
-      d.classList.toggle("is-active", i === index);
-      d.setAttribute("aria-current", i === index ? "true" : "false");
-    });
-    if (user) restart();
-  };
-  const restart = () => {
-    clearTimeout(timer);
-    if (!REDUCED) timer = setTimeout(() => go(index + 1), 3800);
-  };
-  $("[data-dest-next]").addEventListener("click", () => go(index + 1, true));
-  $("[data-dest-prev]").addEventListener("click", () => go(index - 1, true));
-  destViewport.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight") go(index - 1, true);
-    if (e.key === "ArrowLeft") go(index + 1, true);
-  });
-  let dragX = null;
-  destViewport.addEventListener("pointerdown", (e) => { dragX = e.clientX; }, { passive: true });
-  destViewport.addEventListener("pointerup", (e) => {
-    if (dragX === null) return;
-    const dx = e.clientX - dragX;
-    if (Math.abs(dx) > 50) { dx < 0 ? go(index + 1, true) : go(index - 1, true); }
-    dragX = null;
-  }, { passive: true });
-  destViewport.addEventListener("pointerenter", () => clearTimeout(timer));
-  destViewport.addEventListener("pointerleave", restart);
-  document.addEventListener("visibilitychange", () => {
-    document.hidden ? clearTimeout(timer) : restart();
-  });
-  window.addEventListener("resize", () => { index = Math.min(index, maxIndex()); apply(); }, { passive: true });
-  apply();
-  restart();
-}
-
-/* ---------- services arrow hover spring (spec §17) ----------
-   x: 0 → 8 · opacity .55 → 1 · t:300 f:20 (desktop hover only) */
-$$("[data-service]").forEach((row) => {
-  const arrow = $(".service-arrow", row);
-  if (!arrow || !HOVER_OK || REDUCED) return;
-  arrow.style.opacity = "0.55"; /* the spring's resting state */
-  const spring = activate(new SpringValue({
-    from: 0, to: 0, tension: 300, friction: 20, precision: 0.002,
-    onUpdate: (v) => {
-      arrow.style.transform = `translateX(${v * 8}px)`;
-      arrow.style.opacity = `${0.55 + v * 0.45}`;
-    },
-  }));
-  row.addEventListener("pointerenter", () => spring.set(1));
-  row.addEventListener("pointerleave", () => spring.set(0));
-});
-
-/* ---------- spotlight image hover scale (spec §19) ----------
-   scale 1 → 1.03 · t:300 f:22 */
-$$("[data-spot]").forEach((card) => {
-  const img = $(".ph img", card);
-  if (!img || !HOVER_OK || REDUCED) return;
-  const spring = activate(new SpringValue({
-    from: 1, to: 1, tension: 300, friction: 22, precision: 0.0008,
-    onUpdate: (v) => { img.style.transform = `scale(${v})`; },
-  }));
-  card.addEventListener("pointerenter", () => spring.set(1.03));
-  card.addEventListener("pointerleave", () => spring.set(1));
-});
-
-/* ---------- why card lift (spec §22) ----------
-   y: 0 → -8 · t:300 f:22 */
-$$("[data-why]").forEach((card) => {
-  if (!HOVER_OK || REDUCED) return;
-  const spring = activate(new SpringValue({
-    from: 0, to: 0, tension: 300, friction: 22, precision: 0.01,
-    onUpdate: (v) => { card.style.transform = `translateY(${v * -8}px)`; },
-  }));
-  card.addEventListener("pointerenter", () => spring.set(1));
-  card.addEventListener("pointerleave", () => spring.set(0));
-});
-
-/* ---------- faq accordion (spec §23) ---------- */
-$$(".faq-item").forEach((item) => {
+/* ================= FAQ accordion ================= */
+$$("#faqList .faq-item").forEach((item) => {
   const btn = $(".faq-q", item);
   const panel = $(".faq-a", item);
-  const inner = $(".faq-a-inner", item);
-  if (!btn || !panel) return;
-  let open = false;
-  let spring = null;
-  const setHeight = (h) => { panel.style.height = `${h}px`; };
-  const toggle = () => {
-    open = !open;
-    item.classList.toggle("is-open", open);
-    btn.setAttribute("aria-expanded", open ? "true" : "false");
-    if (REDUCED) { setHeight(open ? inner.offsetHeight : 0); return; }
-    if (!spring) {
-      spring = activate(new SpringValue({
-        from: 0, to: 0, tension: 210, friction: 26, precision: 0.4,
-        onUpdate: setHeight,
-      }));
+  btn.addEventListener("click", () => {
+    const isOpen = item.classList.contains("is-open");
+    /* close siblings */
+    $$("#faqList .faq-item.is-open").forEach((other) => {
+      if (other === item) return;
+      const op = $(".faq-a", other);
+      other.classList.remove("is-open");
+      $(".faq-q", other).setAttribute("aria-expanded", "false");
+      tween({ duration: 450, ease: "outQuart", update: (v) => { op.style.height = `${op.scrollHeight * (1 - v)}px`; }, complete: () => { op.style.height = "0px"; } });
+    });
+    if (isOpen) {
+      item.classList.remove("is-open");
+      btn.setAttribute("aria-expanded", "false");
+      tween({ duration: 450, ease: "outQuart", update: (v) => { panel.style.height = `${panel.scrollHeight * (1 - v)}px`; }, complete: () => { panel.style.height = "0px"; } });
+    } else {
+      item.classList.add("is-open");
+      btn.setAttribute("aria-expanded", "true");
+      const target = panel.scrollHeight;
+      tween({ duration: 520, ease: "outQuart", update: (v) => { panel.style.height = `${target * v}px`; }, complete: () => { panel.style.height = "auto"; } });
     }
-    spring.set(open ? inner.offsetHeight : 0);
-  };
-  btn.addEventListener("click", toggle);
+  });
 });
 
-/* ---------- fullscreen menu (spec §27) ----------
-   backdrop t:260 f:30 · panel t:220 f:28 · links delay 120 + i×70 · t:200 f:26 */
-const menu = $("#menu");
-const menuLinks = $$(".menu-link", menu || document);
-const burgerBtn = $("[data-open-menu]");
-let menuOpen = false;
-
-const openMenu = () => {
-  if (menuOpen) return;
-  menuOpen = true;
-  menu.classList.add("is-open");
-  document.body.classList.add("menu-open");
-  burgerBtn.setAttribute("aria-expanded", "true");
-  lockScroll();
-  if (REDUCED) { menuLinks.forEach((l) => { l.style.opacity = "1"; l.style.transform = "none"; }); return; }
-  const panel = activate(new SpringValue({
-    from: 0, to: 1, tension: 220, friction: 28, precision: 0.002,
-    onUpdate: (v) => { menu.style.opacity = `${v}`; },
-  }));
-  panel.set(1);
-  menuLinks.forEach((link, i) => {
-    setTimeout(() => {
-      link.style.transition = "opacity 600ms var(--ease-expo), transform 600ms var(--ease-expo), color 0.3s";
-      link.style.opacity = "1";
-      link.style.transform = "translateY(0)";
-    }, 120 + i * 70);
-  });
-};
-const closeMenu = () => {
-  if (!menuOpen) return;
-  menuOpen = false;
-  menu.classList.remove("is-open");
-  document.body.classList.remove("menu-open");
-  burgerBtn.setAttribute("aria-expanded", "false");
-  unlockScroll();
-  if (REDUCED) { menuLinks.forEach((l) => { l.style.opacity = "0"; l.style.transform = ""; }); return; }
-  const fade = activate(new SpringValue({
-    from: 1, to: 0, tension: 260, friction: 30, precision: 0.002,
-    onUpdate: (v) => { menu.style.opacity = `${v}`; },
-    onComplete: () => {
-      menuLinks.forEach((l) => { l.style.opacity = "0"; l.style.transform = ""; });
-    },
-  }));
-  fade.set(0);
-};
-if (burgerBtn) {
-  burgerBtn.addEventListener("click", () => (menuOpen ? closeMenu() : openMenu()));
-}
-$$(".menu-link").forEach((l) => l.addEventListener("click", closeMenu));
-window.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeMenu(); closeModal(); } });
-
-/* ---------- contact modal (spec §25) ----------
-   backdrop t:240 f:30 · panel t:240 f:26 · from y:28 scale:.96 */
+/* ================= contact modal ================= */
 const modal = $("#contactModal");
-const modalForm = $("#contactForm");
-const modalSuccess = $("#modalSuccess");
-const submitBtn = $("#cfSubmit");
-let modalOpenState = false;
-let lastFocused = null;
-
-const openModal = () => {
-  if (modalOpenState) return;
-  modalOpenState = true;
-  lastFocused = document.activeElement;
-  closeMenu();
+const backdrop = $(".modal-backdrop", modal);
+const panel = $(".modal-panel", modal);
+const form = $("#contactForm");
+const submitBtn = $("#submitBtn");
+let modalOpen = false, lastFocus = null;
+const backSpring = spring({ tension: 240, friction: 30, precision: 0.004, onUpdate: (v) => { backdrop.style.opacity = v; } });
+const panelSpring = spring({ tension: 240, friction: 26, precision: 0.004,
+  onUpdate: (v) => {
+    panel.style.opacity = v;
+    panel.style.transform = `translateY(${(1 - v) * 1.75}rem) scale(${0.96 + 0.04 * v})`;
+  }});
+function openModal(opener){
+  if (modalOpen) return;
+  modalOpen = true;
+  lastFocus = opener || document.activeElement;
   modal.classList.add("is-open");
   modal.setAttribute("aria-hidden", "false");
-  lockScroll();
-  if (REDUCED) return;
-  const backdrop = activate(new SpringValue({
-    from: 0, to: 1, tension: 240, friction: 30, precision: 0.002,
-    onUpdate: (v) => { $(".modal-backdrop", modal).style.opacity = `${v}`; },
-  }));
-  backdrop.set(1);
-  const panel = activate(new SpringValue({
-    from: 0, to: 1, tension: 240, friction: 26, precision: 0.002,
-    onUpdate: (v) => {
-      const p = $(".modal-panel", modal);
-      p.style.opacity = `${v}`;
-      p.style.transform = `translateY(${(1 - v) * 1.75}rem) scale(${0.96 + v * 0.04})`;
-    },
-  }));
-  panel.set(1);
-  setTimeout(() => $("#cfName").focus(), 220);
-};
-const closeModal = () => {
-  if (!modalOpenState) return;
-  modalOpenState = false;
-  modal.classList.remove("is-open");
-  modal.setAttribute("aria-hidden", "true");
-  unlockScroll();
-  if (lastFocused && lastFocused.focus) lastFocused.focus();
-  /* reset the demo state for the next open */
+  lockScroll(true);
+  backSpring.set(1); panelSpring.set(1);
+  setTimeout(() => { const f = $("input,select,textarea", form); f && f.focus({ preventScroll: true }); }, 260);
+}
+function closeModal(){
+  if (!modalOpen) return;
+  modalOpen = false;
+  backSpring.set(0); panelSpring.set(0);
   setTimeout(() => {
-    if (modalOpenState) return;
-    modalForm.classList.remove("is-hidden");
-    modalForm.reset();
-    modalSuccess.classList.remove("show");
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    lockScroll(false);
+    modal.classList.remove("is-sent");
     submitBtn.disabled = false;
-    submitBtn.firstChild.textContent = "ارسال درخواست ";
-  }, 450);
-};
-$$("[data-open-modal]").forEach((btn) => btn.addEventListener("click", openModal));
-$$("[data-close-modal]").forEach((el) => el.addEventListener("click", closeModal));
-window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
-/* rudimentary focus trap */
-modal.addEventListener("keydown", (e) => {
-  if (e.key !== "Tab") return;
-  const focusables = $$("button, input, select, textarea, a[href]", modal)
-    .filter((el) => el.offsetParent !== null);
-  if (!focusables.length) return;
-  const first = focusables[0];
-  const last = focusables[focusables.length - 1];
-  if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    submitBtn.firstChild.textContent = "ارسال درخواست\n";
+    form.reset();
+    lastFocus && lastFocus.focus({ preventScroll: true });
+  }, REDUCED ? 30 : 480);
+}
+$$("[data-open-modal], [data-open-modal-link]").forEach((el) => {
+  el.addEventListener("click", (e) => { e.preventDefault(); if (menuOpen) toggleMenu(false); openModal(el); });
 });
-/* demo submit — no backend, per spec §25 */
-modalForm.addEventListener("submit", (e) => {
+$$("[data-close-modal]", modal).forEach((el) => el.addEventListener("click", closeModal));
+form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const name = $("#cfName").value.trim();
-  const phone = $("#cfPhone").value.trim();
-  if (!name || !phone) {
-    (!name ? $("#cfName") : $("#cfPhone")).focus();
-    return;
-  }
+  if (!form.reportValidity()) return;
   submitBtn.disabled = true;
-  submitBtn.firstChild.textContent = "در حال ارسال... ";
-  setTimeout(() => {
-    modalForm.classList.add("is-hidden");
-    modalSuccess.classList.add("show");
-  }, 900);
+  submitBtn.firstChild.textContent = "در حال ارسال...\n";
+  setTimeout(() => modal.classList.add("is-sent"), 900);
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key !== "Escape") return;
+  if (modalOpen) closeModal();
+  else if (menuOpen) toggleMenu(false);
 });
 
+/* ================= fullscreen menu ================= */
+const burger = $("#burger");
+const menu = $("#menu");
+const menuLinks = $$(".menu-link", menu);
+let menuOpen = false;
+const menuSpring = spring({ tension: 260, friction: 30, precision: 0.004, onUpdate: (v) => {
+  menu.style.opacity = v;
+  menu.style.visibility = v < 0.02 && !menuOpen ? "hidden" : "visible";
+}});
+const menuLinkSprings = menuLinks.map((link) => spring({ tension: 200, friction: 26, precision: 0.004,
+  onUpdate: (v) => { link.style.opacity = v; link.style.transform = `translateY(${(1 - v) * 1.6}rem)`; }}));
+function toggleMenu(force){
+  const open = force !== undefined ? force : !menuOpen;
+  if (open === menuOpen) return;
+  menuOpen = open;
+  burger.classList.toggle("is-open", open);
+  burger.setAttribute("aria-expanded", String(open));
+  burger.setAttribute("aria-label", open ? "بستن منو" : "باز کردن منو");
+  if (open) {
+    menu.classList.add("is-open");
+    lockScroll(true);
+    menuSpring.set(1);
+    menuLinkSprings.forEach((s, i) => {
+      if (REDUCED) { s.jump(1); return; }
+      s.jump(0);
+      setTimeout(() => s.set(1), 120 + i * 70);
+    });
+  } else {
+    menuSpring.set(0);
+    menuLinkSprings.forEach((s) => s.set(0));
+    menu.classList.remove("is-open");
+    if (!modalOpen) lockScroll(false);
+  }
+}
+burger.addEventListener("click", () => toggleMenu());
+
+/* ================= anchor scrolling ================= */
+function scrollToTarget(sel){
+  const target = $(sel);
+  if (!target) return;
+  if (lenis) lenis.scrollTo(target, { offset: -64, duration: 1.25 });
+  else target.scrollIntoView({ behavior: REDUCED ? "auto" : "smooth" });
+}
+$$('a[href^="#"]').forEach((a) => {
+  a.addEventListener("click", (e) => {
+    const href = a.getAttribute("href");
+    if (href.length < 2) return;
+    e.preventDefault();
+    if (menuOpen) { toggleMenu(false); setTimeout(() => scrollToTarget(href), 380); }
+    else scrollToTarget(href);
+  });
+});
+
+/* ================= loader + hero intro ================= */
+const veil = $("#veil");
+const veilFill = $("#veilFill");
+const veilPct = $("#veilPct");
+const heroEyebrow = $("#heroEyebrow");
+const heroSub = $("#heroSub");
+const heroCtas = $("#heroCtas");
+const heroScrollHint = $("#heroScroll");
+const infoCard = $("#infoCard");
+
+function heroIntro(){
+  tween({ duration: 650, ease: "outQuart", update: (v) => { heroEyebrow.style.opacity = v; } });
+  titleUnits.forEach((wi, i) => {
+    tween({ delay: 120 + i * 140, duration: 1100, ease: "outExpo", update: (v) => {
+      wi.style.transform = `translateY(${(1 - v) * 115}%)`; wi.style.opacity = v;
+    }});
+  });
+  lineUnits.forEach((wi, i) => {
+    tween({ delay: 350 + i * 110, duration: 900, ease: "outExpo", update: (v) => {
+      wi.style.transform = `translateY(${(1 - v) * 115}%)`; wi.style.opacity = v;
+    }});
+  });
+  tween({ delay: 480, duration: 700, ease: "outQuart", update: (v) => {
+    heroSub.style.opacity = v; heroSub.style.transform = `translateY(${(1 - v) * 0.9}rem)`;
+  }});
+  tween({ delay: 650, duration: 700, ease: "outQuart", update: (v) => {
+    heroCtas.style.opacity = v; heroCtas.style.transform = `translateY(${(1 - v) * 1.2}rem)`;
+  }});
+  tween({ delay: 950, duration: 700, ease: "outQuart", update: (v) => { heroScrollHint.style.opacity = v; } });
+  tween({ delay: 300, duration: 800, ease: "outQuart", update: (v) => { slider.style.opacity = v; },
+    complete: () => { showSlide(0, true); scheduleAuto(); } });
+  /* info card — delayIn 780ms, tension 200 / friction 26 */
+  const icSpring = spring({ tension: 200, friction: 26, precision: 0.004,
+    onUpdate: (v) => { infoCard.style.opacity = v; infoCard.style.transform = `translateY(${(1 - v) * 1.6}rem)`; }});
+  setTimeout(() => icSpring.set(1), 780);
+}
+
+function liftVeil(){
+  tween({ duration: 850, ease: "inOutCubic",
+    update: (v) => { veil.style.transform = `translateY(${-105 * v}%)`; },
+    complete: () => {
+      veil.remove();
+      lockScroll(false);
+      heroIntro();
+    }});
+}
+
+if (REDUCED) {
+  veil.remove();
+  lockScroll(false);
+  showSlide(0, true);
+} else {
+  document.documentElement.classList.add("is-locked");
+  tween({ delay: 120, duration: 1280, ease: "inOutCubic", update: (v) => {
+    veilFill.style.transform = `scaleX(${v})`;
+    veilPct.textContent = `${Math.round(v * 100)}%`;
+  }, complete: () => setTimeout(liftVeil, 120) });
+  /* name fade-in */
+  tween({ delay: 260, duration: 700, ease: "outQuart", update: (v) => {
+    const name = $(".veil-name");
+    name.style.opacity = v; name.style.transform = `translateY(${(1 - v) * 1}rem)`;
+  }});
+  /* hard cap */
+  setTimeout(() => { if (document.body.contains(veil)) liftVeil(); }, 3200);
+}
+
+/* page always loads at the top */
+history.scrollRestoration = "manual";
+window.scrollTo(0, 0);
 </script>
 </body>
 </html>
