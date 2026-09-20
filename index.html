@@ -58,6 +58,7 @@ body{
   text-rendering:optimizeLegibility;
   overflow-x:clip;
 }
+html[lang="en"] body{ font-family:var(--font-en); line-height:1.6; }
 img{ display:block; max-width:100%; }
 a{ color:inherit; text-decoration:none; }
 button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
@@ -67,6 +68,10 @@ ul,ol{ list-style:none; }
 .en{ font-family:var(--font-en); letter-spacing:.08em; text-transform:uppercase; }
 .wrap{ width:min(100% - 5rem, 168rem); margin-inline:auto; }
 @media (max-width:640px){ .wrap{ width:calc(100% - 3.5rem); } }
+
+/* skip link */
+.skip-link{ position:fixed; top:1.2rem; inset-inline-start:-9999px; z-index:200; }
+.skip-link:focus{ position:fixed; inset-inline-start:1.2rem; top:1.2rem; z-index:200; background:var(--brand); color:#fff; padding:.75rem 1.4rem; border-radius:.9rem; font-size:1rem; }
 
 /* word split primitives */
 .w{ display:inline-block; overflow:hidden; vertical-align:bottom; padding-bottom:.08em; margin-bottom:-.08em; }
@@ -94,7 +99,7 @@ ul,ol{ list-style:none; }
 }
 .sec-title .en-line{ display:block; font-family:var(--font-en); font-size:.36em; letter-spacing:.32em; color:var(--ink-soft); margin-top:1.1rem; text-transform:uppercase; }
 .on-dark .sec-title .en-line{ color:rgba(255,255,255,.45); }
-.sec-desc{ margin-top:1.6rem; color:var(--ink-soft); font-size:1.2rem; max-width:52ch; }
+.sec-desc{ margin-top:1.6rem; color:var(--ink-soft); font-size:1.2rem; max-width:60ch; line-height:1.95; }
 .on-dark .sec-desc{ color:rgba(255,255,255,.65); }
 .ghost{
   direction:ltr;
@@ -150,12 +155,20 @@ section{ position:relative; }
 .header-nav a:hover{ opacity:1; }
 .header-nav a:hover::after{ transform:scaleX(1); }
 .site-header .logo{ justify-self:center; }
-.header-side{ display:flex; align-items:center; gap:1.4rem; justify-self:start; }
+.header-side{ display:flex; align-items:center; gap:1.1rem; justify-self:end; }
 .header-cta{
   font-size:1rem; padding:.68rem 1.7rem; border:1px solid rgba(255,255,255,.35);
   border-radius:var(--radius-pill); transition:background .35s, border-color .35s, color .35s;
+  white-space:nowrap;
 }
 .header-cta:hover{ background:var(--brand); border-color:var(--brand); color:#fff; }
+.lang-btn{
+  font-family:var(--font-en); font-size:.92rem; letter-spacing:.16em; font-weight:500;
+  padding:.55rem 1.1rem; border:1px solid rgba(255,255,255,.35); border-radius:var(--radius-pill);
+  color:#fff; transition:background .35s, border-color .35s; line-height:1;
+}
+.lang-btn:hover{ background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.75); }
+html[lang="en"] .lang-btn{ font-family:var(--font-fa); letter-spacing:.02em; }
 .burger{ display:none; width:2.8rem; height:2.8rem; position:relative; }
 .burger span{ position:absolute; left:50%; width:1.5rem; height:1.5px; background:#fff; transform:translateX(-50%); transition:transform .45s var(--ease-quart), top .45s var(--ease-quart); }
 .burger span:nth-child(1){ top:calc(50% - 4px); }
@@ -165,7 +178,13 @@ section{ position:relative; }
 @media (max-width:1024px){
   .header-nav{ display:none; }
   .burger{ display:block; }
-  .header-cta{ display:none; }
+  .header-cta{ padding:.55rem 1.35rem; font-size:.95rem; }
+}
+@media (max-width:640px){
+  .header-side{ gap:.7rem; }
+  .header-cta{ padding:.48rem 1.05rem; font-size:.88rem; }
+  .lang-btn{ padding:.45rem .85rem; font-size:.85rem; }
+  .logo-word{ display:none; }
 }
 
 /* ================= fullscreen menu ================= */
@@ -183,11 +202,13 @@ section{ position:relative; }
   transition:color .35s;
 }
 .menu-link small{ font-family:var(--font-en); font-size:.95rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.4); }
+html[lang="en"] .menu-link small{ font-family:var(--font-fa); letter-spacing:.02em; text-transform:none; }
 .menu-link:hover{ color:var(--brand-light); }
 .menu-foot{ display:flex; flex-wrap:wrap; gap:1.2rem 3rem; align-items:center; color:rgba(255,255,255,.65); border-top:1px solid rgba(255,255,255,.12); padding-top:2rem; }
 .menu-foot a{ color:#fff; font-family:var(--font-en); direction:ltr; unicode-bidi:embed; letter-spacing:.12em; font-size:1.15rem; transition:color .3s; }
 .menu-foot a:hover{ color:var(--brand-light); }
 .menu-foot .btn-mini{ margin-inline-start:auto; font-family:var(--font-fa); letter-spacing:0; text-transform:none; }
+html[lang="en"] .menu-foot .btn-mini{ font-family:var(--font-en); }
 
 /* ================= buttons ================= */
 .btn{
@@ -205,6 +226,17 @@ section{ position:relative; }
 .on-light .btn-ghost:hover{ background:var(--surface); border-color:var(--ghost); }
 .arrow{ display:inline-block; }
 [dir="rtl"] .flip{ transform:scaleX(-1); }
+
+/* ================= bilingual direction fixes ================= */
+[dir="ltr"] .flip{ transform:scaleX(-1); }
+html[dir="ltr"] #destNext .arrow{ transform:scaleX(-1); }
+html[dir="ltr"] #destPrev .arrow{ transform:none; }
+html[dir="ltr"] .hero-title{ text-align:left; }
+html[dir="ltr"] .veil-fill{ transform-origin:left; }
+html[lang="en"] .eyebrow .en,
+html[lang="en"] .sec-title .en-line,
+html[lang="en"] .d-en,
+html[lang="en"] .c-en{ letter-spacing:.04em; text-transform:none; font-family:var(--font-fa); }
 </style>
 <style>
 /* ================= hero ================= */
@@ -248,7 +280,7 @@ section{ position:relative; }
   text-transform:uppercase; text-wrap:balance;
 }
 .hero-tagline{ margin-top:2.4rem; font-size:clamp(1.5rem, 2.1vw, 2.3rem); font-weight:500; line-height:1.45; color:#fff; }
-.hero-sub{ margin-top:1.4rem; max-width:46ch; color:rgba(255,255,255,.72); font-size:1.15rem; }
+.hero-sub{ margin-top:1.4rem; max-width:46ch; color:rgba(255,255,255,.72); font-size:1.15rem; line-height:1.9; }
 .hero-ctas{ display:flex; flex-wrap:wrap; gap:1.2rem; margin-top:2.8rem; opacity:0; transform:translateY(1.2rem); }
 .hero-scroll{ margin-top:3.2rem; display:inline-flex; align-items:center; gap:.8rem; color:rgba(255,255,255,.5); font-size:.98rem; opacity:0; }
 .hero-scroll .wheel{ width:1.05rem; height:1.7rem; border:1px solid rgba(255,255,255,.5); border-radius:.6rem; position:relative; }
@@ -309,7 +341,7 @@ section{ position:relative; }
 .dest-card-body{ padding:1.6rem 1.7rem 1.8rem; display:flex; flex-direction:column; gap:.45rem; flex:1; }
 .dest-card-body .d-en{ font-family:var(--font-en); font-size:.85rem; letter-spacing:.3em; color:var(--brand); text-transform:uppercase; }
 .dest-card-body h3{ font-size:1.55rem; font-weight:500; }
-.dest-card-body p{ color:var(--ink-soft); font-size:1.02rem; }
+.dest-card-body p{ color:var(--ink-soft); font-size:1.02rem; line-height:1.85; }
 .dest-card-body .d-more{ margin-top:auto; padding-top:1.1rem; display:inline-flex; align-items:center; gap:.6rem; color:var(--ink); font-size:1rem; font-weight:500; }
 .dest-card-body .d-more .arrow{ width:1.05rem; height:1.05rem; opacity:.55; }
 .dest-nav{ display:flex; align-items:center; gap:2rem; margin-top:3rem; }
@@ -335,12 +367,13 @@ section{ position:relative; }
   display:grid; grid-template-columns:auto 1fr auto; align-items:center;
   gap:clamp(1.4rem, 3vw, 3.4rem);
   padding:2.1rem 1rem; border-bottom:1px solid var(--hairline);
-  position:relative; transition:background .4s;
+  position:relative; transition:background .4s; cursor:pointer;
 }
 .svc-row:hover{ background:var(--surface); }
+.svc-row:focus-visible{ outline:2px solid var(--brand); outline-offset:-2px; }
 .svc-num{ font-family:var(--font-en); color:var(--brand); font-size:1.15rem; letter-spacing:.18em; direction:ltr; }
 .svc-title{ font-size:clamp(1.5rem, 2.4vw, 2.4rem); font-weight:500; line-height:1.35; }
-.svc-desc{ color:var(--ink-soft); font-size:1.05rem; margin-top:.35rem; max-width:64ch; }
+.svc-desc{ color:var(--ink-soft); font-size:1.05rem; margin-top:.55rem; max-width:70ch; line-height:1.9; }
 .svc-note{ color:var(--ink-soft); font-size:.95rem; margin-top:.4rem; }
 .svc-arrow{ width:2.6rem; height:2.6rem; border-radius:50%; border:1px solid var(--hairline); display:inline-flex; align-items:center; justify-content:center; }
 .svc-arrow .arrow{ width:1.1rem; height:1.1rem; opacity:.55; }
@@ -360,7 +393,7 @@ section{ position:relative; }
   direction:ltr; text-align:start;
 }
 .step h3{ font-size:1.45rem; font-weight:500; }
-.step p{ color:var(--ink-soft); font-size:1.02rem; }
+.step p{ color:var(--ink-soft); font-size:1.02rem; line-height:1.85; }
 
 /* ================= spotlight ================= */
 .spot-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem, 4vw, 4.5rem); align-items:start; }
@@ -391,7 +424,7 @@ section{ position:relative; }
 .info-cell:first-child{ border-inline-start:0; padding-inline-start:0; }
 .info-cell .ic-num{ font-family:var(--font-en); color:var(--brand-light); font-size:.95rem; letter-spacing:.3em; direction:ltr; text-align:end; }
 .info-cell h3{ font-size:1.45rem; font-weight:500; }
-.info-cell p{ color:rgba(255,255,255,.62); font-size:1.03rem; }
+.info-cell p{ color:rgba(255,255,255,.62); font-size:1.03rem; line-height:1.9; }
 .info-foot{ margin-top:3rem; color:rgba(255,255,255,.45); font-size:.98rem; display:flex; align-items:center; gap:.8rem; }
 .info-foot::before{ content:""; width:2.2rem; height:1px; background:rgba(255,255,255,.25); flex:none; }
 @media (max-width:1024px){
@@ -414,7 +447,8 @@ section{ position:relative; }
   display:flex; flex-direction:column; gap:.7rem;
 }
 .tl-card h3{ font-size:1.3rem; font-weight:500; color:var(--ink-soft); }
-.tl-card strong{ font-size:1.5rem; font-weight:500; color:var(--brand-deep); line-height:1.5; }
+.tl-card strong{ font-size:1.4rem; font-weight:500; color:var(--brand-deep); line-height:1.5; }
+.tl-card p{ color:var(--ink-soft); font-size:.98rem; line-height:1.85; }
 .tl-note{
   margin-top:3rem; padding:1.6rem 2rem; border-radius:var(--radius-card);
   background:var(--surface); color:var(--ink-soft); font-size:1rem; line-height:1.9;
@@ -435,7 +469,7 @@ section{ position:relative; }
 .why-figure img{ width:100%; height:100%; object-fit:cover; }
 .why-body{ padding:1.9rem 2rem 2.2rem; display:flex; flex-direction:column; gap:.6rem; }
 .why-body h3{ font-size:1.5rem; font-weight:500; }
-.why-body p{ color:var(--ink-soft); font-size:1.04rem; }
+.why-body p{ color:var(--ink-soft); font-size:1.04rem; line-height:1.85; }
 @media (max-width:1024px){ .why-grid{ grid-template-columns:1fr; max-width:44rem; } }
 
 /* ================= faq ================= */
@@ -463,12 +497,12 @@ section{ position:relative; }
 .cta-title{ font-size:clamp(3rem, 6.5vw, 7.6rem); font-weight:500; line-height:1.14; }
 .cta-phone{ font-family:var(--font-en); font-size:clamp(1.6rem, 2.6vw, 2.6rem); letter-spacing:.14em; color:#fff; direction:ltr; transition:color .3s; }
 .cta-phone:hover{ color:var(--brand-light); }
-.cta-small{ color:rgba(255,255,255,.55); font-size:1.02rem; }
+.cta-small{ color:rgba(255,255,255,.55); font-size:1.02rem; max-width:52ch; line-height:1.9; }
 
 /* ================= footer ================= */
 .footer{ background:var(--brand-deep); color:#fff; padding-top:clamp(5rem, 7vw, 8rem); }
 .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:3rem; padding-bottom:4.5rem; }
-.footer-brand p{ color:rgba(255,255,255,.6); margin-top:1.4rem; max-width:34ch; font-size:1.05rem; }
+.footer-brand p{ color:rgba(255,255,255,.6); margin-top:1.4rem; max-width:34ch; font-size:1.05rem; line-height:1.9; }
 .footer-phone{ display:inline-block; margin-top:1.6rem; font-family:var(--font-en); font-size:1.5rem; letter-spacing:.14em; direction:ltr; transition:color .3s; }
 .footer-phone:hover{ color:var(--brand-light); }
 .footer-col h4{ font-size:1.02rem; font-weight:500; color:rgba(255,255,255,.45); letter-spacing:.02em; margin-bottom:1.3rem; }
@@ -522,13 +556,14 @@ section{ position:relative; }
 .field textarea{ min-height:7rem; resize:vertical; }
 .field input:focus,.field select:focus,.field textarea:focus{ outline:none; border-color:var(--brand); box-shadow:0 0 0 3px rgba(201,107,50,.14); }
 .modal-form .btn{ grid-column:1 / -1; justify-content:center; padding-block:1.2rem; font-size:1.12rem; }
-.modal-note{ grid-column:1 / -1; color:var(--ink-soft); font-size:.9rem; text-align:center; }
+.modal-note{ grid-column:1 / -1; color:var(--ink-soft); font-size:.9rem; text-align:center; line-height:1.8; }
 .modal-success{ display:none; text-align:center; padding:2.5rem 1rem 1rem; }
 .modal-success .ok{ width:4rem; height:4rem; margin:0 auto 1.6rem; border-radius:50%; background:rgba(201,107,50,.12); display:flex; align-items:center; justify-content:center; color:var(--brand); }
 .modal-success .ok svg{ width:1.7rem; height:1.7rem; }
 .modal-success h4{ font-size:1.7rem; font-weight:500; }
-.modal-success p{ color:var(--ink-soft); margin-top:.9rem; max-width:44ch; margin-inline:auto; }
+.modal-success p{ color:var(--ink-soft); margin-top:.9rem; max-width:44ch; margin-inline:auto; line-height:1.9; }
 .modal-success .cta-phone{ color:var(--brand); font-size:1.5rem; display:inline-block; margin-top:1.4rem; }
+.success-actions{ display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-top:1.8rem; }
 .modal.is-sent .modal-form,.modal.is-sent .modal-head{ display:none; }
 .modal.is-sent .modal-success{ display:block; }
 @media (max-width:640px){ .modal-form{ grid-template-columns:1fr; } }
@@ -572,7 +607,7 @@ section{ position:relative; }
 </head>
 <body>
 
-<a class="skip-link" href="#home" style="position:absolute;inset-inline-start:-9999px">پرش به محتوا</a>
+<a class="skip-link" href="#home" data-i18n="skip">پرش به محتوا</a>
 
 <!-- ================= loader ================= -->
 <div class="veil" id="veil" aria-hidden="true">
@@ -593,11 +628,11 @@ section{ position:relative; }
 <!-- ================= header ================= -->
 <header class="site-header" id="siteHeader">
   <div class="wrap header-bar">
-    <nav class="header-nav" aria-label="ناوبری اصلی">
-      <a href="#destinations">مقصدها</a>
-      <a href="#services">خدمات</a>
-      <a href="#residence">اقامت</a>
-      <a href="#faq">سؤالات</a>
+    <nav class="header-nav" aria-label="ناوبری اصلی" data-i18n-aria="nav.aria">
+      <a href="#destinations" data-i18n="nav.dest">مقصدها</a>
+      <a href="#services" data-i18n="nav.serv">خدمات</a>
+      <a href="#residence" data-i18n="nav.res">اقامت</a>
+      <a href="#faq" data-i18n="nav.faq">سؤالات</a>
     </nav>
     <a class="logo" href="#home" aria-label="Vakil Visa — صفحه اصلی">
       <svg class="logo-mark" viewBox="0 0 44 44" fill="none" aria-hidden="true">
@@ -610,7 +645,8 @@ section{ position:relative; }
       <span class="logo-word">Vakil Visa</span>
     </a>
     <div class="header-side">
-      <button class="header-cta" data-open-modal>تماس با ما</button>
+      <button class="lang-btn" id="langBtn" aria-label="تغییر زبان / Switch language">EN</button>
+      <button class="header-cta" data-open-modal data-i18n="cta.request">ثبت درخواست</button>
       <button class="burger" id="burger" aria-label="باز کردن منو" aria-expanded="false" aria-controls="menu">
         <span></span><span></span>
       </button>
@@ -621,17 +657,17 @@ section{ position:relative; }
 <!-- ================= fullscreen menu ================= -->
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="منوی تمام‌صفحه">
   <div class="wrap menu-links" id="menuLinks">
-    <a class="menu-link" href="#home">خانه<small>Home</small></a>
-    <a class="menu-link" href="#destinations">مقصدها<small>Destinations</small></a>
-    <a class="menu-link" href="#services">خدمات<small>Services</small></a>
-    <a class="menu-link" href="#residence">اقامت<small>Residence</small></a>
-    <a class="menu-link" href="#faq">سؤالات متداول<small>FAQ</small></a>
-    <a class="menu-link" href="#contact">تماس<small>Contact</small></a>
+    <a class="menu-link" href="#home"><span data-i18n="menu.home">خانه</span><small data-i18n="menu.homeS">Home</small></a>
+    <a class="menu-link" href="#destinations"><span data-i18n="menu.dest">مقصدها</span><small data-i18n="menu.destS">Destinations</small></a>
+    <a class="menu-link" href="#services"><span data-i18n="menu.serv">خدمات</span><small data-i18n="menu.servS">Services</small></a>
+    <a class="menu-link" href="#residence"><span data-i18n="menu.res">اقامت</span><small data-i18n="menu.resS">Residence</small></a>
+    <a class="menu-link" href="#faq"><span data-i18n="menu.faq">سؤالات متداول</span><small data-i18n="menu.faqS">FAQ</small></a>
+    <a class="menu-link" href="#contact"><span data-i18n="menu.contact">تماس</span><small data-i18n="menu.contactS">Contact</small></a>
   </div>
   <div class="wrap menu-foot">
-    <span>تماس با وکیل ویزا</span>
+    <span data-i18n="menu.span">تماس با وکیل ویزا</span>
     <a href="tel:+989122903240">0912 290 3240</a>
-    <button class="header-cta btn-mini" data-open-modal>تماس با وکیل ویزا</button>
+    <button class="header-cta btn-mini" data-open-modal data-i18n="cta.request">ثبت درخواست</button>
   </div>
 </div>
 
@@ -644,29 +680,29 @@ section{ position:relative; }
   </div>
   <div class="wrap hero-grid">
     <div class="hero-top">
-      <p class="hero-eyebrow" id="heroEyebrow">مشاوره مهاجرت · ویزا · اقامت</p>
+      <p class="hero-eyebrow" id="heroEyebrow" data-i18n="hero.eyebrow">مشاوره مهاجرت · ویزا · اقامت</p>
       <h1 class="hero-title" id="heroTitle">YOUR JOURNEY STARTS HERE</h1>
     </div>
     <div class="hero-bottom">
       <div class="hero-content">
-        <p class="hero-tagline" id="heroTagline"><span data-line>ویزا. اقامت.</span><br><span data-line>آغاز یک مسیر تازه.</span></p>
-        <p class="hero-sub" id="heroSub">راهنمای عمومی مهاجرت به فرانسه، آلمان، روسیه، لهستان، هلند و بلژیک — از ارزیابی اولیه تا آماده‌سازی درخواست.</p>
+        <p class="hero-tagline" id="heroTagline"><span data-line data-i18n="hero.line1">ویزا. اقامت.</span><br><span data-line data-i18n="hero.line2">آغاز یک مسیر تازه.</span></p>
+        <p class="hero-sub" id="heroSub" data-i18n="hero.sub">وکیل ویزا مسیر مهاجرت شما را قدم‌به‌قدم شفاف می‌کند: ارزیابی صادقانه شرایط شما، معرفی مسیرهای واقعی ویزا و اقامت، و آماده‌سازی مرحله‌به‌مرحله درخواست — برای فرانسه، آلمان، روسیه، لهستان، هلند و بلژیک.</p>
         <div class="hero-ctas" id="heroCtas">
-          <a class="btn" href="#destinations" data-scroll>مشاهده مقصدها
+          <a class="btn" href="#destinations" data-scroll data-i18n="hero.cta1">مشاهده مقصدها
             <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <button class="btn btn-ghost" data-open-modal>تماس با وکیل ویزا</button>
+          <button class="btn btn-ghost" data-open-modal data-i18n="hero.cta2">تماس با وکیل ویزا</button>
         </div>
-        <p class="hero-scroll" id="heroScroll"><span class="wheel" aria-hidden="true"></span>اسکرول کنید</p>
+        <p class="hero-scroll" id="heroScroll"><span class="wheel" aria-hidden="true"></span><span data-i18n="hero.scroll">اسکرول کنید</span></p>
       </div>
       <div class="hero-side">
-        <div class="dest-slider" id="heroSlider" role="region" aria-label="اسلایدر مقصدهای مهاجرتی" tabindex="0">
+        <div class="dest-slider" id="heroSlider" role="region" aria-label="اسلایدر مقصدهای مهاجرتی" data-i18n-aria="heroSlider.aria" tabindex="0">
           <div class="slider-dots" id="sliderDots" role="tablist" aria-label="انتخاب اسلاید"></div>
           <article class="slide" data-slide>
             <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3a93744907a8.jpg" alt="برج ایفل، پاریس" decoding="async">
             <div class="slide-caption">
-              <div><p class="c-en">France</p><h3>تحصیل و اقامت</h3></div>
-              <a class="c-link" href="#destinations" data-scroll>کاوش در فرانسه
+              <div><p class="c-en" data-i18n="s1.tag">France</p><h3 data-i18n="s1.h">تحصیل و اقامت</h3></div>
+              <a class="c-link" href="#destinations" data-scroll><span data-i18n="s1.link">کاوش در فرانسه</span>
                 <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
             </div>
@@ -674,8 +710,8 @@ section{ position:relative; }
           <article class="slide" data-slide>
             <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/7dc10e143717.jpeg" alt="برج تلویزیون برلین در غروب" loading="lazy" decoding="async">
             <div class="slide-caption">
-              <div><p class="c-en">Germany</p><h3>کار و اقامت</h3></div>
-              <a class="c-link" href="#destinations" data-scroll>کاوش در آلمان
+              <div><p class="c-en" data-i18n="s2.tag">Germany</p><h3 data-i18n="s2.h">کار و اقامت</h3></div>
+              <a class="c-link" href="#destinations" data-scroll><span data-i18n="s2.link">کاوش در آلمان</span>
                 <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
             </div>
@@ -683,8 +719,8 @@ section{ position:relative; }
           <article class="slide" data-slide>
             <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/be05297d8ef4.jpg" alt="کانال‌های آمستردام" loading="lazy" decoding="async">
             <div class="slide-caption">
-              <div><p class="c-en">Netherlands</p><h3>تحصیل و مهاجرت</h3></div>
-              <a class="c-link" href="#destinations" data-scroll>کاوش در هلند
+              <div><p class="c-en" data-i18n="s3.tag">Netherlands</p><h3 data-i18n="s3.h">تحصیل و مهاجرت</h3></div>
+              <a class="c-link" href="#destinations" data-scroll><span data-i18n="s3.link">کاوش در هلند</span>
                 <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </a>
             </div>
@@ -699,7 +735,7 @@ section{ position:relative; }
           </div>
           <div>
             <h4>6+ DESTINATIONS</h4>
-            <p>راهنمای بین‌المللی مهاجرت</p>
+            <p data-i18n="info.p">راهنمای بین‌المللی مهاجرت</p>
           </div>
         </aside>
       </div>
@@ -712,18 +748,18 @@ section{ position:relative; }
   <div class="wrap">
     <header class="sec-head">
       <p class="ghost" data-ghost>DESTINATIONS</p>
-      <p class="eyebrow" data-rise>مقصدها <span class="en">Destinations</span></p>
-      <h2 class="sec-title" data-words>با اطمینان حرکت کن<span class="en-line">MOVE WITH CONFIDENCE</span></h2>
-      <p class="sec-desc" data-rise>کشورهایی که وکیل ویزا در آن‌ها راهنمای عمومی مهاجرت، ویزا و اقامت ارائه می‌دهد.</p>
+      <p class="eyebrow" data-rise><span data-i18n="dest.eyebrow">مقصدها</span> <span class="en" data-i18n="dest.eyebrowEn">Destinations</span></p>
+      <h2 class="sec-title" data-words><span class="t-main" data-i18n="dest.title">با اطمینان حرکت کن</span><span class="en-line" data-i18n="dest.line">MOVE WITH CONFIDENCE</span></h2>
+      <p class="sec-desc" data-rise data-i18n="dest.desc">شش مقصد اصلی مهاجرتی — فرانسه، آلمان، روسیه، لهستان، هلند و بلژیک — با نگاهی واقع‌بینانه به شرایط هر کشور. برای هر مقصد، مسیرهای عمومی ویزا، تحصیل، کار و اقامت را مرور می‌کنیم تا پیش از هر تصمیمی، تصویر روشنی از گزینه‌های پیشِ رو داشته باشید.</p>
     </header>
-    <div class="dest-viewport" id="destViewport" role="region" aria-label="کاروسل مقصدها" tabindex="0">
+    <div class="dest-viewport" id="destViewport" role="region" aria-label="کاروسل مقصدها" data-i18n-aria="carousel.aria" tabindex="0">
       <div class="dest-track" id="destTrack">
         <article class="dest-card">
           <figure class="dest-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/cbc5f0abf541.jpg" alt="برج ایفل و رسن سن، پاریس" loading="lazy" decoding="async" width="1440" height="900"></figure>
           <div class="dest-card-body">
-            <p class="d-en">France</p><h3>فرانسه</h3>
-            <p>ویزا، تحصیل، کار و مسیرهای اقامت.</p>
-            <a class="d-more" href="#contact" data-open-modal-link>شروع پرونده شما
+            <p class="d-en" data-i18n="d1.tag">France</p><h3 data-i18n="d1.h">فرانسه</h3>
+            <p data-i18n="d1.p">از ویزای تحصیلی و کاری تا مسیرهای اقامت؛ با نکات کلیدی سفارت فرانسه و مدارک پرتکرار هر مسیر.</p>
+            <a class="d-more" href="#contact" data-open-modal-link data-dest="0"><span data-i18n="dest.more">شروع پرونده شما</span>
               <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
           </div>
@@ -731,9 +767,9 @@ section{ position:relative; }
         <article class="dest-card">
           <figure class="dest-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/6124a31024f9.jpg" alt="دروازه براندنبورگ، برلین" loading="lazy" decoding="async" width="1100" height="1100"></figure>
           <div class="dest-card-body">
-            <p class="d-en">Germany</p><h3>آلمان</h3>
-            <p>مسیرهای تحصیل، اشتغال و اقامت.</p>
-            <a class="d-more" href="#contact" data-open-modal-link>شروع پرونده شما
+            <p class="d-en" data-i18n="d2.tag">Germany</p><h3 data-i18n="d2.h">آلمان</h3>
+            <p data-i18n="d2.p">تحصیل تقریباً رایگان، بازار کار قوی و مسیرهای روشن اقامت؛ مرور شرایط زبان، مدارک و روند درخواست.</p>
+            <a class="d-more" href="#contact" data-open-modal-link data-dest="1"><span data-i18n="dest.more">شروع پرونده شما</span>
               <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
           </div>
@@ -741,9 +777,9 @@ section{ position:relative; }
         <article class="dest-card">
           <figure class="dest-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/bc20d8cca2ef.jpg" alt="کلیسای سنت باسیل، مسکو" loading="lazy" decoding="async" width="3000" height="1987"></figure>
           <div class="dest-card-body">
-            <p class="d-en">Russia</p><h3>روسیه</h3>
-            <p>اطلاعات ویزا و اقامت برای متقاضیان واجد شرایط.</p>
-            <a class="d-more" href="#contact" data-open-modal-link>شروع پرونده شما
+            <p class="d-en" data-i18n="d3.tag">Russia</p><h3 data-i18n="d3.h">روسیه</h3>
+            <p data-i18n="d3.p">پذیرش دانشگاهی، ویزای تحصیلی و کاری و شرایط اقامت برای متقاضیان واجد شرایط — به زبان ساده و بدون اغراق.</p>
+            <a class="d-more" href="#contact" data-open-modal-link data-dest="2"><span data-i18n="dest.more">شروع پرونده شما</span>
               <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
           </div>
@@ -751,9 +787,9 @@ section{ position:relative; }
         <article class="dest-card">
           <figure class="dest-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/4adea2606c7b.jpg" alt="بازار قدیمی ورشو" loading="lazy" decoding="async" width="1440" height="823"></figure>
           <div class="dest-card-body">
-            <p class="d-en">Poland</p><h3>لهستان</h3>
-            <p>اطلاعات تحصیل، کار و اقامت.</p>
-            <a class="d-more" href="#contact" data-open-modal-link>شروع پرونده شما
+            <p class="d-en" data-i18n="d4.tag">Poland</p><h3 data-i18n="d4.h">لهستان</h3>
+            <p data-i18n="d4.p">دانشگاه‌های باکیفیت با شهریه‌های منطقی و مسیرهای کاری رو به رشد؛ آنچه باید درباره ویزا و اقامت لهستان بدانید.</p>
+            <a class="d-more" href="#contact" data-open-modal-link data-dest="3"><span data-i18n="dest.more">شروع پرونده شما</span>
               <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
           </div>
@@ -761,9 +797,9 @@ section{ position:relative; }
         <article class="dest-card">
           <figure class="dest-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/608b47f0c08f.jpg" alt="کانال و دوچرخه‌ها، آمستردام" loading="lazy" decoding="async" width="1920" height="1440"></figure>
           <div class="dest-card-body">
-            <p class="d-en">Netherlands</p><h3>هلند</h3>
-            <p>مسیرهای تحصیل، کار و اقامت.</p>
-            <a class="d-more" href="#contact" data-open-modal-link>شروع پرونده شما
+            <p class="d-en" data-i18n="d5.tag">Netherlands</p><h3 data-i18n="d5.h">هلند</h3>
+            <p data-i18n="d5.p">برنامه‌های بین‌المللی به انگلیسی، محیط کار چندملیتی و مسیرهای اقامت مبتنی بر اشتغال.</p>
+            <a class="d-more" href="#contact" data-open-modal-link data-dest="4"><span data-i18n="dest.more">شروع پرونده شما</span>
               <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
           </div>
@@ -771,9 +807,9 @@ section{ position:relative; }
         <article class="dest-card">
           <figure class="dest-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/58b1d7254e6e.jpg" alt="گراند پلاس، بروکسل" loading="lazy" decoding="async" width="1200" height="801"></figure>
           <div class="dest-card-body">
-            <p class="d-en">Belgium</p><h3>بلژیک</h3>
-            <p>اطلاعات ویزا و اقامت برای متقاضیان واجد شرایط.</p>
-            <a class="d-more" href="#contact" data-open-modal-link>شروع پرونده شما
+            <p class="d-en" data-i18n="d6.tag">Belgium</p><h3 data-i18n="d6.h">بلژیک</h3>
+            <p data-i18n="d6.p">قلب اروپا با دانشگاه‌های معتبر و بازار کار بین‌المللی؛ مرور عمومی ویزا و اقامت بلژیک.</p>
+            <a class="d-more" href="#contact" data-open-modal-link data-dest="5"><span data-i18n="dest.more">شروع پرونده شما</span>
               <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
           </div>
@@ -781,10 +817,10 @@ section{ position:relative; }
       </div>
     </div>
     <div class="dest-nav">
-      <button class="nav-btn" id="destPrev" aria-label="قبلی">
+      <button class="nav-btn" id="destPrev" aria-label="قبلی" data-i18n-aria="carousel.prev">
         <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <button class="nav-btn" id="destNext" aria-label="بعدی">
+      <button class="nav-btn" id="destNext" aria-label="بعدی" data-i18n-aria="carousel.next">
         <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div class="dots" id="destDots" role="tablist" aria-label="صفحه‌های کاروسل"></div>
@@ -793,52 +829,52 @@ section{ position:relative; }
     </div>
   </div>
 </section>
-
 <!-- ================= services ================= -->
 <section class="sec-pad services" id="services">
   <div class="wrap">
     <header class="sec-head">
       <p class="ghost" data-ghost>SERVICES</p>
-      <p class="eyebrow" data-rise>خدمات ما <span class="en">Our Services</span></p>
-      <h2 class="sec-title" data-words>راهنمای هر گام<span class="en-line">GUIDANCE FOR EVERY STEP</span></h2>
+      <p class="eyebrow" data-rise><span data-i18n="serv.eyebrow">خدمات ما</span> <span class="en" data-i18n="serv.eyebrowEn">Our Services</span></p>
+      <h2 class="sec-title" data-words><span class="t-main" data-i18n="serv.title">راهنمای هر گام</span><span class="en-line" data-i18n="serv.line">GUIDANCE FOR EVERY STEP</span></h2>
+      <p class="sec-desc" data-rise data-i18n="serv.desc">از اولین ارزیابی تا آماده‌سازی نهایی درخواست، هفت حوزه خدماتی داریم که هر کدام توضیح مشخص، مدارک معمول و گام‌های عملی خودش را دارد. روی هر ردیف کلیک کنید تا فرم ثبت درخواست با همان حوزه باز شود.</p>
     </header>
     <div class="svc-list" id="svcList">
-      <div class="svc-row" data-rise>
+      <div class="svc-row" data-rise data-svc="0">
         <span class="svc-num">01</span>
-        <div><h3 class="svc-title">مشاوره ویزا</h3><p class="svc-desc">راهنمای عمومی درباره دسته‌های ویزا، مدارک و آماده‌سازی درخواست.</p></div>
+        <div><h3 class="svc-title" data-i18n="sv1.t">مشاوره ویزا</h3><p class="svc-desc" data-i18n="sv1.d">توضیح شفاف دسته‌های ویزای تحصیلی، کاری و بازدید، مدارک پرتکرار هر دسته و اشتباه‌های رایج درخواست — تا بدانید کدام مسیر به وضعیت شما می‌خورد.</p></div>
         <span class="svc-arrow" aria-hidden="true"><svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
-      <div class="svc-row" data-rise>
+      <div class="svc-row" data-rise data-svc="1">
         <span class="svc-num">02</span>
-        <div><h3 class="svc-title">راهنمای سفارت</h3><p class="svc-desc">راهنمای عمومی رویه‌های سفارت و کنسولگری، نوبت‌دهی و مدارک.</p></div>
+        <div><h3 class="svc-title" data-i18n="sv2.t">راهنمای سفارت</h3><p class="svc-desc" data-i18n="sv2.d">مرور عمومی رویه‌های سفارت و کنسولگری، نوبت‌دهی، تکمیل فرم‌ها و آماده‌سازی برای مصاحبه؛ بدون وعده، فقط روند واقعی کار.</p></div>
         <span class="svc-arrow" aria-hidden="true"><svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
-      <div class="svc-row" data-rise>
+      <div class="svc-row" data-rise data-svc="2">
         <span class="svc-num">03</span>
-        <div><h3 class="svc-title">مشاوره اقامت</h3><p class="svc-desc">اطلاعاتی درباره مسیرهای ممکن اقامت و مدارک موردنیاز آن‌ها.</p></div>
+        <div><h3 class="svc-title" data-i18n="sv3.t">مشاوره اقامت</h3><p class="svc-desc" data-i18n="sv3.d">بررسی مسیرهای ممکن اقامت بر پایه تحصیل، اشتغال یا خانواده، شرایط معمول هر مسیر و مدارکی که باید از همین حالا آماده کنید.</p></div>
         <span class="svc-arrow" aria-hidden="true"><svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
-      <div class="svc-row" data-rise>
+      <div class="svc-row" data-rise data-svc="3">
         <span class="svc-num">04</span>
-        <div><h3 class="svc-title">مهاجرت تحصیلی</h3><p class="svc-desc">راهنمای عمومی برای دانشجویانی که تحصیل در خارج و مسیرهای مرتبط را بررسی می‌کنند.</p></div>
+        <div><h3 class="svc-title" data-i18n="sv4.t">مهاجرت تحصیلی</h3><p class="svc-desc" data-i18n="sv4.d">انتخاب دانشگاه و رشته، شرایط پذیرش، مدرک زبان، شهریه و بورس‌ها، و مسیر اقامت دانشجویی — برای یک تصمیم آگاهانه درباره تحصیل در خارج.</p></div>
         <span class="svc-arrow" aria-hidden="true"><svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
-      <div class="svc-row" data-rise>
+      <div class="svc-row" data-rise data-svc="4">
         <span class="svc-num">05</span>
-        <div><h3 class="svc-title">مهاجرت کاری</h3><p class="svc-desc">اطلاعات عمومی درباره مسیرهای مهاجرت مرتبط با اشتغال.</p></div>
+        <div><h3 class="svc-title" data-i18n="sv5.t">مهاجرت کاری</h3><p class="svc-desc" data-i18n="sv5.d">مرور مسیرهای مهاجرت کاری، قراردادهای موردقبول مراجع، جست‌وجوی کارفرما و مدارک لازم برای تبدیل پیشنهاد شغلی به ویزا و اقامت.</p></div>
         <span class="svc-arrow" aria-hidden="true"><svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
-      <div class="svc-row" data-rise>
+      <div class="svc-row" data-rise data-svc="5">
         <span class="svc-num">06</span>
-        <div><h3 class="svc-title">اقامت خانوادگی</h3><p class="svc-desc">اطلاعات عمومی درباره مسیرهای اقامت مرتبط با خانواده.</p></div>
+        <div><h3 class="svc-title" data-i18n="sv6.t">اقامت خانوادگی</h3><p class="svc-desc" data-i18n="sv6.d">شرایط الحاق خانواده، مدارک اثبات رابطه، توان مالی حامی و روند درخواست — با توضیح صادقانه محدودیت‌ها و زمان‌های معمول.</p></div>
         <span class="svc-arrow" aria-hidden="true"><svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
-      <div class="svc-row" data-rise>
+      <div class="svc-row" data-rise data-svc="6">
         <span class="svc-num">07</span>
         <div>
-          <h3 class="svc-title">اطلاعات پناهندگی و حمایت بین‌المللی</h3>
-          <p class="svc-desc">مشاوره اطلاعاتی عمومی درباره رویه‌های پناهندگی و حمایت بین‌المللی و ملاحظات واجد شرایط بودن.</p>
-          <p class="svc-note">واجد شرایط بودن به پرونده فردی و قوانین فعلی بستگی دارد؛ هیچ تضمینی وجود ندارد.</p>
+          <h3 class="svc-title" data-i18n="sv7.t">اطلاعات پناهندگی و حمایت بین‌المللی</h3>
+          <p class="svc-desc" data-i18n="sv7.d">اطلاعاتی عمومی درباره رویه‌های پناهندگی و حمایت بین‌المللی و ملاحظات واجد شرایط بودن.</p>
+          <p class="svc-note" data-i18n="sv7.note">واجد شرایط بودن به پرونده فردی و قوانین فعلی بستگی دارد؛ هیچ تضمینی وجود ندارد.</p>
         </div>
         <span class="svc-arrow" aria-hidden="true"><svg class="arrow" viewBox="0 0 24 24" fill="none"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
@@ -851,29 +887,30 @@ section{ position:relative; }
   <div class="wrap">
     <header class="sec-head">
       <p class="ghost" data-ghost>PROCESS</p>
-      <p class="eyebrow" data-rise>مسیر فرآیند <span class="en">The Process</span></p>
-      <h2 class="sec-title" data-words>از اولین مشاوره تا گام بعدی شما<span class="en-line">FROM FIRST CONSULTATION TO YOUR NEXT STEP</span></h2>
+      <p class="eyebrow" data-rise><span data-i18n="proc.eyebrow">مسیر فرآیند</span> <span class="en" data-i18n="proc.eyebrowEn">The Process</span></p>
+      <h2 class="sec-title" data-words><span class="t-main" data-i18n="proc.title">از اولین مشاوره تا گام بعدی شما</span><span class="en-line" data-i18n="proc.line">FROM FIRST CONSULTATION TO YOUR NEXT STEP</span></h2>
+      <p class="sec-desc" data-rise data-i18n="proc.desc">فرآیند کار با وکیل ویزا ساده و قابل پیش‌بینی است: چهار گام مشخص، هر کدام با خروجی معین. در تمام مسیر دقیقاً می‌دانید کجا ایستاده‌اید و گام بعدی چیست.</p>
     </header>
     <div class="steps">
       <article class="step" data-rise style="--rise-delay:0ms">
         <p class="step-num">01</p>
-        <h3>ارزیابی اولیه</h3>
-        <p>بررسی کلی وضعیت متقاضی، مقصد و هدف موردنظر.</p>
+        <h3 data-i18n="st1.t">ارزیابی اولیه</h3>
+        <p data-i18n="st1.d">گفت‌وگویی کوتاه درباره سابقه شما، مقصد و هدف؛ خروجی این گام، شناخت واقع‌بینانه از وضعیت فعلی شماست.</p>
       </article>
       <article class="step" data-rise style="--rise-delay:90ms">
         <p class="step-num">02</p>
-        <h3>بررسی مسیرها</h3>
-        <p>بررسی مسیرهای ویزا، اقامت یا مهاجرتِ احتمالاً مرتبط.</p>
+        <h3 data-i18n="st2.t">بررسی مسیرها</h3>
+        <p data-i18n="st2.d">مقایسه مسیرهای ویزا و اقامتِ مرتبط با شرایط شما؛ خروجی، یک یا دو مسیر پیشنهادی با توضیح دلایل است.</p>
       </article>
       <article class="step" data-rise style="--rise-delay:180ms">
         <p class="step-num">03</p>
-        <h3>آماده‌سازی مدارک</h3>
-        <p>بررسی مدارکی که معمولاً برای مسیر انتخابی لازم است.</p>
+        <h3 data-i18n="st3.t">آماده‌سازی مدارک</h3>
+        <p data-i18n="st3.d">فهرست دقیق مدارک مسیر انتخابی، ترجمه رسمی و تأییدیه‌ها و زمان‌بندی جمع‌آوری؛ خروجی، پرونده‌ای کامل و مرتب است.</p>
       </article>
       <article class="step" data-rise style="--rise-delay:270ms">
         <p class="step-num">04</p>
-        <h3>راهنمای درخواست</h3>
-        <p>ارائه راهنمای عمومی در فرآیند درخواست و نوبت‌دهی.</p>
+        <h3 data-i18n="st4.t">راهنمای درخواست</h3>
+        <p data-i18n="st4.d">راهنمای گام‌به‌گام ثبت درخواست، نوبت‌دهی و پیگیری؛ خروجی، درخواستی است که با اطمینان ثبت کرده‌اید.</p>
       </article>
     </div>
   </div>
@@ -884,20 +921,21 @@ section{ position:relative; }
   <div class="wrap">
     <header class="sec-head">
       <p class="ghost" data-ghost>EUROPE</p>
-      <p class="eyebrow" data-rise>کشور منتخب <span class="en">Country Spotlight</span></p>
-      <h2 class="sec-title" data-words>مقصد بعدی خود را انتخاب کنید<span class="en-line">CHOOSE YOUR NEXT DESTINATION</span></h2>
+      <p class="eyebrow" data-rise><span data-i18n="spot.eyebrow">کشور منتخب</span> <span class="en" data-i18n="spot.eyebrowEn">Country Spotlight</span></p>
+      <h2 class="sec-title" data-words><span class="t-main" data-i18n="spot.title">مقصد بعدی خود را انتخاب کنید</span><span class="en-line" data-i18n="spot.line">CHOOSE YOUR NEXT DESTINATION</span></h2>
+      <p class="sec-desc" data-rise data-i18n="spot.desc">پاریس و آمستردام دو مقصدی هستند که بیشترین سؤال را درباره آن‌ها می‌پرسند: از تحصیل و هزینه زندگی تا بازار کار. نگاهی نزدیک‌تر به این دو شهر بیندازید تا ببینید کدام‌یک با سبک زندگی شما بیشتر می‌سازد.</p>
     </header>
     <div class="spot-grid">
       <figure class="spot-card" data-spot data-rise>
         <div class="spot-figure">
           <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3a93744907a8.jpg" alt="پل بیرهاکیم و برج ایفل، پاریس" loading="lazy" decoding="async" width="2666" height="1500">
-          <figcaption class="spot-caption"><h3>Paris</h3><p>فرانسه</p></figcaption>
+          <figcaption class="spot-caption"><h3>Paris</h3><p data-i18n="sp1.cap">فرانسه</p></figcaption>
         </div>
       </figure>
       <figure class="spot-card" data-spot data-rise style="--rise-delay:140ms">
         <div class="spot-figure">
           <img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/608b47f0c08f.jpg" alt="دوچرخه‌ها روی پل کانال، آمستردام" loading="lazy" decoding="async" width="1920" height="1440">
-          <figcaption class="spot-caption"><h3>Amsterdam</h3><p>هلند</p></figcaption>
+          <figcaption class="spot-caption"><h3>Amsterdam</h3><p data-i18n="sp2.cap">هلند</p></figcaption>
         </div>
       </figure>
     </div>
@@ -909,32 +947,33 @@ section{ position:relative; }
   <div class="wrap">
     <header class="sec-head">
       <p class="ghost" data-ghost>NOTES</p>
-      <p class="eyebrow" data-rise>اطلاعات مهم <span class="en">Important Information</span></p>
-      <h2 class="sec-title" data-words>هر پرونده، متفاوت است<span class="en-line">EVERY CASE IS DIFFERENT</span></h2>
+      <p class="eyebrow" data-rise><span data-i18n="res.eyebrow">اطلاعات مهم</span> <span class="en" data-i18n="res.eyebrowEn">Important Information</span></p>
+      <h2 class="sec-title" data-words><span class="t-main" data-i18n="res.title">هر پرونده، متفاوت است</span><span class="en-line" data-i18n="res.line">EVERY CASE IS DIFFERENT</span></h2>
+      <p class="sec-desc" data-rise data-i18n="res.desc">هیچ دو پرونده مهاجرتی شبیه هم نیستند؛ همین دلیل اصلی شکست پاسخ‌های کلی و وعده‌های آماده است. این چهار نکته، چارچوب واقعی هر پرونده اقامتی را روشن می‌کند تا انتظارات شما از روز اول واقع‌بینانه باشد.</p>
     </header>
     <div class="info-grid">
       <article class="info-cell" data-rise style="--rise-delay:0ms">
         <p class="ic-num">01</p>
-        <h3>الزامات ویزا</h3>
-        <p>الزامات به تابعیت، مقصد، نوع ویزا و هدف سفر بستگی دارد.</p>
+        <h3 data-i18n="ic1.t">الزامات ویزا</h3>
+        <p data-i18n="ic1.d">الزامات به تابعیت شما، کشور مقصد، نوع ویزا و هدف سفر بستگی دارد؛ فهرست دقیق را همیشه باید از منبع رسمی همان کشور تأیید کنید.</p>
       </article>
       <article class="info-cell" data-rise style="--rise-delay:110ms">
         <p class="ic-num">02</p>
-        <h3>زمان پردازش</h3>
-        <p>زمان پردازش بر اساس نوع ویزا، سفارت یا کنسولگری، شرایط متقاضی و کاری فعلی متفاوت است.</p>
+        <h3 data-i18n="ic2.t">زمان پردازش</h3>
+        <p data-i18n="ic2.d">زمان بررسی بر اساس نوع ویزا، سفارت یا کنسولگری و فصل درخواست متغیر است؛ هیچ عدد ثابتی برای همه پرونده‌ها وجود ندارد.</p>
       </article>
       <article class="info-cell" data-rise style="--rise-delay:220ms">
         <p class="ic-num">03</p>
-        <h3>اقامت</h3>
-        <p>مسیرهای اقامت به مبنای قانونی اقامت بستگی دارند؛ مانند تحصیل، اشتغال، خانواده یا سایر دلایل احرازشده.</p>
+        <h3 data-i18n="ic3.t">اقامت</h3>
+        <p data-i18n="ic3.d">اقامت همیشه یک مبنای قانونی دارد: تحصیل، اشتغال، پیوند خانوادگی یا سایر دلایل احرازشده؛ بدون مبنای معتبر، مسیری وجود ندارد.</p>
       </article>
       <article class="info-cell" data-rise style="--rise-delay:330ms">
         <p class="ic-num">04</p>
-        <h3>مدارک</h3>
-        <p>مدارک موردنیاز بر اساس مسیر و کشور متفاوت است و باید همیشه با الزامات رسمی روز تطبیق داده شود.</p>
+        <h3 data-i18n="ic4.t">مدارک</h3>
+        <p data-i18n="ic4.d">مدارک موردنیاز بر اساس مسیر و کشور متفاوت است و گاهی به ترجمه رسمی یا تأییدیه نیاز دارد؛ نسخه نهایی باید با الزامات روز مطابقت داشته باشد.</p>
       </article>
     </div>
-    <p class="info-foot" data-rise>این موارد بیانیه‌های اطلاعاتی هستند و نه تضمین؛ واجد شرایط بودن به پرونده فردی و قوانین فعلی بستگی دارد.</p>
+    <p class="info-foot" data-rise data-i18n="res.foot">این موارد بیانیه‌های اطلاعاتی هستند و نه تضمین؛ واجد شرایط بودن به پرونده فردی و قوانین فعلی بستگی دارد.</p>
   </div>
 </section>
 
@@ -943,32 +982,33 @@ section{ position:relative; }
   <div class="wrap">
     <header class="sec-head">
       <p class="ghost" data-ghost>TIMELINES</p>
-      <p class="eyebrow" data-rise>زمان‌بندی <span class="en">Timelines</span></p>
-      <h2 class="sec-title" data-words>چقدر طول می‌کشد؟<span class="en-line">HOW LONG DOES IT TAKE?</span></h2>
+      <p class="eyebrow" data-rise><span data-i18n="tl.eyebrow">زمان‌بندی</span> <span class="en" data-i18n="tl.eyebrowEn">Timelines</span></p>
+      <h2 class="sec-title" data-words><span class="t-main" data-i18n="tl.title">چقدر طول می‌کشد؟</span><span class="en-line" data-i18n="tl.line">HOW LONG DOES IT TAKE?</span></h2>
+      <p class="sec-desc" data-rise data-i18n="tl.desc">صادقانه بگوییم: زمان دقیق را هیچ مشاوری نمی‌تواند تضمین کند. آنچه می‌توانیم ارائه دهیم، بازه‌های واقع‌بینانه هر مرحله و عواملی است که آن‌ها را کوتاه‌تر یا بلندتر می‌کند.</p>
     </header>
     <div class="tl-grid">
       <article class="tl-card" data-rise style="--rise-delay:0ms">
-        <h3>مشاوره اولیه</h3>
-        <strong>بستگی به پرونده دارد</strong>
+        <h3 data-i18n="t1.h">مشاوره اولیه</h3>
+        <strong data-i18n="t1.s">بستگی به پرونده دارد</strong>
+        <p data-i18n="t1.p">معمولاً در همان اولین جلسه، تصویر کلی مسیر مشخص می‌شود.</p>
       </article>
       <article class="tl-card" data-rise style="--rise-delay:110ms">
-        <h3>آماده‌سازی مدارک</h3>
-        <strong>بستگی به مسیر دارد</strong>
+        <h3 data-i18n="t2.h">آماده‌سازی مدارک</h3>
+        <strong data-i18n="t2.s">بستگی به مسیر دارد</strong>
+        <p data-i18n="t2.p">از چند هفته تا چند ماه؛ به ترجمه رسمی و تأییدیه‌ها بستگی دارد.</p>
       </article>
       <article class="tl-card" data-rise style="--rise-delay:220ms">
-        <h3>پردازش سفارت</h3>
-        <strong>متغیر بر اساس کشور و نوع ویزا</strong>
+        <h3 data-i18n="t3.h">پردازش سفارت</h3>
+        <strong data-i18n="t3.s">متغیر بر اساس کشور و نوع ویزا</strong>
+        <p data-i18n="t3.p">صف نوبت و فصل درخواست، تأثیر مستقیم روی زمان پردازش دارد.</p>
       </article>
       <article class="tl-card" data-rise style="--rise-delay:330ms">
-        <h3>فرآیند اقامت</h3>
-        <strong>متغیر بر اساس مسیر قانونی</strong>
+        <h3 data-i18n="t4.h">فرآیند اقامت</h3>
+        <strong data-i18n="t4.s">متغیر بر اساس مسیر قانونی</strong>
+        <p data-i18n="t4.p">بعد از ورود یا تحصیل، مسیر اقامت مرحله و زمان مخصوص خود را دارد.</p>
       </article>
     </div>
-    <div class="tl-note" data-rise>
-      <strong>زمان‌های نمایش‌داده‌شده صرفاً راهنمای عمومی هستند.</strong>
-      زمان‌های رسمی می‌توانند تغییر کنند. متقاضیان باید اطلاعات روز را از سفارت، کنسولگری یا مرجع مهاجرتی مربوطه بررسی کنند.
-      برای اطلاعات رسمی و به‌روز، همیشه مراجع رسمی کشور مقصد را در نظر بگیرید.
-    </div>
+    <div class="tl-note" data-rise data-i18n="tl.note"><strong>زمان‌های نمایش‌داده‌شده صرفاً راهنمای عمومی هستند.</strong> زمان‌های رسمی می‌توانند تغییر کنند؛ متقاضیان باید اطلاعات روز را از سفارت، کنسولگری یا مرجع مهاجرتی مربوطه بررسی کنند. برای تصمیم‌گیری، همیشه منابع رسمی کشور مقصد ملاک است.</div>
   </div>
 </section>
 
@@ -977,21 +1017,22 @@ section{ position:relative; }
   <div class="wrap">
     <header class="sec-head">
       <p class="ghost" data-ghost>WHY US</p>
-      <p class="eyebrow" data-rise>چرا وکیل ویزا <span class="en">Why Vakil Visa</span></p>
-      <h2 class="sec-title" data-words>راهنمایی شفاف برای مسیرهای پیچیده<span class="en-line">CLEAR GUIDANCE FOR COMPLEX JOURNEYS</span></h2>
+      <p class="eyebrow" data-rise><span data-i18n="why.eyebrow">چرا وکیل ویزا</span> <span class="en" data-i18n="why.eyebrowEn">Why Vakil Visa</span></p>
+      <h2 class="sec-title" data-words><span class="t-main" data-i18n="why.title">راهنمایی شفاف برای مسیرهای پیچیده</span><span class="en-line" data-i18n="why.line">CLEAR GUIDANCE FOR COMPLEX JOURNEYS</span></h2>
+      <p class="sec-desc" data-rise data-i18n="why.desc">در حوزه مهاجرت، اغراق و وعده‌های غیرواقعی زیاد است؛ کار ما دقیقاً برعکس است. سه اصل زیر، چیزی است که از روز اول به شما تحویل می‌دهیم.</p>
     </header>
     <div class="why-grid">
       <article class="why-card" data-why data-rise>
         <figure class="why-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/e86357b798ff.jpg" alt="مسافر در ترمینال فرودگاه" loading="lazy" decoding="async" width="1467" height="825"></figure>
-        <div class="why-body"><h3>اطلاعات شفاف</h3><p>پیش از شروع، مسیر کلی را بفهمید.</p></div>
+        <div class="why-body"><h3 data-i18n="w1.t">اطلاعات شفاف</h3><p data-i18n="w1.d">پیش از هر تصمیم، مسیر کلی، الزامات و ریسک‌ها را همان‌طور که هست می‌شنوید؛ نه صورتی‌سازی، نه اغراق.</p></div>
       </article>
       <article class="why-card" data-why data-rise style="--rise-delay:120ms">
         <figure class="why-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b68eebac2b25.jpg" alt="کلیسای سنت باسیل، مسکو" loading="lazy" decoding="async" width="1440" height="1080"></figure>
-        <div class="why-body"><h3>تمرکز بر کشور</h3><p>اطلاعات بر اساس مقصد و هدف مهاجرتی سازمان‌دهی شده است.</p></div>
+        <div class="why-body"><h3 data-i18n="w2.t">تمرکز بر کشور</h3><p data-i18n="w2.d">به‌جای ادعای «همه کشورها»، روی شش مقصد مشخص تمرکز می‌کنیم تا اطلاعات عمیق و به‌روز بماند.</p></div>
       </article>
       <article class="why-card" data-why data-rise style="--rise-delay:240ms">
         <figure class="why-figure"><img src="https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b41fc4037feb.jpg" alt="جلسه مشاوره در دفتر" loading="lazy" decoding="async" width="1254" height="836"></figure>
-        <div class="why-body"><h3>مشاوره شخصی</h3><p>وضعیت خود را مطرح کنید و مشخص کنید کدام سؤال‌ها نیاز به بررسی تخصصی یا حقوقی دارند.</p></div>
+        <div class="why-body"><h3 data-i18n="w3.t">مشاوره شخصی</h3><p data-i18n="w3.d">وضعیت دقیق خود را مطرح می‌کنید و مشخص می‌شود کدام سؤال‌ها پاسخ عمومی دارند و کدام نیاز به بررسی تخصصی یا حقوقی است.</p></div>
       </article>
     </div>
   </div>
@@ -1002,41 +1043,42 @@ section{ position:relative; }
   <div class="wrap">
     <header class="sec-head">
       <p class="ghost" data-ghost>FAQ</p>
-      <p class="eyebrow" data-rise>سؤالات متداول <span class="en">FAQ</span></p>
-      <h2 class="sec-title" data-words>سؤال‌هایی که مردم می‌پرسند<span class="en-line">QUESTIONS PEOPLE ASK</span></h2>
+      <p class="eyebrow" data-rise><span data-i18n="faq.eyebrow">سؤالات متداول</span> <span class="en" data-i18n="faq.eyebrowEn">FAQ</span></p>
+      <h2 class="sec-title" data-words><span class="t-main" data-i18n="faq.title">سؤال‌هایی که مردم می‌پرسند</span><span class="en-line" data-i18n="faq.line">QUESTIONS PEOPLE ASK</span></h2>
+      <p class="sec-desc" data-rise data-i18n="faq.desc">پاسخ‌های کوتاه و صادقانه به سؤال‌های پرتکرار متقاضیان — بدون اغراق و بدون وعده. اگر پاسخ سؤال شما اینجا نبود، در فرم ثبت درخواست بنویسید تا دقیق جواب بدهیم.</p>
     </header>
     <div class="faq-list" id="faqList">
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">وکیل ویزا کدام کشورها را پوشش می‌دهد؟<span class="faq-icon" aria-hidden="true"></span></button>
-        <div class="faq-a"><p>در حال حاضر راهنمایی برای فرانسه، آلمان، روسیه، لهستان، هلند و بلژیک ارائه می‌شود. برای سایر کشورها می‌توانید در تماس، سؤال خود را مطرح کنید.</p></div>
+        <button class="faq-q" aria-expanded="false"><span data-i18n="q1">وکیل ویزا کدام کشورها را پوشش می‌دهد؟</span><span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n="a1">در حال حاضر راهنمایی برای شش کشور فرانسه، آلمان، روسیه، لهستان، هلند و بلژیک ارائه می‌شود؛ تمرکز روی شش مقصد باعث می‌شود اطلاعات عمیق و به‌روز بماند. برای کشورهای دیگر می‌توانید در فرم تماس بپرسید تا صادقانه بگوییم آیا کمکی از دستمان برمی‌آید.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">آیا کمک به درخواست ویزا می‌کنید؟<span class="faq-icon" aria-hidden="true"></span></button>
-        <div class="faq-a"><p>راهنمای عمومی درباره دسته‌های ویزا، مدارک و آماده‌سازی درخواست ارائه می‌شود؛ تصمیم نهایی همیشه با مرجع رسمی است.</p></div>
+        <button class="faq-q" aria-expanded="false"><span data-i18n="q2">آیا کمک به درخواست ویزا می‌کنید؟</span><span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n="a2">بله، در قالب راهنمای ساخت‌یافته: توضیح دسته ویزای مناسب، فهرست مدارک، تکمیل فرم‌ها و آماده‌سازی برای مصاحبه. تصمیم نهایی همیشه با مرجع رسمی است و هیچ تأییدی قابل تضمین نیست.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">درخواست ویزا چقدر طول می‌کشد؟<span class="faq-icon" aria-hidden="true"></span></button>
-        <div class="faq-a"><p>زمان پردازش به نوع ویزا، سفارت یا کنسولگری و شرایط هر متقاضی بستگی دارد و می‌تواند تغییر کند.</p></div>
+        <button class="faq-q" aria-expanded="false"><span data-i18n="q3">درخواست ویزا چقدر طول می‌کشد؟</span><span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n="a3">بسته به نوع ویزا، سفارت یا کنسولگری و شرایط شخصی شما، از چند هفته تا چند ماه متغیر است. در جلسه مشاوره، بازه واقع‌بینانه مسیر انتخابی‌تان را دقیق‌تر مرور می‌کنیم.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">معمولاً چه مدارکی لازم است؟<span class="faq-icon" aria-hidden="true"></span></button>
-        <div class="faq-a"><p>مدارک بر اساس مسیر و کشور متفاوت است؛ در جلسه مشاوره، فهرست عمومی مدارکِ مسیر موردنظر بررسی می‌شود و باید با الزامات رسمی روز تطبیق داده شود.</p></div>
+        <button class="faq-q" aria-expanded="false"><span data-i18n="q4">معمولاً چه مدارکی لازم است؟</span><span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n="a4">گذرنامه معتبر، مدارک هویتی، اثبات مالی و اثبات هدف سفر تقریباً همیشه لازم است؛ اما فهرست دقیق به مسیر و کشور بستگی دارد. در مشاوره، چک‌لیست کامل مسیر خود را دریافت می‌کنید و برای ترجمه رسمی و تأییدیه‌ها زمان‌بندی می‌کنیم.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">آیا برای درخواست اقامت کمک می‌کنید؟<span class="faq-icon" aria-hidden="true"></span></button>
-        <div class="faq-a"><p>اطلاعاتی درباره مسیرهای ممکن اقامت و مدارک آن‌ها ارائه می‌شود. واجد شرایط بودن به پرونده فردی و قوانین فعلی بستگی دارد.</p></div>
+        <button class="faq-q" aria-expanded="false"><span data-i18n="q5">آیا برای درخواست اقامت کمک می‌کنید؟</span><span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n="a5">اطلاعاتی درباره مسیرهای ممکن اقامت — تحصیلی، کاری و خانوادگی — و مدارک و شرایط هر مسیر ارائه می‌کنیم. واجد شرایط بودن به پرونده فردی و قوانین روز بستگی دارد و باید با مراجع رسمی تأیید شود.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">آیا مشاوره پناهندگی ارائه می‌کنید؟<span class="faq-icon" aria-hidden="true"></span></button>
-        <div class="faq-a"><p>مشاوره اطلاعاتی عمومی درباره رویه‌های پناهندگی و حمایت بین‌المللی ارائه می‌شود؛ هیچ تضمینی وجود ندارد و هر پرونده به‌صورت فردی و بر اساس قانون بررسی می‌شود.</p></div>
+        <button class="faq-q" aria-expanded="false"><span data-i18n="q6">آیا مشاوره پناهندگی ارائه می‌کنید؟</span><span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n="a6">مشاوره اطلاعاتی عمومی درباره رویه‌های پناهندگی و حمایت بین‌المللی ارائه می‌شود. هر پرونده به‌صورت فردی و بر اساس قانون بررسی می‌شود؛ هیچ تضمینی وجود ندارد و برای اقدام حقوقی باید به وکیل رسمی مراجعه کنید.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">آیا تأیید ویزا تضمین شده است؟<span class="faq-icon" aria-hidden="true"></span></button>
-        <div class="faq-a"><p>نه. تصمیم ویزا و اقامت توسط مراجع رسمی گرفته می‌شود. هیچ مشاور خصوصی نمی‌تواند به‌طور صادقانه تأیید را تضمین کند.</p></div>
+        <button class="faq-q" aria-expanded="false"><span data-i18n="q7">آیا تأیید ویزا تضمین شده است؟</span><span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n="a7">نه، و هر کس چنین تضمینی بدهد صادق نیست. تصمیم ویزا و اقامت منحصراً توسط مراجع رسمی گرفته می‌شود؛ کار ما آماده‌سازی یک درخواست قوی و شفاف است، نه تضمین نتیجه.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">چطور می‌توانم با وکیل ویزا تماس بگیرم؟<span class="faq-icon" aria-hidden="true"></span></button>
-        <div class="faq-a"><p>از طریق شماره <a href="tel:+989122903240" style="font-family:var(--font-en);direction:ltr;unicode-bidi:embed">0912 290 3240</a> یا فرم تماس همین سایت؛ در سریع‌ترین زمان پاسخ می‌دهیم.</p></div>
+        <button class="faq-q" aria-expanded="false"><span data-i18n="q8">چطور می‌توانم با وکیل ویزا تماس بگیرم؟</span><span class="faq-icon" aria-hidden="true"></span></button>
+        <div class="faq-a"><p><span data-i18n="a8">از طریق شماره</span> <a href="tel:+989122903240" style="font-family:var(--font-en);direction:ltr;unicode-bidi:embed">0912 290 3240</a> <span data-i18n="a8b">تماس بگیرید، پیامک بفرستید یا فرم «ثبت درخواست» همین صفحه را پر کنید؛ در سریع‌ترین زمان پاسخ می‌دهیم.</span></p></div>
       </div>
     </div>
   </div>
@@ -1046,15 +1088,15 @@ section{ position:relative; }
 <section class="sec-pad on-dark" id="contact">
   <div class="wrap cta-inner">
     <p class="ghost" data-ghost style="inset-inline-start:50%;transform:translateX(50%);top:-.5em" dir="ltr">NEXT STEP</p>
-    <p class="eyebrow" data-rise>گفت‌وگو را شروع کنید <span class="en">Let's Talk</span></p>
-    <h2 class="cta-title" data-words>آماده‌اید گام بعدی را بردارید؟</h2>
+    <p class="eyebrow" data-rise><span data-i18n="ctaS.eyebrow">گفت‌وگو را شروع کنید</span> <span class="en" data-i18n="ctaS.eyebrowEn">Let's Talk</span></p>
+    <h2 class="cta-title" data-words><span class="t-main" data-i18n="ctaS.title">آماده‌اید گام بعدی را بردارید؟</span></h2>
     <div data-rise>
-      <button class="btn" data-open-modal>تماس با وکیل ویزا
+      <button class="btn" data-open-modal><span data-i18n="ctaS.btn">ثبت درخواست</span>
         <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
     <a class="cta-phone" data-rise href="tel:+989122903240">0912 290 3240</a>
-    <p class="cta-small" data-rise>مشاوره اولیه برای بررسی کلی وضعیت شما — بدون هیچ تضمینی، فقط اطلاعات شفاف.</p>
+    <p class="cta-small" data-rise data-i18n="ctaS.small">درخواست خود را ثبت کنید تا درباره شرایط‌تان صحبت کنیم — بدون هیچ تضمینی، فقط اطلاعات شفاف و صادقانه.</p>
   </div>
 </section>
 
@@ -1075,45 +1117,45 @@ section{ position:relative; }
           </svg>
           <span class="logo-word">Vakil Visa</span>
         </a>
-        <p>راهنمای مهاجرت، ویزا و اقامت برای مقاصد بین‌المللی.</p>
+        <p data-i18n="foot.brand">راهنمای مهاجرت، ویزا و اقامت برای شش مقصد اصلی — با زبانی شفاف و انتظارات واقع‌بینانه.</p>
         <a class="footer-phone" href="tel:+989122903240">0912 290 3240</a>
       </div>
-      <nav class="footer-col" aria-label="مقصدها">
-        <h4>مقصدها</h4>
+      <nav class="footer-col" aria-label="مقصدها" data-i18n-aria="foot.colD">
+        <h4 data-i18n="foot.colDh">مقصدها</h4>
         <ul>
-          <li><a href="#destinations" data-scroll>فرانسه</a></li>
-          <li><a href="#destinations" data-scroll>آلمان</a></li>
-          <li><a href="#destinations" data-scroll>روسیه</a></li>
-          <li><a href="#destinations" data-scroll>لهستان</a></li>
-          <li><a href="#destinations" data-scroll>هلند</a></li>
-          <li><a href="#destinations" data-scroll>بلژیک</a></li>
+          <li><a href="#destinations" data-scroll data-i18n="d1.h">فرانسه</a></li>
+          <li><a href="#destinations" data-scroll data-i18n="d2.h">آلمان</a></li>
+          <li><a href="#destinations" data-scroll data-i18n="d3.h">روسیه</a></li>
+          <li><a href="#destinations" data-scroll data-i18n="d4.h">لهستان</a></li>
+          <li><a href="#destinations" data-scroll data-i18n="d5.h">هلند</a></li>
+          <li><a href="#destinations" data-scroll data-i18n="d6.h">بلژیک</a></li>
         </ul>
       </nav>
-      <nav class="footer-col" aria-label="خدمات">
-        <h4>خدمات</h4>
+      <nav class="footer-col" aria-label="خدمات" data-i18n-aria="foot.colS">
+        <h4 data-i18n="foot.colSh">خدمات</h4>
         <ul>
-          <li><a href="#services" data-scroll>مشاوره ویزا</a></li>
-          <li><a href="#residence" data-scroll>اقامت</a></li>
-          <li><a href="#services" data-scroll>راهنمای سفارت</a></li>
-          <li><a href="#services" data-scroll>مهاجرت تحصیلی</a></li>
-          <li><a href="#services" data-scroll>مهاجرت کاری</a></li>
-          <li><a href="#services" data-scroll>اقامت خانوادگی</a></li>
-          <li><a href="#services" data-scroll>اطلاعات پناهندگی</a></li>
+          <li><a href="#services" data-scroll data-i18n="sv1.t">مشاوره ویزا</a></li>
+          <li><a href="#residence" data-scroll data-i18n="sv3.t">مشاوره اقامت</a></li>
+          <li><a href="#services" data-scroll data-i18n="sv2.t">راهنمای سفارت</a></li>
+          <li><a href="#services" data-scroll data-i18n="sv4.t">مهاجرت تحصیلی</a></li>
+          <li><a href="#services" data-scroll data-i18n="sv5.t">مهاجرت کاری</a></li>
+          <li><a href="#services" data-scroll data-i18n="sv6.t">اقامت خانوادگی</a></li>
+          <li><a href="#services" data-scroll data-i18n="sv7.t">اطلاعات پناهندگی</a></li>
         </ul>
       </nav>
-      <nav class="footer-col" aria-label="شرکت">
-        <h4>شرکت</h4>
+      <nav class="footer-col" aria-label="شرکت" data-i18n-aria="foot.colC">
+        <h4 data-i18n="foot.colCh">شرکت</h4>
         <ul>
-          <li><a href="#home" data-scroll>درباره ما</a></li>
-          <li><a href="#why" data-scroll>چرا وکیل ویزا</a></li>
-          <li><a href="#faq" data-scroll>سؤالات متداول</a></li>
-          <li><a href="#contact" data-scroll>تماس</a></li>
+          <li><a href="#home" data-scroll data-i18n="co1">درباره ما</a></li>
+          <li><a href="#why" data-scroll data-i18n="co2">چرا وکیل ویزا</a></li>
+          <li><a href="#faq" data-scroll data-i18n="co3">سؤالات متداول</a></li>
+          <li><a href="#contact" data-scroll data-i18n="co4">تماس</a></li>
         </ul>
       </nav>
     </div>
     <div class="footer-bottom">
-      <span>© ۲۰۲۶ وکیل ویزا. تمامی حقوق محفوظ است.</span>
-      <p class="footer-legal">وکیل ویزا یک مؤسسه خصوصی مشاوره و اطلاع‌رسانی است و نماینده رسمی هیچ دولت، سفارت، کنسولگری یا مرجع مهاجرتی نیست. تصمیم‌های ویزا و اقامت منحصراً توسط مراجع رسمی گرفته می‌شود.</p>
+      <span data-i18n="foot.copy">© ۲۰۲۶ وکیل ویزا. تمامی حقوق محفوظ است.</span>
+      <p class="footer-legal" data-i18n="foot.legal">وکیل ویزا یک مؤسسه خصوصی مشاوره و اطلاع‌رسانی است و نماینده رسمی هیچ دولت، سفارت، کنسولگری یا مرجع مهاجرتی نیست. تصمیم‌های ویزا و اقامت منحصراً توسط مراجع رسمی گرفته می‌شود.</p>
     </div>
   </div>
 </footer>
@@ -1121,56 +1163,62 @@ section{ position:relative; }
 <!-- ================= contact modal ================= -->
 <div class="modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
   <div class="modal-backdrop" data-close-modal></div>
-  <div class="modal-panel" role="document">
-    <button class="modal-close" data-close-modal aria-label="بستن">
+  <div class="modal-panel on-light" role="document">
+    <button class="modal-close" data-close-modal aria-label="بستن" data-i18n-aria="modal.close">
       <svg class="arrow" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
     <div class="modal-head">
       <p class="en">Start a Conversation</p>
-      <h3 id="modalTitle">گفت‌وگو را آغاز کنید</h3>
+      <h3 id="modalTitle" data-i18n="modal.h">گفت‌وگو را آغاز کنید</h3>
     </div>
     <form class="modal-form" id="contactForm" novalidate>
       <div class="field">
-        <label for="fName">نام و نام خانوادگی</label>
-        <input id="fName" name="name" type="text" placeholder="نام شما" required autocomplete="name">
+        <label for="fName" data-i18n="modal.name">نام و نام خانوادگی</label>
+        <input id="fName" name="name" type="text" placeholder="نام شما" data-i18n-ph="ph.name" required autocomplete="name">
       </div>
       <div class="field">
-        <label for="fPhone">شماره تماس</label>
-        <input id="fPhone" name="phone" type="tel" placeholder="شماره تماس شما" required autocomplete="tel" dir="ltr" style="text-align:end">
+        <label for="fPhone" data-i18n="modal.phone">شماره تماس</label>
+        <input id="fPhone" name="phone" type="tel" placeholder="شماره تماس شما" data-i18n-ph="ph.phone" required autocomplete="tel" dir="ltr" style="text-align:end">
       </div>
       <div class="field">
-        <label for="fDest">مقصد</label>
+        <label for="fDest" data-i18n="modal.dest">مقصد</label>
         <select id="fDest" name="destination" required>
-          <option value="" selected disabled>انتخاب کنید</option>
-          <option>فرانسه</option><option>آلمان</option><option>روسیه</option>
-          <option>لهستان</option><option>هلند</option><option>بلژیک</option><option>سایر</option>
+          <option value="" selected disabled data-i18n="modal.pick">انتخاب کنید</option>
+          <option data-i18n="d1.h">فرانسه</option><option data-i18n="d2.h">آلمان</option><option data-i18n="d3.h">روسیه</option>
+          <option data-i18n="d4.h">لهستان</option><option data-i18n="d5.h">هلند</option><option data-i18n="d6.h">بلژیک</option><option data-i18n="modal.other">سایر</option>
         </select>
       </div>
       <div class="field">
-        <label for="fService">خدمت</label>
+        <label for="fService" data-i18n="modal.serv">خدمت</label>
         <select id="fService" name="service" required>
-          <option value="" selected disabled>انتخاب کنید</option>
-          <option>مشاوره ویزا</option><option>مشاوره اقامت</option><option>راهنمای سفارت</option>
-          <option>مهاجرت تحصیلی</option><option>مهاجرت کاری</option><option>اقامت خانوادگی</option>
-          <option>اطلاعات پناهندگی و حمایت بین‌المللی</option><option>مشاوره عمومی</option>
+          <option value="" selected disabled data-i18n="modal.pick">انتخاب کنید</option>
+          <option data-i18n="sv1.t">مشاوره ویزا</option><option data-i18n="sv3.t">مشاوره اقامت</option><option data-i18n="sv2.t">راهنمای سفارت</option>
+          <option data-i18n="sv4.t">مهاجرت تحصیلی</option><option data-i18n="sv5.t">مهاجرت کاری</option><option data-i18n="sv6.t">اقامت خانوادگی</option>
+          <option data-i18n="sv7.t">اطلاعات پناهندگی و حمایت بین‌المللی</option><option data-i18n="modal.general">مشاوره عمومی</option>
         </select>
       </div>
       <div class="field full">
-        <label for="fMsg">پیام</label>
-        <textarea id="fMsg" name="message" placeholder="کوتاه بگویید چه کمکی نیاز دارید..."></textarea>
+        <label for="fMsg" data-i18n="modal.msg">پیام</label>
+        <textarea id="fMsg" name="message" placeholder="کوتاه بگویید چه کمکی نیاز دارید..." data-i18n-ph="ph.msg"></textarea>
       </div>
-      <button class="btn" type="submit" id="submitBtn">ارسال درخواست
+      <button class="btn" type="submit" id="submitBtn"><span id="submitLabel" data-i18n="form.submit">ارسال درخواست</span>
         <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <p class="modal-note">نمایشی — اطلاعات به سروری ارسال نمی‌شود.</p>
+      <p class="modal-note" data-i18n="form.note">پس از ثبت، برای پیگیری سریع‌تر می‌توانید مستقیم با ما تماس بگیرید یا پیامک بفرستید.</p>
     </form>
     <div class="modal-success">
       <span class="ok" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none"><path d="m5 12.5 4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span>
-      <h4>درخواست شما دریافت شد</h4>
-      <p>سپاسگزاریم. وکیل ویزا درخواست شما را بررسی می‌کند و از طریق اطلاعاتی که ارائه داده‌اید با شما تماس می‌گیرد.</p>
+      <h4 data-i18n="success.h">درخواست شما دریافت شد</h4>
+      <p data-i18n="success.p">سپاسگزاریم. برای بررسی سریع‌تر، همان اطلاعات را با پیامک برای ما بفرستید یا مستقیم تماس بگیرید؛ وکیل ویزا در اولین فرصت پاسخ می‌دهد.</p>
       <a class="cta-phone" href="tel:+989122903240">0912 290 3240</a>
+      <div class="success-actions">
+        <a class="btn" id="smsLink" href="sms:+989122903240"><span data-i18n="success.sms">ارسال با پیامک</span>
+          <svg class="arrow flip" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="tel:+989122903240"><span data-i18n="success.call">تماس تلفنی</span></a>
+      </div>
     </div>
   </div>
 </div>
@@ -1193,7 +1241,7 @@ section{ position:relative; }
 /* ================= env ================= */
 const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const FINE_HOVER = matchMedia("(hover: hover) and (pointer: fine)").matches;
-const RTL = document.documentElement.dir === "rtl";
+let RTL = document.documentElement.dir === "rtl";
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const clamp01 = (v) => Math.min(1, Math.max(0, v));
@@ -1291,7 +1339,6 @@ function tween({ delay = 0, duration = 900, ease = "outExpo", update, complete }
 
 /* ================= word splitting ================= */
 function splitIntoUnits(el, targets) {
-  /* targets: array of text nodes / elements to wrap in clip+inner pairs */
   const units = [];
   for (const node of targets) {
     const isText = node.nodeType === 3;
@@ -1308,8 +1355,8 @@ function splitIntoUnits(el, targets) {
     if (isText) node.replaceWith(frag);
     else { node.textContent = ""; node.appendChild(frag); node.setAttribute("aria-label", text); }
   }
-  /* visible label for screen readers */
   const vh = document.createElement("span");
+  vh.className = "sr-vh";
   vh.style.cssText = "position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)";
   vh.textContent = el.getAttribute("aria-label") || el.textContent;
   if (!el.getAttribute("aria-label")) el.setAttribute("aria-label", vh.textContent);
@@ -1322,8 +1369,7 @@ function ownTextTargets(el) {
 /* hero title + tagline prepared up front */
 const heroTitle = $("#heroTitle");
 const titleUnits = splitIntoUnits(heroTitle, ownTextTargets(heroTitle));
-const taglineLines = $$("#heroTagline [data-line]");
-const lineUnits = taglineLines.map((line) => {
+let lineUnits = $$("#heroTagline [data-line]").map((line) => {
   const text = line.textContent;
   line.setAttribute("aria-label", text);
   const w = document.createElement("span"); w.className = "w"; w.setAttribute("aria-hidden", "true");
@@ -1333,8 +1379,8 @@ const lineUnits = taglineLines.map((line) => {
 });
 /* section headings + ghosts split now, revealed on IO */
 $$("[data-words]").forEach((el) => {
-  const units = splitIntoUnits(el, ownTextTargets(el));
-  el._units = units;
+  const main = $(".t-main", el);
+  el._units = main ? splitIntoUnits(el, [main]) : [];
 });
 $$("[data-ghost]").forEach((el) => {
   el._units = splitIntoUnits(el, [el.firstChild]);
@@ -1346,9 +1392,9 @@ const io = new IntersectionObserver((entries) => {
     if (!e.isIntersecting) continue;
     io.unobserve(e.target);
     const el = e.target;
+    el._revealed = true;
     if (el.hasAttribute("data-words")) {
       el._units.forEach((wi, i) => {
-        wi.parentElement.classList.add("on");
         tween({ delay: i * 55, duration: 950, ease: "outExpo", update: (v) => {
           wi.style.transform = `translateY(${(1 - v) * 115}%)`; wi.style.opacity = v;
         }});
@@ -1441,7 +1487,7 @@ const destTrack = $("#destTrack");
 const destCards = Array.from(destTrack.children);
 const destDotsWrap = $("#destDots");
 const destCount = $("#destCount");
-const DIR = RTL ? 1 : -1;
+let DIR = RTL ? 1 : -1;
 let destIndex = 0, destStep = 0, destPages = 1, destVisible = 3;
 const posSpring = spring({ tension: 210, friction: 24, precision: 0.5,
   onUpdate: (v) => { destTrack.style.transform = `translate3d(${DIR * v}px,0,0)`; } });
@@ -1482,17 +1528,21 @@ destViewport.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") gotoDest(destIndex + 1);
   if (e.key === "ArrowRight") gotoDest(destIndex - 1);
 });
-/* drag */
+/* drag — capture only after a real drag starts, so card links stay clickable */
 let dragStart = null, dragBase = 0, dragged = false;
 destViewport.addEventListener("pointerdown", (e) => {
+  if (e.target.closest("a,button")) return;
   dragStart = e.clientX; dragBase = destIndex * destStep; dragged = false;
-  destViewport.classList.add("is-drag");
-  destViewport.setPointerCapture(e.pointerId);
 });
 destViewport.addEventListener("pointermove", (e) => {
   if (dragStart === null) return;
   const dx = e.clientX - dragStart;
-  if (Math.abs(dx) > 6) dragged = true;
+  if (!dragged && Math.abs(dx) > 6) {
+    dragged = true;
+    destViewport.classList.add("is-drag");
+    try { destViewport.setPointerCapture(e.pointerId); } catch (err) {}
+  }
+  if (!dragged) return;
   const raw = clamp01((dragBase - dx * (RTL ? -1 : 1)) / ((destPages - 1) * destStep || 1));
   posSpring.jump(raw * (destPages - 1) * destStep);
 });
@@ -1501,6 +1551,7 @@ const endDrag = (e) => {
   const dx = e.clientX - dragStart;
   dragStart = null;
   destViewport.classList.remove("is-drag");
+  if (!dragged) return;
   const moved = Math.round(-dx * (RTL ? -1 : 1) / destStep);
   gotoDest(destIndex + moved);
 };
@@ -1542,7 +1593,6 @@ $$("#faqList .faq-item").forEach((item) => {
   const panel = $(".faq-a", item);
   btn.addEventListener("click", () => {
     const isOpen = item.classList.contains("is-open");
-    /* close siblings */
     $$("#faqList .faq-item.is-open").forEach((other) => {
       if (other === item) return;
       const op = $(".faq-a", other);
@@ -1563,12 +1613,35 @@ $$("#faqList .faq-item").forEach((item) => {
   });
 });
 
+/* ================= service rows → request modal ================= */
+$$(".svc-row").forEach((row) => {
+  const idx = parseInt(row.getAttribute("data-svc"), 10);
+  const act = () => {
+    const sel = $("#fService");
+    if (sel) sel.selectedIndex = idx + 1; /* +1 skips the disabled placeholder */
+    openModal(row);
+  };
+  row.setAttribute("role", "button");
+  row.setAttribute("tabindex", "0");
+  row.setAttribute("aria-haspopup", "dialog");
+  row.addEventListener("click", act);
+  row.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); act(); } });
+});
+/* destination cards → preselect the destination in the form */
+$$("[data-dest]").forEach((a) => {
+  a.addEventListener("click", () => {
+    const sel = $("#fDest");
+    if (sel) sel.selectedIndex = parseInt(a.getAttribute("data-dest"), 10) + 1;
+  });
+});
+
 /* ================= contact modal ================= */
 const modal = $("#contactModal");
 const backdrop = $(".modal-backdrop", modal);
 const panel = $(".modal-panel", modal);
 const form = $("#contactForm");
 const submitBtn = $("#submitBtn");
+const submitLabel = $("#submitLabel");
 let modalOpen = false, lastFocus = null;
 const backSpring = spring({ tension: 240, friction: 30, precision: 0.004, onUpdate: (v) => { backdrop.style.opacity = v; } });
 const panelSpring = spring({ tension: 240, friction: 26, precision: 0.004,
@@ -1596,7 +1669,7 @@ function closeModal(){
     lockScroll(false);
     modal.classList.remove("is-sent");
     submitBtn.disabled = false;
-    submitBtn.firstChild.textContent = "ارسال درخواست\n";
+    submitLabel.textContent = t("form.submit");
     form.reset();
     lastFocus && lastFocus.focus({ preventScroll: true });
   }, REDUCED ? 30 : 480);
@@ -1609,8 +1682,18 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   if (!form.reportValidity()) return;
   submitBtn.disabled = true;
-  submitBtn.firstChild.textContent = "در حال ارسال...\n";
-  setTimeout(() => modal.classList.add("is-sent"), 900);
+  submitLabel.textContent = t("form.sending");
+  setTimeout(() => {
+    const parts = [
+      `${t("modal.name")}: ${$("#fName").value}`,
+      `${t("modal.phone")}: ${$("#fPhone").value}`,
+      `${t("modal.dest")}: ${$("#fDest").value}`,
+      `${t("modal.serv")}: ${$("#fService").value}`,
+    ];
+    if ($("#fMsg").value.trim()) parts.push(`${t("modal.msg")}: ${$("#fMsg").value.trim()}`);
+    $("#smsLink").setAttribute("href", "sms:+989122903240?body=" + encodeURIComponent(parts.join(" — ")));
+    modal.classList.add("is-sent");
+  }, 900);
 });
 document.addEventListener("keydown", (e) => {
   if (e.key !== "Escape") return;
@@ -1635,7 +1718,7 @@ function toggleMenu(force){
   menuOpen = open;
   burger.classList.toggle("is-open", open);
   burger.setAttribute("aria-expanded", String(open));
-  burger.setAttribute("aria-label", open ? "بستن منو" : "باز کردن منو");
+  burger.setAttribute("aria-label", open ? t("menu.close") : t("menu.open"));
   if (open) {
     menu.classList.add("is-open");
     lockScroll(true);
@@ -1654,6 +1737,299 @@ function toggleMenu(force){
 }
 burger.addEventListener("click", () => toggleMenu());
 
+/* ================= i18n ================= */
+const langBtn = $("#langBtn");
+const I18N = {
+fa: {
+  "meta.title": "وکیل ویزا | Vakil Visa — مشاوره مهاجرت، ویزا و اقامت",
+  "meta.desc": "وکیل ویزا — مشاوره مهاجرت، ویزا و اقامت برای فرانسه، آلمان، روسیه، لهستان، هلند و بلژیک. راهنمای شفاف برای مسیرهای پیچیده.",
+  "skip": "پرش به محتوا",
+  "nav.aria": "ناوبری اصلی",
+  "nav.dest": "مقصدها", "nav.serv": "خدمات", "nav.res": "اقامت", "nav.faq": "سؤالات",
+  "cta.request": "ثبت درخواست",
+  "lang.aria": "تغییر زبان",
+  "menu.open": "باز کردن منو", "menu.close": "بستن منو",
+  "menu.home": "خانه", "menu.homeS": "Home",
+  "menu.dest": "مقصدها", "menu.destS": "Destinations",
+  "menu.serv": "خدمات", "menu.servS": "Services",
+  "menu.res": "اقامت", "menu.resS": "Residence",
+  "menu.faq": "سؤالات متداول", "menu.faqS": "FAQ",
+  "menu.contact": "تماس", "menu.contactS": "Contact",
+  "menu.span": "تماس با وکیل ویزا",
+  "hero.eyebrow": "مشاوره مهاجرت · ویزا · اقامت",
+  "hero.line1": "ویزا. اقامت.", "hero.line2": "آغاز یک مسیر تازه.",
+  "hero.sub": "وکیل ویزا مسیر مهاجرت شما را قدم‌به‌قدم شفاف می‌کند: ارزیابی صادقانه شرایط شما، معرفی مسیرهای واقعی ویزا و اقامت، و آماده‌سازی مرحله‌به‌مرحله درخواست — برای فرانسه، آلمان، روسیه، لهستان، هلند و بلژیک.",
+  "hero.cta1": "مشاهده مقصدها", "hero.cta2": "تماس با وکیل ویزا", "hero.scroll": "اسکرول کنید",
+  "heroSlider.aria": "اسلایدر مقصدهای مهاجرتی",
+  "slider.slide": "اسلاید",
+  "s1.tag": "France", "s1.h": "تحصیل و اقامت", "s1.link": "کاوش در فرانسه",
+  "s2.tag": "Germany", "s2.h": "کار و اقامت", "s2.link": "کاوش در آلمان",
+  "s3.tag": "Netherlands", "s3.h": "تحصیل و مهاجرت", "s3.link": "کاوش در هلند",
+  "info.p": "راهنمای بین‌المللی مهاجرت",
+  "dest.eyebrow": "مقصدها", "dest.eyebrowEn": "Destinations",
+  "dest.title": "با اطمینان حرکت کن", "dest.line": "MOVE WITH CONFIDENCE",
+  "dest.desc": "شش مقصد اصلی مهاجرتی — فرانسه، آلمان، روسیه، لهستان، هلند و بلژیک — با نگاهی واقع‌بینانه به شرایط هر کشور. برای هر مقصد، مسیرهای عمومی ویزا، تحصیل، کار و اقامت را مرور می‌کنیم تا پیش از هر تصمیمی، تصویر روشنی از گزینه‌های پیشِ رو داشته باشید.",
+  "dest.more": "شروع پرونده شما",
+  "d1.tag": "France", "d1.h": "فرانسه", "d1.p": "از ویزای تحصیلی و کاری تا مسیرهای اقامت؛ با نکات کلیدی سفارت فرانسه و مدارک پرتکرار هر مسیر.",
+  "d2.tag": "Germany", "d2.h": "آلمان", "d2.p": "تحصیل تقریباً رایگان، بازار کار قوی و مسیرهای روشن اقامت؛ مرور شرایط زبان، مدارک و روند درخواست.",
+  "d3.tag": "Russia", "d3.h": "روسیه", "d3.p": "پذیرش دانشگاهی، ویزای تحصیلی و کاری و شرایط اقامت برای متقاضیان واجد شرایط — به زبان ساده و بدون اغراق.",
+  "d4.tag": "Poland", "d4.h": "لهستان", "d4.p": "دانشگاه‌های باکیفیت با شهریه‌های منطقی و مسیرهای کاری رو به رشد؛ آنچه باید درباره ویزا و اقامت لهستان بدانید.",
+  "d5.tag": "Netherlands", "d5.h": "هلند", "d5.p": "برنامه‌های بین‌المللی به انگلیسی، محیط کار چندملیتی و مسیرهای اقامت مبتنی بر اشتغال.",
+  "d6.tag": "Belgium", "d6.h": "بلژیک", "d6.p": "قلب اروپا با دانشگاه‌های معتبر و بازار کار بین‌المللی؛ مرور عمومی ویزا و اقامت بلژیک.",
+  "carousel.aria": "کاروسل مقصدها", "carousel.prev": "قبلی", "carousel.next": "بعدی", "carousel.page": "صفحه",
+  "serv.eyebrow": "خدمات ما", "serv.eyebrowEn": "Our Services",
+  "serv.title": "راهنمای هر گام", "serv.line": "GUIDANCE FOR EVERY STEP",
+  "serv.desc": "از اولین ارزیابی تا آماده‌سازی نهایی درخواست، هفت حوزه خدماتی داریم که هر کدام توضیح مشخص، مدارک معمول و گام‌های عملی خودش را دارد. روی هر ردیف کلیک کنید تا فرم ثبت درخواست با همان حوزه باز شود.",
+  "sv1.t": "مشاوره ویزا", "sv1.d": "توضیح شفاف دسته‌های ویزای تحصیلی، کاری و بازدید، مدارک پرتکرار هر دسته و اشتباه‌های رایج درخواست — تا بدانید کدام مسیر به وضعیت شما می‌خورد.",
+  "sv2.t": "راهنمای سفارت", "sv2.d": "مرور عمومی رویه‌های سفارت و کنسولگری، نوبت‌دهی، تکمیل فرم‌ها و آماده‌سازی برای مصاحبه؛ بدون وعده، فقط روند واقعی کار.",
+  "sv3.t": "مشاوره اقامت", "sv3.d": "بررسی مسیرهای ممکن اقامت بر پایه تحصیل، اشتغال یا خانواده، شرایط معمول هر مسیر و مدارکی که باید از همین حالا آماده کنید.",
+  "sv4.t": "مهاجرت تحصیلی", "sv4.d": "انتخاب دانشگاه و رشته، شرایط پذیرش، مدرک زبان، شهریه و بورس‌ها، و مسیر اقامت دانشجویی — برای یک تصمیم آگاهانه درباره تحصیل در خارج.",
+  "sv5.t": "مهاجرت کاری", "sv5.d": "مرور مسیرهای مهاجرت کاری، قراردادهای موردقبول مراجع، جست‌وجوی کارفرما و مدارک لازم برای تبدیل پیشنهاد شغلی به ویزا و اقامت.",
+  "sv6.t": "اقامت خانوادگی", "sv6.d": "شرایط الحاق خانواده، مدارک اثبات رابطه، توان مالی حامی و روند درخواست — با توضیح صادقانه محدودیت‌ها و زمان‌های معمول.",
+  "sv7.t": "اطلاعات پناهندگی و حمایت بین‌المللی", "sv7.d": "اطلاعاتی عمومی درباره رویه‌های پناهندگی و حمایت بین‌المللی و ملاحظات واجد شرایط بودن.", "sv7.note": "واجد شرایط بودن به پرونده فردی و قوانین فعلی بستگی دارد؛ هیچ تضمینی وجود ندارد.",
+  "proc.eyebrow": "مسیر فرآیند", "proc.eyebrowEn": "The Process",
+  "proc.title": "از اولین مشاوره تا گام بعدی شما", "proc.line": "FROM FIRST CONSULTATION TO YOUR NEXT STEP",
+  "proc.desc": "فرآیند کار با وکیل ویزا ساده و قابل پیش‌بینی است: چهار گام مشخص، هر کدام با خروجی معین. در تمام مسیر دقیقاً می‌دانید کجا ایستاده‌اید و گام بعدی چیست.",
+  "st1.t": "ارزیابی اولیه", "st1.d": "گفت‌وگویی کوتاه درباره سابقه شما، مقصد و هدف؛ خروجی این گام، شناخت واقع‌بینانه از وضعیت فعلی شماست.",
+  "st2.t": "بررسی مسیرها", "st2.d": "مقایسه مسیرهای ویزا و اقامتِ مرتبط با شرایط شما؛ خروجی، یک یا دو مسیر پیشنهادی با توضیح دلایل است.",
+  "st3.t": "آماده‌سازی مدارک", "st3.d": "فهرست دقیق مدارک مسیر انتخابی، ترجمه رسمی و تأییدیه‌ها و زمان‌بندی جمع‌آوری؛ خروجی، پرونده‌ای کامل و مرتب است.",
+  "st4.t": "راهنمای درخواست", "st4.d": "راهنمای گام‌به‌گام ثبت درخواست، نوبت‌دهی و پیگیری؛ خروجی، درخواستی است که با اطمینان ثبت کرده‌اید.",
+  "spot.eyebrow": "کشور منتخب", "spot.eyebrowEn": "Country Spotlight",
+  "spot.title": "مقصد بعدی خود را انتخاب کنید", "spot.line": "CHOOSE YOUR NEXT DESTINATION",
+  "spot.desc": "پاریس و آمستردام دو مقصدی هستند که بیشترین سؤال را درباره آن‌ها می‌پرسند: از تحصیل و هزینه زندگی تا بازار کار. نگاهی نزدیک‌تر به این دو شهر بیندازید تا ببینید کدام‌یک با سبک زندگی شما بیشتر می‌سازد.",
+  "sp1.cap": "فرانسه", "sp2.cap": "هلند",
+  "res.eyebrow": "اطلاعات مهم", "res.eyebrowEn": "Important Information",
+  "res.title": "هر پرونده، متفاوت است", "res.line": "EVERY CASE IS DIFFERENT",
+  "res.desc": "هیچ دو پرونده مهاجرتی شبیه هم نیستند؛ همین دلیل اصلی شکست پاسخ‌های کلی و وعده‌های آماده است. این چهار نکته، چارچوب واقعی هر پرونده اقامتی را روشن می‌کند تا انتظارات شما از روز اول واقع‌بینانه باشد.",
+  "ic1.t": "الزامات ویزا", "ic1.d": "الزامات به تابعیت شما، کشور مقصد، نوع ویزا و هدف سفر بستگی دارد؛ فهرست دقیق را همیشه باید از منبع رسمی همان کشور تأیید کنید.",
+  "ic2.t": "زمان پردازش", "ic2.d": "زمان بررسی بر اساس نوع ویزا، سفارت یا کنسولگری و فصل درخواست متغیر است؛ هیچ عدد ثابتی برای همه پرونده‌ها وجود ندارد.",
+  "ic3.t": "اقامت", "ic3.d": "اقامت همیشه یک مبنای قانونی دارد: تحصیل، اشتغال، پیوند خانوادگی یا سایر دلایل احرازشده؛ بدون مبنای معتبر، مسیری وجود ندارد.",
+  "ic4.t": "مدارک", "ic4.d": "مدارک موردنیاز بر اساس مسیر و کشور متفاوت است و گاهی به ترجمه رسمی یا تأییدیه نیاز دارد؛ نسخه نهایی باید با الزامات روز مطابقت داشته باشد.",
+  "res.foot": "این موارد بیانیه‌های اطلاعاتی هستند و نه تضمین؛ واجد شرایط بودن به پرونده فردی و قوانین فعلی بستگی دارد.",
+  "tl.eyebrow": "زمان‌بندی", "tl.eyebrowEn": "Timelines",
+  "tl.title": "چقدر طول می‌کشد؟", "tl.line": "HOW LONG DOES IT TAKE?",
+  "tl.desc": "صادقانه بگوییم: زمان دقیق را هیچ مشاوری نمی‌تواند تضمین کند. آنچه می‌توانیم ارائه دهیم، بازه‌های واقع‌بینانه هر مرحله و عواملی است که آن‌ها را کوتاه‌تر یا بلندتر می‌کند.",
+  "t1.h": "مشاوره اولیه", "t1.s": "بستگی به پرونده دارد", "t1.p": "معمولاً در همان اولین جلسه، تصویر کلی مسیر مشخص می‌شود.",
+  "t2.h": "آماده‌سازی مدارک", "t2.s": "بستگی به مسیر دارد", "t2.p": "از چند هفته تا چند ماه؛ به ترجمه رسمی و تأییدیه‌ها بستگی دارد.",
+  "t3.h": "پردازش سفارت", "t3.s": "متغیر بر اساس کشور و نوع ویزا", "t3.p": "صف نوبت و فصل درخواست، تأثیر مستقیم روی زمان پردازش دارد.",
+  "t4.h": "فرآیند اقامت", "t4.s": "متغیر بر اساس مسیر قانونی", "t4.p": "بعد از ورود یا تحصیل، مسیر اقامت مرحله و زمان مخصوص خود را دارد.",
+  "tl.note": "<strong>زمان‌های نمایش‌داده‌شده صرفاً راهنمای عمومی هستند.</strong> زمان‌های رسمی می‌توانند تغییر کنند؛ متقاضیان باید اطلاعات روز را از سفارت، کنسولگری یا مرجع مهاجرتی مربوطه بررسی کنند. برای تصمیم‌گیری، همیشه منابع رسمی کشور مقصد ملاک است.",
+  "why.eyebrow": "چرا وکیل ویزا", "why.eyebrowEn": "Why Vakil Visa",
+  "why.title": "راهنمایی شفاف برای مسیرهای پیچیده", "why.line": "CLEAR GUIDANCE FOR COMPLEX JOURNEYS",
+  "why.desc": "در حوزه مهاجرت، اغراق و وعده‌های غیرواقعی زیاد است؛ کار ما دقیقاً برعکس است. سه اصل زیر، چیزی است که از روز اول به شما تحویل می‌دهیم.",
+  "w1.t": "اطلاعات شفاف", "w1.d": "پیش از هر تصمیم، مسیر کلی، الزامات و ریسک‌ها را همان‌طور که هست می‌شنوید؛ نه صورتی‌سازی، نه اغراق.",
+  "w2.t": "تمرکز بر کشور", "w2.d": "به‌جای ادعای «همه کشورها»، روی شش مقصد مشخص تمرکز می‌کنیم تا اطلاعات عمیق و به‌روز بماند.",
+  "w3.t": "مشاوره شخصی", "w3.d": "وضعیت دقیق خود را مطرح می‌کنید و مشخص می‌شود کدام سؤال‌ها پاسخ عمومی دارند و کدام نیاز به بررسی تخصصی یا حقوقی است.",
+  "faq.eyebrow": "سؤالات متداول", "faq.eyebrowEn": "FAQ",
+  "faq.title": "سؤال‌هایی که مردم می‌پرسند", "faq.line": "QUESTIONS PEOPLE ASK",
+  "faq.desc": "پاسخ‌های کوتاه و صادقانه به سؤال‌های پرتکرار متقاضیان — بدون اغراق و بدون وعده. اگر پاسخ سؤال شما اینجا نبود، در فرم ثبت درخواست بنویسید تا دقیق جواب بدهیم.",
+  "q1": "وکیل ویزا کدام کشورها را پوشش می‌دهد؟",
+  "a1": "در حال حاضر راهنمایی برای شش کشور فرانسه، آلمان، روسیه، لهستان، هلند و بلژیک ارائه می‌شود؛ تمرکز روی شش مقصد باعث می‌شود اطلاعات عمیق و به‌روز بماند. برای کشورهای دیگر می‌توانید در فرم تماس بپرسید تا صادقانه بگوییم آیا کمکی از دستمان برمی‌آید.",
+  "q2": "آیا کمک به درخواست ویزا می‌کنید؟",
+  "a2": "بله، در قالب راهنمای ساخت‌یافته: توضیح دسته ویزای مناسب، فهرست مدارک، تکمیل فرم‌ها و آماده‌سازی برای مصاحبه. تصمیم نهایی همیشه با مرجع رسمی است و هیچ تأییدی قابل تضمین نیست.",
+  "q3": "درخواست ویزا چقدر طول می‌کشد؟",
+  "a3": "بسته به نوع ویزا، سفارت یا کنسولگری و شرایط شخصی شما، از چند هفته تا چند ماه متغیر است. در جلسه مشاوره، بازه واقع‌بینانه مسیر انتخابی‌تان را دقیق‌تر مرور می‌کنیم.",
+  "q4": "معمولاً چه مدارکی لازم است؟",
+  "a4": "گذرنامه معتبر، مدارک هویتی، اثبات مالی و اثبات هدف سفر تقریباً همیشه لازم است؛ اما فهرست دقیق به مسیر و کشور بستگی دارد. در مشاوره، چک‌لیست کامل مسیر خود را دریافت می‌کنید و برای ترجمه رسمی و تأییدیه‌ها زمان‌بندی می‌کنیم.",
+  "q5": "آیا برای درخواست اقامت کمک می‌کنید؟",
+  "a5": "اطلاعاتی درباره مسیرهای ممکن اقامت — تحصیلی، کاری و خانوادگی — و مدارک و شرایط هر مسیر ارائه می‌کنیم. واجد شرایط بودن به پرونده فردی و قوانین روز بستگی دارد و باید با مراجع رسمی تأیید شود.",
+  "q6": "آیا مشاوره پناهندگی ارائه می‌کنید؟",
+  "a6": "مشاوره اطلاعاتی عمومی درباره رویه‌های پناهندگی و حمایت بین‌المللی ارائه می‌شود. هر پرونده به‌صورت فردی و بر اساس قانون بررسی می‌شود؛ هیچ تضمینی وجود ندارد و برای اقدام حقوقی باید به وکیل رسمی مراجعه کنید.",
+  "q7": "آیا تأیید ویزا تضمین شده است؟",
+  "a7": "نه، و هر کس چنین تضمینی بدهد صادق نیست. تصمیم ویزا و اقامت منحصراً توسط مراجع رسمی گرفته می‌شود؛ کار ما آماده‌سازی یک درخواست قوی و شفاف است، نه تضمین نتیجه.",
+  "q8": "چطور می‌توانم با وکیل ویزا تماس بگیرم؟",
+  "a8": "از طریق شماره", "a8b": "تماس بگیرید، پیامک بفرستید یا فرم «ثبت درخواست» همین صفحه را پر کنید؛ در سریع‌ترین زمان پاسخ می‌دهیم.",
+  "ctaS.eyebrow": "گفت‌وگو را شروع کنید", "ctaS.eyebrowEn": "Let's Talk",
+  "ctaS.title": "آماده‌اید گام بعدی را بردارید؟",
+  "ctaS.btn": "ثبت درخواست",
+  "ctaS.small": "درخواست خود را ثبت کنید تا درباره شرایط‌تان صحبت کنیم — بدون هیچ تضمینی، فقط اطلاعات شفاف و صادقانه.",
+  "foot.brand": "راهنمای مهاجرت، ویزا و اقامت برای شش مقصد اصلی — با زبانی شفاف و انتظارات واقع‌بینانه.",
+  "foot.colD": "مقصدها", "foot.colDh": "مقصدها",
+  "foot.colS": "خدمات", "foot.colSh": "خدمات",
+  "foot.colC": "شرکت", "foot.colCh": "شرکت",
+  "co1": "درباره ما", "co2": "چرا وکیل ویزا", "co3": "سؤالات متداول", "co4": "تماس",
+  "foot.copy": "© ۲۰۲۶ وکیل ویزا. تمامی حقوق محفوظ است.",
+  "foot.legal": "وکیل ویزا یک مؤسسه خصوصی مشاوره و اطلاع‌رسانی است و نماینده رسمی هیچ دولت، سفارت، کنسولگری یا مرجع مهاجرتی نیست. تصمیم‌های ویزا و اقامت منحصراً توسط مراجع رسمی گرفته می‌شود.",
+  "modal.h": "گفت‌وگو را آغاز کنید",
+  "modal.close": "بستن",
+  "modal.name": "نام و نام خانوادگی", "modal.phone": "شماره تماس", "modal.dest": "مقصد", "modal.serv": "خدمت", "modal.msg": "پیام",
+  "modal.pick": "انتخاب کنید", "modal.other": "سایر", "modal.general": "مشاوره عمومی",
+  "ph.name": "نام شما", "ph.phone": "شماره تماس شما", "ph.msg": "کوتاه بگویید چه کمکی نیاز دارید...",
+  "form.submit": "ارسال درخواست", "form.sending": "در حال ارسال...",
+  "form.note": "پس از ثبت، برای پیگیری سریع‌تر می‌توانید مستقیم با ما تماس بگیرید یا پیامک بفرستید.",
+  "success.h": "درخواست شما دریافت شد",
+  "success.p": "سپاسگزاریم. برای بررسی سریع‌تر، همان اطلاعات را با پیامک برای ما بفرستید یا مستقیم تماس بگیرید؛ وکیل ویزا در اولین فرصت پاسخ می‌دهد.",
+  "success.sms": "ارسال با پیامک", "success.call": "تماس تلفنی"
+},
+en: {
+  "meta.title": "Vakil Visa | Immigration, Visa & Residence Guidance",
+  "meta.desc": "Vakil Visa — immigration, visa and residence guidance for France, Germany, Russia, Poland, the Netherlands and Belgium. Clear guidance for complex journeys.",
+  "skip": "Skip to content",
+  "nav.aria": "Main navigation",
+  "nav.dest": "Destinations", "nav.serv": "Services", "nav.res": "Residence", "nav.faq": "FAQ",
+  "cta.request": "Submit Request",
+  "lang.aria": "Switch language",
+  "menu.open": "Open menu", "menu.close": "Close menu",
+  "menu.home": "Home", "menu.homeS": "خانه",
+  "menu.dest": "Destinations", "menu.destS": "مقصدها",
+  "menu.serv": "Services", "menu.servS": "خدمات",
+  "menu.res": "Residence", "menu.resS": "اقامت",
+  "menu.faq": "FAQ", "menu.faqS": "سؤالات متداول",
+  "menu.contact": "Contact", "menu.contactS": "تماس",
+  "menu.span": "Contact Vakil Visa",
+  "hero.eyebrow": "Immigration · Visa · Residence",
+  "hero.line1": "Visas. Residence.", "hero.line2": "The start of a new path.",
+  "hero.sub": "Vakil Visa makes your migration route clear, step by step: an honest assessment of your situation, real visa and residence pathways, and staged preparation of your application — for France, Germany, Russia, Poland, the Netherlands and Belgium.",
+  "hero.cta1": "Explore destinations", "hero.cta2": "Talk to Vakil Visa", "hero.scroll": "Scroll",
+  "heroSlider.aria": "Migration destinations slider",
+  "slider.slide": "Slide",
+  "s1.tag": "فرانسه", "s1.h": "Study & Residence", "s1.link": "Explore France",
+  "s2.tag": "آلمان", "s2.h": "Work & Residence", "s2.link": "Explore Germany",
+  "s3.tag": "هلند", "s3.h": "Study & Migration", "s3.link": "Explore the Netherlands",
+  "info.p": "International migration guidance",
+  "dest.eyebrow": "Destinations", "dest.eyebrowEn": "مقصدها",
+  "dest.title": "Move with confidence", "dest.line": "با اطمینان حرکت کنید",
+  "dest.desc": "Six core destinations — France, Germany, Russia, Poland, the Netherlands and Belgium — reviewed with a realistic view of each country's conditions. For every destination we walk through the general visa, study, work and residence routes, so you have a clear picture of your options before making any decision.",
+  "dest.more": "Start your case",
+  "d1.tag": "فرانسه", "d1.h": "France", "d1.p": "From student and work visas to residence routes — with key notes on the French embassy and the usual documents for each route.",
+  "d2.tag": "آلمان", "d2.h": "Germany", "d2.p": "Near tuition-free study, a strong job market and clear residence routes — a review of language requirements, documents and the application process.",
+  "d3.tag": "روسیه", "d3.h": "Russia", "d3.p": "University admission, study and work visas, and residence conditions for eligible applicants — plain language, no hype.",
+  "d4.tag": "لهستان", "d4.h": "Poland", "d4.p": "Quality universities with reasonable tuition and growing work routes — what you should know about Polish visas and residence.",
+  "d5.tag": "هلند", "d5.h": "Netherlands", "d5.p": "English-taught international programmes, a multinational work environment and employment-based residence routes.",
+  "d6.tag": "بلژیک", "d6.h": "Belgium", "d6.p": "The heart of Europe, with reputable universities and an international job market — a general review of Belgian visas and residence.",
+  "carousel.aria": "Destinations carousel", "carousel.prev": "Previous", "carousel.next": "Next", "carousel.page": "Page",
+  "serv.eyebrow": "Our Services", "serv.eyebrowEn": "خدمات ما",
+  "serv.title": "Guidance for every step", "serv.line": "راهنمای هر گام",
+  "serv.desc": "From the first assessment to final application preparation, we cover seven service areas — each with a clear scope, typical documents and practical steps. Click any row to open the request form with that area preselected.",
+  "sv1.t": "Visa consultation", "sv1.d": "A clear explanation of student, work and visitor visa categories, the usual documents for each, and common application mistakes — so you know which route fits your situation.",
+  "sv2.t": "Embassy guidance", "sv2.d": "A general review of embassy and consulate procedures, appointment booking, form filling and interview preparation — no promises, just how the process really works.",
+  "sv3.t": "Residence consultation", "sv3.d": "A review of possible residence routes based on study, employment or family, the typical conditions of each, and the documents you should prepare right away.",
+  "sv4.t": "Study migration", "sv4.d": "Choosing a university and programme, admission requirements, language certificates, tuition and scholarships, and the student residence route — for an informed decision about studying abroad.",
+  "sv5.t": "Work migration", "sv5.d": "A review of work migration routes, contracts accepted by the authorities, employer search, and the documents needed to turn a job offer into a visa and residence.",
+  "sv6.t": "Family residence", "sv6.d": "Family reunification conditions, relationship documents, the sponsor's financial means and the application process — with an honest explanation of the limits and usual timelines.",
+  "sv7.t": "Asylum & international protection info", "sv7.d": "General information about asylum and international protection procedures and eligibility considerations.", "sv7.note": "Eligibility depends on the individual case and current law; no guarantees are given.",
+  "proc.eyebrow": "The Process", "proc.eyebrowEn": "مسیر فرآیند",
+  "proc.title": "From first consultation to your next step", "proc.line": "از اولین مشاوره تا گام بعدی",
+  "proc.desc": "Working with Vakil Visa is simple and predictable: four defined steps, each with a concrete outcome. Throughout the journey you always know where you stand and what comes next.",
+  "st1.t": "Initial assessment", "st1.d": "A short conversation about your background, destination and goal; the outcome is a realistic picture of where you stand today.",
+  "st2.t": "Route review", "st2.d": "Comparing the visa and residence routes that match your situation; the outcome is one or two recommended routes with clear reasoning.",
+  "st3.t": "Document preparation", "st3.d": "A precise checklist for the chosen route, certified translations and attestations, and a collection timeline; the outcome is a complete, orderly file.",
+  "st4.t": "Application guidance", "st4.d": "Step-by-step guidance for submitting, booking appointments and follow-up; the outcome is an application you have filed with confidence.",
+  "spot.eyebrow": "Country Spotlight", "spot.eyebrowEn": "کشور منتخب",
+  "spot.title": "Choose your next destination", "spot.line": "مقصد بعدی خود را انتخاب کنید",
+  "spot.desc": "Paris and Amsterdam are the two destinations we are asked about the most — from study and living costs to the job market. Take a closer look at both cities to see which one fits your lifestyle better.",
+  "sp1.cap": "France", "sp2.cap": "Netherlands",
+  "res.eyebrow": "Important Information", "res.eyebrowEn": "اطلاعات مهم",
+  "res.title": "Every case is different", "res.line": "هر پرونده، متفاوت است",
+  "res.desc": "No two migration cases are alike — that is exactly why generic answers and packaged promises fail. These four points frame every residence case realistically, so your expectations are right from day one.",
+  "ic1.t": "Visa requirements", "ic1.d": "Requirements depend on your nationality, the destination country, the visa type and the purpose of travel; always verify the exact list with that country's official source.",
+  "ic2.t": "Processing time", "ic2.d": "Review times vary by visa type, embassy or consulate, and the season of application; there is no fixed number for every case.",
+  "ic3.t": "Residence", "ic3.d": "Residence always rests on a legal basis: study, employment, family ties or other established grounds; without a valid basis, there is no route.",
+  "ic4.t": "Documents", "ic4.d": "Required documents differ by route and country and may need certified translation or attestation; the final set must match current requirements.",
+  "res.foot": "These are informational statements, not guarantees; eligibility depends on the individual case and current law.",
+  "tl.eyebrow": "Timelines", "tl.eyebrowEn": "زمان‌بندی",
+  "tl.title": "How long does it take?", "tl.line": "چقدر طول می‌کشد؟",
+  "tl.desc": "To be honest: no consultant can guarantee an exact timeline. What we can offer are realistic ranges for each stage and the factors that make them shorter or longer.",
+  "t1.h": "Initial consultation", "t1.s": "Depends on the case", "t1.p": "Usually the overall route becomes clear in the very first session.",
+  "t2.h": "Document preparation", "t2.s": "Depends on the route", "t2.p": "From a few weeks to a few months, depending on certified translations and attestations.",
+  "t3.h": "Embassy processing", "t3.s": "Varies by country and visa type", "t3.p": "Appointment queues and the season you apply directly affect the timing.",
+  "t4.h": "Residence process", "t4.s": "Varies by legal route", "t4.p": "After entry or study, the residence route has its own stages and timeline.",
+  "tl.note": "<strong>The timelines shown are a general guide only.</strong> Official times can change; applicants should check up-to-date information with the relevant embassy, consulate or immigration authority. For decisions, always rely on the official sources of the destination country.",
+  "why.eyebrow": "Why Vakil Visa", "why.eyebrowEn": "چرا وکیل ویزا",
+  "why.title": "Clear guidance for complex journeys", "why.line": "راهنمایی شفاف برای مسیرهای پیچیده",
+  "why.desc": "The migration field is full of hype and false promises; our work is the opposite. The three principles below are what we deliver from day one.",
+  "w1.t": "Transparent information", "w1.d": "Before any decision you hear the route, requirements and risks exactly as they are — no sugar-coating, no exaggeration.",
+  "w2.t": "Country focus", "w2.d": "Instead of claiming \"every country\", we focus on six specific destinations so the information stays deep and current.",
+  "w3.t": "Personal consultation", "w3.d": "You present your exact situation, and it becomes clear which questions can be answered generally and which need specialised or legal review.",
+  "faq.eyebrow": "FAQ", "faq.eyebrowEn": "سؤالات متداول",
+  "faq.title": "Questions people ask", "faq.line": "سؤال‌هایی که مردم می‌پرسند",
+  "faq.desc": "Short, honest answers to the questions applicants ask most — no hype, no promises. If your question isn't covered here, write it in the request form and we will answer it precisely.",
+  "q1": "Which countries does Vakil Visa cover?",
+  "a1": "We currently provide guidance for six countries: France, Germany, Russia, Poland, the Netherlands and Belgium. Focusing on six destinations keeps the information deep and up to date. For other countries, ask in the contact form and we will tell you honestly whether we can help.",
+  "q2": "Do you help with visa applications?",
+  "a2": "Yes — in the form of structured guidance: the right visa category, document checklists, form filling and interview preparation. The final decision always rests with the official authority and no approval can be guaranteed.",
+  "q3": "How long does a visa application take?",
+  "a3": "Depending on the visa type, the embassy or consulate and your personal circumstances, it ranges from a few weeks to several months. In the consultation we review a realistic range for your chosen route in more detail.",
+  "q4": "What documents are usually required?",
+  "a4": "A valid passport, identity documents, proof of funds and proof of purpose are almost always required, but the exact list depends on the route and country. In the consultation you receive a full checklist for your route, with a timeline for certified translations and attestations.",
+  "q5": "Do you assist with residence applications?",
+  "a5": "We provide information on possible residence routes — study, work and family — along with the documents and conditions of each. Eligibility depends on the individual case and current law and must be confirmed with the official authorities.",
+  "q6": "Do you provide asylum consultation?",
+  "a6": "We provide general, informational guidance on asylum and international protection procedures. Every case is assessed individually and under the law; nothing is guaranteed, and for legal action you must consult an officially licensed lawyer.",
+  "q7": "Is visa approval guaranteed?",
+  "a7": "No — and anyone promising that is not being honest. Visa and residence decisions are made solely by the official authorities; our job is to prepare a strong, transparent application, not to guarantee the outcome.",
+  "q8": "How can I contact Vakil Visa?",
+  "a8": "Call", "a8b": ", send an SMS, or fill in the \"Submit Request\" form on this page — we will get back to you as soon as possible.",
+  "ctaS.eyebrow": "Let's Talk", "ctaS.eyebrowEn": "گفت‌وگو را شروع کنید",
+  "ctaS.title": "Ready to take the next step?",
+  "ctaS.btn": "Submit Request",
+  "ctaS.small": "Submit your request and let's talk about your situation — no guarantees, just clear and honest information.",
+  "foot.brand": "Migration, visa and residence guidance for six core destinations — in plain language and with realistic expectations.",
+  "foot.colD": "Destinations", "foot.colDh": "Destinations",
+  "foot.colS": "Services", "foot.colSh": "Services",
+  "foot.colC": "Company", "foot.colCh": "Company",
+  "co1": "About us", "co2": "Why Vakil Visa", "co3": "FAQ", "co4": "Contact",
+  "foot.copy": "© 2026 Vakil Visa. All rights reserved.",
+  "foot.legal": "Vakil Visa is a private consulting and information service and is not an official representative of any government, embassy, consulate or immigration authority. Visa and residence decisions are made exclusively by the official authorities.",
+  "modal.h": "Let's start the conversation",
+  "modal.close": "Close",
+  "modal.name": "Full name", "modal.phone": "Phone number", "modal.dest": "Destination", "modal.serv": "Service", "modal.msg": "Message",
+  "modal.pick": "Select one", "modal.other": "Other", "modal.general": "General consultation",
+  "ph.name": "Your name", "ph.phone": "Your phone number", "ph.msg": "Briefly describe what you need help with...",
+  "form.submit": "Send request", "form.sending": "Sending...",
+  "form.note": "After submitting, you can call or text us directly for faster follow-up.",
+  "success.h": "Your request has been received",
+  "success.p": "Thank you. For faster follow-up, send us the same details by SMS or call directly — Vakil Visa will reply at the earliest opportunity.",
+  "success.sms": "Send by SMS", "success.call": "Call now"
+}
+};
+let LANG = "fa", introDone = false;
+const t = (k) => (I18N[LANG] && I18N[LANG][k]) || I18N.fa[k] || "";
+
+function resplitWords(el){
+  $$(".sr-vh", el).forEach((n) => n.remove());
+  el.removeAttribute("aria-label");
+  const main = $(".t-main", el);
+  el._units = main ? splitIntoUnits(el, [main]) : [];
+  if (el._revealed) el._units.forEach((wi) => { wi.style.transform = "none"; wi.style.opacity = "1"; });
+}
+function resplitTaglines(){
+  $$("#heroTagline [data-line]").forEach((line) => {
+    const text = line.textContent;
+    line.setAttribute("aria-label", text);
+    const w = document.createElement("span"); w.className = "w"; w.setAttribute("aria-hidden", "true");
+    const wi = document.createElement("span"); wi.className = "wi"; wi.textContent = text;
+    w.appendChild(wi); line.textContent = ""; line.appendChild(w);
+    if (introDone) { wi.style.transform = "none"; wi.style.opacity = "1"; }
+  });
+  lineUnits = $$("#heroTagline [data-line] .wi");
+}
+function setLang(lang){
+  LANG = I18N[lang] ? lang : "fa";
+  try { localStorage.setItem("vv-lang", LANG); } catch (err) {}
+  const en = LANG === "en";
+  document.documentElement.lang = LANG;
+  document.documentElement.dir = en ? "ltr" : "rtl";
+  document.title = t("meta.title");
+  const md = $('meta[name="description"]'); if (md) md.setAttribute("content", t("meta.desc"));
+  RTL = !en; DIR = RTL ? 1 : -1;
+  $$("[data-i18n]").forEach((el) => { el.innerHTML = t(el.getAttribute("data-i18n")); });
+  $$("[data-i18n-ph]").forEach((el) => { el.setAttribute("placeholder", t(el.getAttribute("data-i18n-ph"))); });
+  $$("[data-i18n-aria]").forEach((el) => { el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria"))); });
+  $$("[data-words]").forEach(resplitWords);
+  resplitTaglines();
+  /* dir-dependent re-measure + repaint */
+  measureDest();
+  Array.from(destDotsWrap.children).forEach((d, i) => d.setAttribute("aria-label", `${t("carousel.page")} ${i + 1}`));
+  Array.from(dotsWrap.children).forEach((d, i) => d.setAttribute("aria-label", `${t("slider.slide")} ${i + 1}`));
+  burger.setAttribute("aria-label", menuOpen ? t("menu.close") : t("menu.open"));
+  langBtn.textContent = en ? "فارسی" : "EN";
+  langBtn.setAttribute("aria-label", t("lang.aria"));
+  posSpring.jump(destIndex * destStep);
+  onScroll();
+}
+langBtn.addEventListener("click", () => setLang(LANG === "fa" ? "en" : "fa"));
+
 /* ================= anchor scrolling ================= */
 function scrollToTarget(sel){
   const target = $(sel);
@@ -1662,6 +2038,7 @@ function scrollToTarget(sel){
   else target.scrollIntoView({ behavior: REDUCED ? "auto" : "smooth" });
 }
 $$('a[href^="#"]').forEach((a) => {
+  if (a.hasAttribute("data-open-modal-link")) return; /* handled by the modal handler only */
   a.addEventListener("click", (e) => {
     const href = a.getAttribute("href");
     if (href.length < 2) return;
@@ -1682,6 +2059,7 @@ const heroScrollHint = $("#heroScroll");
 const infoCard = $("#infoCard");
 
 function heroIntro(){
+  introDone = true;
   tween({ duration: 650, ease: "outQuart", update: (v) => { heroEyebrow.style.opacity = v; } });
   titleUnits.forEach((wi, i) => {
     tween({ delay: 120 + i * 140, duration: 1100, ease: "outExpo", update: (v) => {
@@ -1702,7 +2080,6 @@ function heroIntro(){
   tween({ delay: 950, duration: 700, ease: "outQuart", update: (v) => { heroScrollHint.style.opacity = v; } });
   tween({ delay: 300, duration: 800, ease: "outQuart", update: (v) => { slider.style.opacity = v; },
     complete: () => { showSlide(0, true); scheduleAuto(); } });
-  /* info card — delayIn 780ms, tension 200 / friction 26 */
   const icSpring = spring({ tension: 200, friction: 26, precision: 0.004,
     onUpdate: (v) => { infoCard.style.opacity = v; infoCard.style.transform = `translateY(${(1 - v) * 1.6}rem)`; }});
   setTimeout(() => icSpring.set(1), 780);
@@ -1728,14 +2105,18 @@ if (REDUCED) {
     veilFill.style.transform = `scaleX(${v})`;
     veilPct.textContent = `${Math.round(v * 100)}%`;
   }, complete: () => setTimeout(liftVeil, 120) });
-  /* name fade-in */
   tween({ delay: 260, duration: 700, ease: "outQuart", update: (v) => {
     const name = $(".veil-name");
     name.style.opacity = v; name.style.transform = `translateY(${(1 - v) * 1}rem)`;
   }});
-  /* hard cap */
   setTimeout(() => { if (document.body.contains(veil)) liftVeil(); }, 3200);
 }
+
+/* restore saved language */
+try {
+  const saved = localStorage.getItem("vv-lang");
+  if (saved && saved !== "fa") setLang(saved);
+} catch (err) {}
 
 /* page always loads at the top */
 history.scrollRestoration = "manual";
